@@ -2440,85 +2440,6 @@ SELECT 'doc-ai-champion-irelia-20260912', NULL, '분류:브루저/원딜', '분�
 INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
 SELECT 'doc-ai-champion-irelia-20260912', NULL, '야스오', '야스오' FROM wiki_docs WHERE id = 'doc-ai-champion-irelia-20260912';
 
--- 사이온 (1221자)
-INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)
-SELECT 'doc-ai-champion-sion-20260912', 'article', '사이온', '사이온', 'published', NULL, '# AI 작성 초안
-
-[[분류:미드]] [[분류:브루저/원딜]]
-
-## Q는 오래 모으는 기술이 아니라 시간을 빼앗는 기술이다
-
-`대량 학살 강타(Q)`를 끝까지 충전하면 강하지만, 상대가 범위 밖으로 나가면 아무 일도 없다. **짧게 눌러 피해를 확정하고 기본 공격을 잇는 선택**과, 수풀·시야 밖에서 길게 모아 띄우는 선택을 구분한다.
-
-> 상대가 Q 범위를 벗어나느라 막타를 포기했다면 이미 작은 이득을 본 것이다. 끝까지 맞히려고 내 위치를 망치지 않는다.
-
-- 시야가 열린 중앙에서는 짧게 끊는다.
-- 상대 이동기가 빠졌거나 둔화가 묻었을 때만 길게 모은다.
-- 적 정글이 안 보이면 Q 충전으로 제자리에 오래 서 있지 않는다.
-
-## E로 미니언 뒤의 상대를 노린다
-
-`학살자의 포효(E)`가 미니언을 맞히면 그 미니언이 뒤로 밀려나며 경로의 적에게 영향을 준다. 상대가 자기 미니언 뒤를 안전지대로 생각할 때, 낮은 체력 미니언을 골라 밀어낸다.[* 인벤 사이온 공략 게시판의 실용 공략과 챔피언 스킬 설명을 참고했다. [사이온 공략 원문](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=143260), [사이온 공략 목록](https://lol.inven.co.kr/dataninfo/champion/manualTool.php?champnum=57)]
-
-| E 적중 뒤 상대 반응 | 다음 선택 |
-| --- | --- |
-| 옆으로 빠짐 | 그 방향을 막도록 Q를 짧게 충전한다. |
-| 뒤로 빠짐 | 웨이브를 밀고 시야를 잡는다. |
-| 앞으로 들어옴 | `영혼의 용광로(W)` 보호막을 켜고 짧게 맞교환한다. |
-
-## W는 터뜨릴 수 있을 때 켠다
-
-`W` 보호막은 일정 시간이 지나야 다시 눌러 주변 피해를 줄 수 있다. 상대의 한 번짜리 견제를 막는 데만 쓰면 폭발 피해 없이 끝날 수 있다. 미니언을 먹으러 서로 가까워질 때 미리 켜고, 보호막이 깨지기 전에 폭발 범위로 걸어간다.
-
-궁극기로 라인에 복귀하거나 로밍하기 전에는 웨이브가 어느 쪽으로 움직이는지 확인한다. 미드 웨이브가 아군 포탑에 쌓이는데 다른 길로 달리면, 성공해도 경험치 손해가 커진다.
-
-## 같이 보면 좋은 문서
-
-[[제이스]]처럼 원거리에서 계속 체력을 깎는 상대에게는 모든 막타를 몸으로 먹으려 하지 않는다. E와 짧은 Q로 안전한 미니언만 챙기고, 상대가 앞으로 나온 순간에만 W를 켜고 거리를 좁힌다.', 1, '16.17.1', 'guarded', '2026-09-12T00:00:00.000Z', '2026-09-12T00:00:00.000Z', 'user-system'
-WHERE NOT EXISTS (SELECT 1 FROM wiki_docs WHERE id = 'doc-ai-champion-sion-20260912' OR (kind = 'article' AND title_key = '사이온'));
-INSERT INTO wiki_edits (id, doc_id, me_slug, base_revision, body, summary, status, author, created_at, accepted_via, revision)
-SELECT 'edit-ai-champion-sion-20260912', id, NULL, 0, general, 'AI 작성: 실전 라인전 초안', 'accepted', 'user-system', '2026-09-12T00:00:00.000Z', 'admin', 1 FROM wiki_docs
-WHERE id = 'doc-ai-champion-sion-20260912' AND revision = 1 AND general = '# AI 작성 초안
-
-[[분류:미드]] [[분류:브루저/원딜]]
-
-## Q는 오래 모으는 기술이 아니라 시간을 빼앗는 기술이다
-
-`대량 학살 강타(Q)`를 끝까지 충전하면 강하지만, 상대가 범위 밖으로 나가면 아무 일도 없다. **짧게 눌러 피해를 확정하고 기본 공격을 잇는 선택**과, 수풀·시야 밖에서 길게 모아 띄우는 선택을 구분한다.
-
-> 상대가 Q 범위를 벗어나느라 막타를 포기했다면 이미 작은 이득을 본 것이다. 끝까지 맞히려고 내 위치를 망치지 않는다.
-
-- 시야가 열린 중앙에서는 짧게 끊는다.
-- 상대 이동기가 빠졌거나 둔화가 묻었을 때만 길게 모은다.
-- 적 정글이 안 보이면 Q 충전으로 제자리에 오래 서 있지 않는다.
-
-## E로 미니언 뒤의 상대를 노린다
-
-`학살자의 포효(E)`가 미니언을 맞히면 그 미니언이 뒤로 밀려나며 경로의 적에게 영향을 준다. 상대가 자기 미니언 뒤를 안전지대로 생각할 때, 낮은 체력 미니언을 골라 밀어낸다.[* 인벤 사이온 공략 게시판의 실용 공략과 챔피언 스킬 설명을 참고했다. [사이온 공략 원문](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=143260), [사이온 공략 목록](https://lol.inven.co.kr/dataninfo/champion/manualTool.php?champnum=57)]
-
-| E 적중 뒤 상대 반응 | 다음 선택 |
-| --- | --- |
-| 옆으로 빠짐 | 그 방향을 막도록 Q를 짧게 충전한다. |
-| 뒤로 빠짐 | 웨이브를 밀고 시야를 잡는다. |
-| 앞으로 들어옴 | `영혼의 용광로(W)` 보호막을 켜고 짧게 맞교환한다. |
-
-## W는 터뜨릴 수 있을 때 켠다
-
-`W` 보호막은 일정 시간이 지나야 다시 눌러 주변 피해를 줄 수 있다. 상대의 한 번짜리 견제를 막는 데만 쓰면 폭발 피해 없이 끝날 수 있다. 미니언을 먹으러 서로 가까워질 때 미리 켜고, 보호막이 깨지기 전에 폭발 범위로 걸어간다.
-
-궁극기로 라인에 복귀하거나 로밍하기 전에는 웨이브가 어느 쪽으로 움직이는지 확인한다. 미드 웨이브가 아군 포탑에 쌓이는데 다른 길로 달리면, 성공해도 경험치 손해가 커진다.
-
-## 같이 보면 좋은 문서
-
-[[제이스]]처럼 원거리에서 계속 체력을 깎는 상대에게는 모든 막타를 몸으로 먹으려 하지 않는다. E와 짧은 Q로 안전한 미니언만 챙기고, 상대가 앞으로 나온 순간에만 W를 켜고 거리를 좁힌다.'
-AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = 'edit-ai-champion-sion-20260912');
-INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
-SELECT 'doc-ai-champion-sion-20260912', NULL, '분류:미드', '분류:미드' FROM wiki_docs WHERE id = 'doc-ai-champion-sion-20260912';
-INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
-SELECT 'doc-ai-champion-sion-20260912', NULL, '분류:브루저/원딜', '분류:브루저/원딜' FROM wiki_docs WHERE id = 'doc-ai-champion-sion-20260912';
-INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
-SELECT 'doc-ai-champion-sion-20260912', NULL, '제이스', '제이스' FROM wiki_docs WHERE id = 'doc-ai-champion-sion-20260912';
-
 -- 코르키 (1114자)
 INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)
 SELECT 'doc-ai-champion-corki-20260912', 'article', '코르키', '코르키', 'published', NULL, '# AI 작성 초안
@@ -2968,4 +2889,856 @@ INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_tit
 SELECT 'doc-ai-champion-locke-20260912', NULL, '분류:브루저/원딜', '분류:브루저/원딜' FROM wiki_docs WHERE id = 'doc-ai-champion-locke-20260912';
 INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
 SELECT 'doc-ai-champion-locke-20260912', NULL, '아크샨', '아크샨' FROM wiki_docs WHERE id = 'doc-ai-champion-locke-20260912';
+
+-- 오른 (1207자)
+INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)
+SELECT 'doc-ai-champion-ornn-20260913', 'article', '오른', '오른', 'published', NULL, '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 짧은 교환은 불안정 표식까지 터뜨린다 · `Q` 기둥은 `E`의 출발점이다 · 궁극기는 정령보다 상대의 이동을 본다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 라인에 오래 남는 힘을 웨이브 이득으로 바꾼다
+
+**오른의 제작 능력은 귀환을 완전히 대신하는 기술이 아니라, 좋은 웨이브를 한 번 더 만들 수 있는 시간 차이다.** 제작하려고 뒤로 빠지는 동안 상대가 라인을 밀 수 있으므로 다음 미니언이 어디에 있는지 먼저 본다. 체력과 마나가 부족하면 억지로 남지 않고, 버틸 수 있을 때만 제작 후 한 웨이브를 더 정리한다.
+
+## `Q`를 맞힌 자리가 다음 싸움의 지형이다
+
+**`용암 균열(Q)`은 둔화 뒤에 기둥을 남긴다.** 상대를 맞히는 것만 보지 말고 **기둥과 벽 사이로 상대가 빠질 길**을 계산한다. 기둥이 생기기 전에 `화염 돌진(E)`을 누르면 벽 충돌이 늦거나 빗나간다. 상대가 기둥 반대편으로 물러났다면 억지로 돌진하지 않고 그만큼의 공간으로 막타와 라인 위치를 챙긴다.
+
+## `W`의 마지막 불꽃 뒤에 기본 공격을 남긴다
+
+**`불꽃 풀무질(W)`의 마지막 불꽃이 불안정을 묻힌다.** 끝까지 맞히지 못할 거리라면 마나를 써서 앞으로 걷기보다 `Q` 둔화를 먼저 만든다. 불안정이 묻은 뒤 기본 공격이나 다른 띄우기로 표식을 터뜨리는 데까지가 한 번의 교환이다. 표식을 남겨 둔 채 상대 포탑 쪽으로 한 대 더 따라가면 오른의 긴 기술 재사용 대기시간만 드러난다.
+
+## 궁극기는 두 번째 박치기 자리를 먼저 고른다
+
+**`대장장이 신의 부름(R)`은 첫 정령을 맞히는 것보다 되받아칠 각이 중요하다.** 정령이 오는 동안 상대만 보다가 벽이나 방해 효과에 막히지 않도록 **오른이 서 있을 자리와 박치기 방향을 먼저 정한다.** 좁은 길에서는 여러 명을 노릴 수 있지만 아군이 닿지 않는 거리라면 좋은 적중도 처치로 이어지지 않는다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 공략의 라인 유지·기둥 연계·궁극기 운용을 현재 스킬 설명과 대조해 재서술했다.
+
+- [입문자를 위한 오른 파헤치기](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=137340)
+- [오른 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=138)', 1, '16.17.1', 'guarded', '2026-09-13T06:00:00.000Z', '2026-09-13T06:00:00.000Z', 'user-system'
+WHERE NOT EXISTS (SELECT 1 FROM wiki_docs WHERE id = 'doc-ai-champion-ornn-20260913' OR (kind = 'article' AND title_key = '오른'));
+INSERT INTO wiki_edits (id, doc_id, me_slug, base_revision, body, summary, status, author, created_at, accepted_via, revision)
+SELECT 'edit-ai-champion-ornn-20260913', id, NULL, 0, general, '탑 탱커 챔피언 위키 작성', 'accepted', 'user-system', '2026-09-13T06:00:00.000Z', 'admin', 1 FROM wiki_docs
+WHERE id = 'doc-ai-champion-ornn-20260913' AND revision = 1 AND general = '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 짧은 교환은 불안정 표식까지 터뜨린다 · `Q` 기둥은 `E`의 출발점이다 · 궁극기는 정령보다 상대의 이동을 본다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 라인에 오래 남는 힘을 웨이브 이득으로 바꾼다
+
+**오른의 제작 능력은 귀환을 완전히 대신하는 기술이 아니라, 좋은 웨이브를 한 번 더 만들 수 있는 시간 차이다.** 제작하려고 뒤로 빠지는 동안 상대가 라인을 밀 수 있으므로 다음 미니언이 어디에 있는지 먼저 본다. 체력과 마나가 부족하면 억지로 남지 않고, 버틸 수 있을 때만 제작 후 한 웨이브를 더 정리한다.
+
+## `Q`를 맞힌 자리가 다음 싸움의 지형이다
+
+**`용암 균열(Q)`은 둔화 뒤에 기둥을 남긴다.** 상대를 맞히는 것만 보지 말고 **기둥과 벽 사이로 상대가 빠질 길**을 계산한다. 기둥이 생기기 전에 `화염 돌진(E)`을 누르면 벽 충돌이 늦거나 빗나간다. 상대가 기둥 반대편으로 물러났다면 억지로 돌진하지 않고 그만큼의 공간으로 막타와 라인 위치를 챙긴다.
+
+## `W`의 마지막 불꽃 뒤에 기본 공격을 남긴다
+
+**`불꽃 풀무질(W)`의 마지막 불꽃이 불안정을 묻힌다.** 끝까지 맞히지 못할 거리라면 마나를 써서 앞으로 걷기보다 `Q` 둔화를 먼저 만든다. 불안정이 묻은 뒤 기본 공격이나 다른 띄우기로 표식을 터뜨리는 데까지가 한 번의 교환이다. 표식을 남겨 둔 채 상대 포탑 쪽으로 한 대 더 따라가면 오른의 긴 기술 재사용 대기시간만 드러난다.
+
+## 궁극기는 두 번째 박치기 자리를 먼저 고른다
+
+**`대장장이 신의 부름(R)`은 첫 정령을 맞히는 것보다 되받아칠 각이 중요하다.** 정령이 오는 동안 상대만 보다가 벽이나 방해 효과에 막히지 않도록 **오른이 서 있을 자리와 박치기 방향을 먼저 정한다.** 좁은 길에서는 여러 명을 노릴 수 있지만 아군이 닿지 않는 거리라면 좋은 적중도 처치로 이어지지 않는다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 공략의 라인 유지·기둥 연계·궁극기 운용을 현재 스킬 설명과 대조해 재서술했다.
+
+- [입문자를 위한 오른 파헤치기](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=137340)
+- [오른 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=138)'
+AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = 'edit-ai-champion-ornn-20260913');
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-ornn-20260913', NULL, '분류:탑', '분류:탑' FROM wiki_docs WHERE id = 'doc-ai-champion-ornn-20260913';
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-ornn-20260913', NULL, '분류:탱커', '분류:탱커' FROM wiki_docs WHERE id = 'doc-ai-champion-ornn-20260913';
+
+-- 말파이트 (1157자)
+INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)
+SELECT 'doc-ai-champion-malphite-20260913', 'article', '말파이트', '말파이트', 'published', NULL, '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 보호막이 돌아온 교환만 고른다 · `Q`는 피해와 거리 조절을 함께 산다 · 궁극기는 보유 자체로 상대 진형을 벌린다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 화강암 방패가 없을 때는 다음 교환을 기다린다
+
+**말파이트는 보호막이 있을 때 받은 피해를 지우며 짧게 교환하는 챔피언이다.** 보호막이 깨진 직후 같은 자리에서 막타를 더 먹으면 체력으로 비용을 낸다. 잠시 공격받지 않을 공간을 만들고, 보호막이 돌아오는 순간 상대의 막타 타이밍에 맞춰 다시 앞으로 나간다.
+
+## `Q`를 견제기가 아니라 간격을 만드는 기술로 쓴다
+
+**`지진의 파편(Q)`은 상대 이동 속도를 훔친다.** 피해만 넣고 제자리로 돌아오면 마나만 줄지만, 상대가 붙는 순간 사용해 빠지거나 아군 정글이 오는 방향으로 상대를 몰면 이동 속도 차이가 실제 이득이 된다. 원거리 상대에게 매번 던지기보다 **막타를 포기시키거나 다음 기본 공격까지 닿을 때** 사용한다.
+
+## 근접 교환은 `E`의 공격 속도 감소까지 묶는다
+
+**상대가 기본 공격으로 길게 싸우려 들어오면 `지면 강타(E)`를 먼저 맞혀 공격 속도를 낮추고 `천둥소리(W)`의 강화 공격을 이어 간다.** 반대로 기술 피해 위주 상대에게는 `E`의 가치가 낮아질 수 있으니, 웨이브를 무리하게 밀기 위해 쓰지 않고 접근을 끊을 때 남겨 둔다.
+
+## 궁극기를 서두르지 않을수록 진입 각이 넓어진다
+
+**`멈출 수 없는 힘(R)`은 먼저 보이는 한 명에게 쓰는 버튼이 아니다.** **말파이트가 시야에 서 있기만 해도 상대 딜러는 서로 붙기 어렵다.** 아군이 후속 피해를 넣을 거리인지, 상대 이동기가 빠졌는지 확인한다. 한 명을 확실히 끊는 궁과 여러 명을 띄우는 궁 중 그 교전에서 필요한 쪽을 고른다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤의 보호막 교환과 궁극기 진입 설명을 현재 스킬 구조에 맞춰 정리했다.
+
+- [다이아) 캐리형 최대추댐 탑 탱커 말파이트](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=133569&vtype=pc)
+- [말파이트 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=36)', 1, '16.17.1', 'guarded', '2026-09-13T06:00:00.000Z', '2026-09-13T06:00:00.000Z', 'user-system'
+WHERE NOT EXISTS (SELECT 1 FROM wiki_docs WHERE id = 'doc-ai-champion-malphite-20260913' OR (kind = 'article' AND title_key = '말파이트'));
+INSERT INTO wiki_edits (id, doc_id, me_slug, base_revision, body, summary, status, author, created_at, accepted_via, revision)
+SELECT 'edit-ai-champion-malphite-20260913', id, NULL, 0, general, '탑 탱커 챔피언 위키 작성', 'accepted', 'user-system', '2026-09-13T06:00:00.000Z', 'admin', 1 FROM wiki_docs
+WHERE id = 'doc-ai-champion-malphite-20260913' AND revision = 1 AND general = '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 보호막이 돌아온 교환만 고른다 · `Q`는 피해와 거리 조절을 함께 산다 · 궁극기는 보유 자체로 상대 진형을 벌린다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 화강암 방패가 없을 때는 다음 교환을 기다린다
+
+**말파이트는 보호막이 있을 때 받은 피해를 지우며 짧게 교환하는 챔피언이다.** 보호막이 깨진 직후 같은 자리에서 막타를 더 먹으면 체력으로 비용을 낸다. 잠시 공격받지 않을 공간을 만들고, 보호막이 돌아오는 순간 상대의 막타 타이밍에 맞춰 다시 앞으로 나간다.
+
+## `Q`를 견제기가 아니라 간격을 만드는 기술로 쓴다
+
+**`지진의 파편(Q)`은 상대 이동 속도를 훔친다.** 피해만 넣고 제자리로 돌아오면 마나만 줄지만, 상대가 붙는 순간 사용해 빠지거나 아군 정글이 오는 방향으로 상대를 몰면 이동 속도 차이가 실제 이득이 된다. 원거리 상대에게 매번 던지기보다 **막타를 포기시키거나 다음 기본 공격까지 닿을 때** 사용한다.
+
+## 근접 교환은 `E`의 공격 속도 감소까지 묶는다
+
+**상대가 기본 공격으로 길게 싸우려 들어오면 `지면 강타(E)`를 먼저 맞혀 공격 속도를 낮추고 `천둥소리(W)`의 강화 공격을 이어 간다.** 반대로 기술 피해 위주 상대에게는 `E`의 가치가 낮아질 수 있으니, 웨이브를 무리하게 밀기 위해 쓰지 않고 접근을 끊을 때 남겨 둔다.
+
+## 궁극기를 서두르지 않을수록 진입 각이 넓어진다
+
+**`멈출 수 없는 힘(R)`은 먼저 보이는 한 명에게 쓰는 버튼이 아니다.** **말파이트가 시야에 서 있기만 해도 상대 딜러는 서로 붙기 어렵다.** 아군이 후속 피해를 넣을 거리인지, 상대 이동기가 빠졌는지 확인한다. 한 명을 확실히 끊는 궁과 여러 명을 띄우는 궁 중 그 교전에서 필요한 쪽을 고른다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤의 보호막 교환과 궁극기 진입 설명을 현재 스킬 구조에 맞춰 정리했다.
+
+- [다이아) 캐리형 최대추댐 탑 탱커 말파이트](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=133569&vtype=pc)
+- [말파이트 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=36)'
+AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = 'edit-ai-champion-malphite-20260913');
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-malphite-20260913', NULL, '분류:탑', '분류:탑' FROM wiki_docs WHERE id = 'doc-ai-champion-malphite-20260913';
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-malphite-20260913', NULL, '분류:탱커', '분류:탱커' FROM wiki_docs WHERE id = 'doc-ai-champion-malphite-20260913';
+
+-- 쉔 (1158자)
+INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)
+SELECT 'doc-ai-champion-shen-20260913', 'article', '쉔', '쉔', 'published', NULL, '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 기의 검이 상대를 통과해야 교환이 강해진다 · `W`는 평타 한 묶음을 지운다 · 궁극기 전에 탑 웨이브의 비용을 계산한다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 기의 검 위치가 다음 교환의 절반이다
+
+**쉔은 `황혼 강습(Q)`으로 검을 불러올 때 검이 적 챔피언을 통과해야 강화 공격과 둔화를 제대로 얻는다.** 검이 항상 쉔 뒤에만 있으면 상대가 안전한 쪽으로 물러나기 쉽다. 교환이 끝난 뒤 검을 상대 뒤쪽에 남길 수 있는 자리로 움직여 다음 막타 타이밍을 압박한다.
+
+## `W`는 공격 한 대가 아니라 상대의 리듬을 막는다
+
+**`의지의 결계(W)`는 기의 검 주변에서 기본 공격을 차단한다.** 상대가 강화 공격이나 연속 기본 공격을 시작하는 순간 켜야 가치가 크다. 너무 일찍 켜면 상대가 결계 밖에서 기다린다. **검 위치와 아군 위치를 함께 보면 쉔 자신뿐 아니라 교전 중인 아군의 핵심 공격도 지울 수 있다.**
+
+## `E`로 들어가기 전에 빠져나올 장면까지 본다
+
+**`그림자 돌진(E)`이 적중하면 교환이 열리지만 빗나가면 쉔의 퇴로와 기력이 동시에 줄어든다.** 큰 적 웨이브 안이나 상대 포탑 쪽으로 최대 사거리 도발을 시도하지 않는다. 상대 이동기가 빠지고 아군이 닿을 때, 또는 짧은 도발 뒤 `Q` 강화 공격만 넣고 빠질 수 있을 때 사용한다.
+
+## 궁극기의 이득에서 탑 웨이브를 뺀다
+
+**`단결된 의지(R)`로 아군을 살려도 큰 웨이브와 포탑을 함께 잃으면 실제 이득이 작다.** 궁을 누르기 전에 현재 웨이브를 밀 수 있는지, 상대 탑이 포탑을 얼마나 때릴지, 도착 후 귀환할 수 있는지를 빠르게 본다. 보호막이 필요한 아군보다 **도착한 쉔이 바로 도발로 연결할 수 있는 아군**이 좋은 대상일 때가 많다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 공략의 라인전 주도권과 글로벌 궁극기 판단을 현재 기의 검 구조에 맞춰 재구성했다.
+
+- [쉔은 절대 라인전 약캐가 아닙니다](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=115811&vtype=pc)
+- [쉔 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=55)', 1, '16.17.1', 'guarded', '2026-09-13T06:00:00.000Z', '2026-09-13T06:00:00.000Z', 'user-system'
+WHERE NOT EXISTS (SELECT 1 FROM wiki_docs WHERE id = 'doc-ai-champion-shen-20260913' OR (kind = 'article' AND title_key = '쉔'));
+INSERT INTO wiki_edits (id, doc_id, me_slug, base_revision, body, summary, status, author, created_at, accepted_via, revision)
+SELECT 'edit-ai-champion-shen-20260913', id, NULL, 0, general, '탑 탱커 챔피언 위키 작성', 'accepted', 'user-system', '2026-09-13T06:00:00.000Z', 'admin', 1 FROM wiki_docs
+WHERE id = 'doc-ai-champion-shen-20260913' AND revision = 1 AND general = '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 기의 검이 상대를 통과해야 교환이 강해진다 · `W`는 평타 한 묶음을 지운다 · 궁극기 전에 탑 웨이브의 비용을 계산한다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 기의 검 위치가 다음 교환의 절반이다
+
+**쉔은 `황혼 강습(Q)`으로 검을 불러올 때 검이 적 챔피언을 통과해야 강화 공격과 둔화를 제대로 얻는다.** 검이 항상 쉔 뒤에만 있으면 상대가 안전한 쪽으로 물러나기 쉽다. 교환이 끝난 뒤 검을 상대 뒤쪽에 남길 수 있는 자리로 움직여 다음 막타 타이밍을 압박한다.
+
+## `W`는 공격 한 대가 아니라 상대의 리듬을 막는다
+
+**`의지의 결계(W)`는 기의 검 주변에서 기본 공격을 차단한다.** 상대가 강화 공격이나 연속 기본 공격을 시작하는 순간 켜야 가치가 크다. 너무 일찍 켜면 상대가 결계 밖에서 기다린다. **검 위치와 아군 위치를 함께 보면 쉔 자신뿐 아니라 교전 중인 아군의 핵심 공격도 지울 수 있다.**
+
+## `E`로 들어가기 전에 빠져나올 장면까지 본다
+
+**`그림자 돌진(E)`이 적중하면 교환이 열리지만 빗나가면 쉔의 퇴로와 기력이 동시에 줄어든다.** 큰 적 웨이브 안이나 상대 포탑 쪽으로 최대 사거리 도발을 시도하지 않는다. 상대 이동기가 빠지고 아군이 닿을 때, 또는 짧은 도발 뒤 `Q` 강화 공격만 넣고 빠질 수 있을 때 사용한다.
+
+## 궁극기의 이득에서 탑 웨이브를 뺀다
+
+**`단결된 의지(R)`로 아군을 살려도 큰 웨이브와 포탑을 함께 잃으면 실제 이득이 작다.** 궁을 누르기 전에 현재 웨이브를 밀 수 있는지, 상대 탑이 포탑을 얼마나 때릴지, 도착 후 귀환할 수 있는지를 빠르게 본다. 보호막이 필요한 아군보다 **도착한 쉔이 바로 도발로 연결할 수 있는 아군**이 좋은 대상일 때가 많다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 공략의 라인전 주도권과 글로벌 궁극기 판단을 현재 기의 검 구조에 맞춰 재구성했다.
+
+- [쉔은 절대 라인전 약캐가 아닙니다](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=115811&vtype=pc)
+- [쉔 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=55)'
+AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = 'edit-ai-champion-shen-20260913');
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-shen-20260913', NULL, '분류:탑', '분류:탑' FROM wiki_docs WHERE id = 'doc-ai-champion-shen-20260913';
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-shen-20260913', NULL, '분류:탱커', '분류:탱커' FROM wiki_docs WHERE id = 'doc-ai-champion-shen-20260913';
+
+-- 크산테 (1185자)
+INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)
+SELECT 'doc-ai-champion-ksante-20260913', 'article', '크산테', '크산테', 'published', NULL, '# 탑 라인 실전 운용
+
+> **한눈에 보기** — `Q` 중첩을 교환 전에 준비한다 · `W` 충전은 피해 감소와 이동 방향을 함께 고른다 · 총공세는 탱커 역할을 내려놓는 선택이다
+
+[[분류:탑]] [[분류:탱커]]
+
+## `Q` 세 번째 타격을 준비한 뒤 상대의 막타를 본다
+
+**크산테는 `엔토포 타격(Q)` 두 번을 미니언에 적중시킨 뒤 생기는 끌어당김으로 교환을 설계한다.** 세 번째 `Q`가 준비됐다고 바로 던지면 상대는 뒤로 빠지기만 하면 된다. 상대가 막타 때문에 멈추는 순간이나 아군 정글이 닿는 방향으로 움직였을 때 사용한다. 준비 시간이 끝나기 직전이라고 나쁜 각에 억지로 쓰지 않는다.
+
+## 표식을 터뜨릴 기본 공격까지가 짧은 교환이다
+
+**기술을 맞힌 뒤 생긴 표식은 기본 공격으로 소비해야 피해가 완성된다.** 하지만 표식 한 번 때문에 큰 적 웨이브 안으로 걸어가면 손해가 더 크다. `Q` 둔화나 `발놀림(E)` 보호막으로 안전하게 닿을 때만 공격하고, 상대가 거리를 내줬다면 다음 중첩을 준비한다.
+
+## `W`는 오래 모으는 것보다 밀어낼 방향이 중요하다
+
+**`길을 여는 자(W)` 충전 중에는 피해를 줄이며 방해 효과를 버틸 수 있다.** 정면 피해를 막는 데만 쓰지 말고 **상대를 벽이나 아군 쪽으로 밀 수 있는 각**을 만든다. 최대 충전에 집착하면 상대가 옆으로 비켜난다. 필요한 거리와 기절 시간이 나왔을 때 일찍 놓는 편이 낫다.
+
+## 총공세 뒤에는 다시 탱커처럼 서 있지 않는다
+
+**`총공세(R)`는 적을 벽 너머로 분리하지만 크산테의 방어 능력도 크게 낮춘다.** 아군이 상대 앞선을 받아 줄 수 있는지, 데려간 적을 제한 시간 안에 끝낼 수 있는지 확인한다. 처치하지 못했는데 적진 한가운데로 돌아가면 변신 전보다 쉽게 녹는다. 수적 우위나 확실한 벽 각이 없으면 궁을 보존해 앞선을 지키는 선택도 강하다.
+
+---
+
+## 출처
+
+> **출처 링크** — 최근 인벤 공략의 초반 절제와 역할 판단을 현재 스킬 수치·변형 설명과 대조했다.
+
+- [크산테의 핵심 정동열](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=148170&vtype=pc)
+- [크산테 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=162)', 1, '16.17.1', 'guarded', '2026-09-13T06:00:00.000Z', '2026-09-13T06:00:00.000Z', 'user-system'
+WHERE NOT EXISTS (SELECT 1 FROM wiki_docs WHERE id = 'doc-ai-champion-ksante-20260913' OR (kind = 'article' AND title_key = '크산테'));
+INSERT INTO wiki_edits (id, doc_id, me_slug, base_revision, body, summary, status, author, created_at, accepted_via, revision)
+SELECT 'edit-ai-champion-ksante-20260913', id, NULL, 0, general, '탑 탱커 챔피언 위키 작성', 'accepted', 'user-system', '2026-09-13T06:00:00.000Z', 'admin', 1 FROM wiki_docs
+WHERE id = 'doc-ai-champion-ksante-20260913' AND revision = 1 AND general = '# 탑 라인 실전 운용
+
+> **한눈에 보기** — `Q` 중첩을 교환 전에 준비한다 · `W` 충전은 피해 감소와 이동 방향을 함께 고른다 · 총공세는 탱커 역할을 내려놓는 선택이다
+
+[[분류:탑]] [[분류:탱커]]
+
+## `Q` 세 번째 타격을 준비한 뒤 상대의 막타를 본다
+
+**크산테는 `엔토포 타격(Q)` 두 번을 미니언에 적중시킨 뒤 생기는 끌어당김으로 교환을 설계한다.** 세 번째 `Q`가 준비됐다고 바로 던지면 상대는 뒤로 빠지기만 하면 된다. 상대가 막타 때문에 멈추는 순간이나 아군 정글이 닿는 방향으로 움직였을 때 사용한다. 준비 시간이 끝나기 직전이라고 나쁜 각에 억지로 쓰지 않는다.
+
+## 표식을 터뜨릴 기본 공격까지가 짧은 교환이다
+
+**기술을 맞힌 뒤 생긴 표식은 기본 공격으로 소비해야 피해가 완성된다.** 하지만 표식 한 번 때문에 큰 적 웨이브 안으로 걸어가면 손해가 더 크다. `Q` 둔화나 `발놀림(E)` 보호막으로 안전하게 닿을 때만 공격하고, 상대가 거리를 내줬다면 다음 중첩을 준비한다.
+
+## `W`는 오래 모으는 것보다 밀어낼 방향이 중요하다
+
+**`길을 여는 자(W)` 충전 중에는 피해를 줄이며 방해 효과를 버틸 수 있다.** 정면 피해를 막는 데만 쓰지 말고 **상대를 벽이나 아군 쪽으로 밀 수 있는 각**을 만든다. 최대 충전에 집착하면 상대가 옆으로 비켜난다. 필요한 거리와 기절 시간이 나왔을 때 일찍 놓는 편이 낫다.
+
+## 총공세 뒤에는 다시 탱커처럼 서 있지 않는다
+
+**`총공세(R)`는 적을 벽 너머로 분리하지만 크산테의 방어 능력도 크게 낮춘다.** 아군이 상대 앞선을 받아 줄 수 있는지, 데려간 적을 제한 시간 안에 끝낼 수 있는지 확인한다. 처치하지 못했는데 적진 한가운데로 돌아가면 변신 전보다 쉽게 녹는다. 수적 우위나 확실한 벽 각이 없으면 궁을 보존해 앞선을 지키는 선택도 강하다.
+
+---
+
+## 출처
+
+> **출처 링크** — 최근 인벤 공략의 초반 절제와 역할 판단을 현재 스킬 수치·변형 설명과 대조했다.
+
+- [크산테의 핵심 정동열](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=148170&vtype=pc)
+- [크산테 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=162)'
+AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = 'edit-ai-champion-ksante-20260913');
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-ksante-20260913', NULL, '분류:탑', '분류:탑' FROM wiki_docs WHERE id = 'doc-ai-champion-ksante-20260913';
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-ksante-20260913', NULL, '분류:탱커', '분류:탱커' FROM wiki_docs WHERE id = 'doc-ai-champion-ksante-20260913';
+
+-- 사이온 (1164자)
+INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)
+SELECT 'doc-ai-champion-sion-20260913', 'article', '사이온', '사이온', 'published', NULL, '# 탑 라인 실전 운용
+
+> **한눈에 보기** — `Q`는 적중보다 이동을 강요한다 · 낮은 체력 미니언은 `E` 투사체다 · 궁극기 출발 전에 도착할 웨이브를 계산한다
+
+[[분류:탑]] [[분류:탱커]]
+
+## `Q`는 오래 모으는 기술이 아니라 길을 닫는 기술이다
+
+**`대량 학살 강타(Q)`를 끝까지 맞히는 것보다 상대가 피할 방향을 제한하는 일이 먼저다.** 시야가 열린 중앙에서는 짧게 끊어 피해와 막타를 확정하고, 수풀이나 `E` 둔화 뒤에만 길게 모은다. 상대가 범위를 벗어나느라 CS를 포기했다면 이미 이득이므로 끝까지 추격해 내 위치를 망치지 않는다.
+
+## 낮은 체력 미니언으로 교환을 시작한다
+
+**`학살자의 포효(E)`가 미니언을 밀어내면 뒤의 상대까지 둔화하고 방어력을 낮춘다.** 상대가 자기 미니언 뒤에 숨는 순간, 체력이 낮고 진행선이 곧은 미니언을 고른다. `E`가 맞으면 퇴로에 `Q`를 놓고, 빗나가면 마나를 더 쓰지 않고 다음 웨이브를 기다린다.
+
+## `W`는 보호막과 폭발을 모두 쓸 거리에서 켠다
+
+**`영혼의 용광로(W)`는 미니언 처치로 최대 체력을 쌓고, 사용 시 보호막 뒤 범위 피해를 만든다.** 멀리서 견제 하나만 막으려고 켜면 폭발을 쓰지 못한다. 서로 막타를 먹으러 가까워지기 직전에 켜고, 보호막이 깨지기 전에 상대와 미니언에 폭발을 함께 맞힐 자리를 잡는다.
+
+## 궁극기와 사망 후 시간을 공짜로 보지 않는다
+
+**`멈출 수 없는 맹공(R)`으로 복귀하거나 다른 라인에 합류하기 전, 출발하는 웨이브와 도착 후 돌아올 방법을 본다.** 실패한 장거리 궁은 탑 경험치까지 잃는다. 죽은 뒤 패시브로 웨이브를 정리할 수 있어도 **죽음을 먼저 선택하는 운영은 상대에게 처치 보상과 다음 움직임을 함께 준다.** 살아서 앞선을 만들 수 있다면 그쪽이 우선이다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 탑 사이온 공략의 광역 라인 관리와 이니시에이터 역할을 현재 스킬 구조에 맞춰 재서술했다.
+
+- [M1 탑사이온 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=114749&vtype=pc)
+- [사이온 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=57)', 1, '16.17.1', 'guarded', '2026-09-13T06:00:00.000Z', '2026-09-13T06:00:00.000Z', 'user-system'
+WHERE NOT EXISTS (SELECT 1 FROM wiki_docs WHERE id = 'doc-ai-champion-sion-20260913' OR (kind = 'article' AND title_key = '사이온'));
+INSERT INTO wiki_edits (id, doc_id, me_slug, base_revision, body, summary, status, author, created_at, accepted_via, revision)
+SELECT 'edit-ai-champion-sion-20260913', id, NULL, 0, general, '탑 탱커 챔피언 위키 작성', 'accepted', 'user-system', '2026-09-13T06:00:00.000Z', 'admin', 1 FROM wiki_docs
+WHERE id = 'doc-ai-champion-sion-20260913' AND revision = 1 AND general = '# 탑 라인 실전 운용
+
+> **한눈에 보기** — `Q`는 적중보다 이동을 강요한다 · 낮은 체력 미니언은 `E` 투사체다 · 궁극기 출발 전에 도착할 웨이브를 계산한다
+
+[[분류:탑]] [[분류:탱커]]
+
+## `Q`는 오래 모으는 기술이 아니라 길을 닫는 기술이다
+
+**`대량 학살 강타(Q)`를 끝까지 맞히는 것보다 상대가 피할 방향을 제한하는 일이 먼저다.** 시야가 열린 중앙에서는 짧게 끊어 피해와 막타를 확정하고, 수풀이나 `E` 둔화 뒤에만 길게 모은다. 상대가 범위를 벗어나느라 CS를 포기했다면 이미 이득이므로 끝까지 추격해 내 위치를 망치지 않는다.
+
+## 낮은 체력 미니언으로 교환을 시작한다
+
+**`학살자의 포효(E)`가 미니언을 밀어내면 뒤의 상대까지 둔화하고 방어력을 낮춘다.** 상대가 자기 미니언 뒤에 숨는 순간, 체력이 낮고 진행선이 곧은 미니언을 고른다. `E`가 맞으면 퇴로에 `Q`를 놓고, 빗나가면 마나를 더 쓰지 않고 다음 웨이브를 기다린다.
+
+## `W`는 보호막과 폭발을 모두 쓸 거리에서 켠다
+
+**`영혼의 용광로(W)`는 미니언 처치로 최대 체력을 쌓고, 사용 시 보호막 뒤 범위 피해를 만든다.** 멀리서 견제 하나만 막으려고 켜면 폭발을 쓰지 못한다. 서로 막타를 먹으러 가까워지기 직전에 켜고, 보호막이 깨지기 전에 상대와 미니언에 폭발을 함께 맞힐 자리를 잡는다.
+
+## 궁극기와 사망 후 시간을 공짜로 보지 않는다
+
+**`멈출 수 없는 맹공(R)`으로 복귀하거나 다른 라인에 합류하기 전, 출발하는 웨이브와 도착 후 돌아올 방법을 본다.** 실패한 장거리 궁은 탑 경험치까지 잃는다. 죽은 뒤 패시브로 웨이브를 정리할 수 있어도 **죽음을 먼저 선택하는 운영은 상대에게 처치 보상과 다음 움직임을 함께 준다.** 살아서 앞선을 만들 수 있다면 그쪽이 우선이다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 탑 사이온 공략의 광역 라인 관리와 이니시에이터 역할을 현재 스킬 구조에 맞춰 재서술했다.
+
+- [M1 탑사이온 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=114749&vtype=pc)
+- [사이온 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=57)'
+AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = 'edit-ai-champion-sion-20260913');
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-sion-20260913', NULL, '분류:탑', '분류:탑' FROM wiki_docs WHERE id = 'doc-ai-champion-sion-20260913';
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-sion-20260913', NULL, '분류:탱커', '분류:탱커' FROM wiki_docs WHERE id = 'doc-ai-champion-sion-20260913';
+
+-- 초가스 (1088자)
+INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)
+SELECT 'doc-ai-champion-chogath-20260913', 'article', '초가스', '초가스', 'published', NULL, '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 미니언 처치 회복으로 나쁜 교환을 복구한다 · `Q`는 발밑보다 퇴로에 둔다 · `R` 처형선이 보일 때 싸움을 짧게 끝낸다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 유지력은 맞아도 된다는 허가가 아니다
+
+**초가스는 미니언을 처치하며 체력과 마나를 회복해 작은 손해를 되돌릴 수 있다.** 그렇다고 막타 하나마다 큰 견제를 맞으면 다음 웨이브를 먹을 체력이 남지 않는다. 안전한 미니언부터 챙기고, 상대가 기술을 웨이브에 쓴 뒤에만 앞으로 나가 회복량 이상의 손해를 막는다.
+
+## `Q`는 현재 위치보다 다음 발걸음에 둔다
+
+**`파열(Q)`은 발동 전 표시를 보고 피할 수 있다.** 상대 발밑 정중앙보다 막타를 친 뒤 돌아갈 길, 수풀 입구, 벽 쪽 이동선에 놓는다. 맞히면 바로 `흉포한 울부짖음(W)`을 겹쳐 이동기나 반격을 막고, 빗나가면 긴 재교환을 열지 않는다.
+
+## `W`와 `E`는 근접한 상대를 놓치지 않는 묶음이다
+
+**상대가 파고들면 `W` 침묵으로 기술 사용을 늦추고 `날카로운 가시(E)`의 세 번 공격으로 둔화를 이어 간다.** `E`는 뒤의 미니언까지 밀기 때문에 라인이 예상보다 빨리 밀릴 수 있다. 프리징이 필요하면 챔피언을 치려고 가시를 미니언 전체에 통과시키지 않는다.
+
+## `R`은 체력 성장과 확정 처치 사이에서 목적을 고른다
+
+**`포식(R)`으로 미니언을 처치해 최대 체력을 쌓을 수 있지만, 상대와 오브젝트를 확정하는 수단이기도 하다.** 곧 싸움이 열릴 때 재사용 대기시간을 성장에 쓰지 않는다. 상대 체력이 처형선에 들어왔다면 `Q`를 더 맞히려 욕심내기보다 침묵과 둔화로 접근해 확정 피해로 끝낸다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 공략의 유지력·파열 적중 조건·포식 운용을 현재 스킬 설명에 맞춰 정리했다.
+
+- [정석 착취 초가스 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=146725)
+- [초가스 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=11)', 1, '16.17.1', 'guarded', '2026-09-13T06:00:00.000Z', '2026-09-13T06:00:00.000Z', 'user-system'
+WHERE NOT EXISTS (SELECT 1 FROM wiki_docs WHERE id = 'doc-ai-champion-chogath-20260913' OR (kind = 'article' AND title_key = '초가스'));
+INSERT INTO wiki_edits (id, doc_id, me_slug, base_revision, body, summary, status, author, created_at, accepted_via, revision)
+SELECT 'edit-ai-champion-chogath-20260913', id, NULL, 0, general, '탑 탱커 챔피언 위키 작성', 'accepted', 'user-system', '2026-09-13T06:00:00.000Z', 'admin', 1 FROM wiki_docs
+WHERE id = 'doc-ai-champion-chogath-20260913' AND revision = 1 AND general = '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 미니언 처치 회복으로 나쁜 교환을 복구한다 · `Q`는 발밑보다 퇴로에 둔다 · `R` 처형선이 보일 때 싸움을 짧게 끝낸다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 유지력은 맞아도 된다는 허가가 아니다
+
+**초가스는 미니언을 처치하며 체력과 마나를 회복해 작은 손해를 되돌릴 수 있다.** 그렇다고 막타 하나마다 큰 견제를 맞으면 다음 웨이브를 먹을 체력이 남지 않는다. 안전한 미니언부터 챙기고, 상대가 기술을 웨이브에 쓴 뒤에만 앞으로 나가 회복량 이상의 손해를 막는다.
+
+## `Q`는 현재 위치보다 다음 발걸음에 둔다
+
+**`파열(Q)`은 발동 전 표시를 보고 피할 수 있다.** 상대 발밑 정중앙보다 막타를 친 뒤 돌아갈 길, 수풀 입구, 벽 쪽 이동선에 놓는다. 맞히면 바로 `흉포한 울부짖음(W)`을 겹쳐 이동기나 반격을 막고, 빗나가면 긴 재교환을 열지 않는다.
+
+## `W`와 `E`는 근접한 상대를 놓치지 않는 묶음이다
+
+**상대가 파고들면 `W` 침묵으로 기술 사용을 늦추고 `날카로운 가시(E)`의 세 번 공격으로 둔화를 이어 간다.** `E`는 뒤의 미니언까지 밀기 때문에 라인이 예상보다 빨리 밀릴 수 있다. 프리징이 필요하면 챔피언을 치려고 가시를 미니언 전체에 통과시키지 않는다.
+
+## `R`은 체력 성장과 확정 처치 사이에서 목적을 고른다
+
+**`포식(R)`으로 미니언을 처치해 최대 체력을 쌓을 수 있지만, 상대와 오브젝트를 확정하는 수단이기도 하다.** 곧 싸움이 열릴 때 재사용 대기시간을 성장에 쓰지 않는다. 상대 체력이 처형선에 들어왔다면 `Q`를 더 맞히려 욕심내기보다 침묵과 둔화로 접근해 확정 피해로 끝낸다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 공략의 유지력·파열 적중 조건·포식 운용을 현재 스킬 설명에 맞춰 정리했다.
+
+- [정석 착취 초가스 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=146725)
+- [초가스 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=11)'
+AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = 'edit-ai-champion-chogath-20260913');
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-chogath-20260913', NULL, '분류:탑', '분류:탑' FROM wiki_docs WHERE id = 'doc-ai-champion-chogath-20260913';
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-chogath-20260913', NULL, '분류:탱커', '분류:탱커' FROM wiki_docs WHERE id = 'doc-ai-champion-chogath-20260913';
+
+-- 뽀삐 (1140자)
+INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)
+SELECT 'doc-ai-champion-poppy-20260913', 'article', '뽀삐', '뽀삐', 'published', NULL, '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 방패 막타 뒤의 착지 위치를 본다 · 벽꿍은 벽보다 상대의 퇴로에서 시작한다 · `W`는 진입보다 역진입을 막을 때 더 값지다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 방패는 안전한 막타와 다음 교환을 함께 만든다
+
+**원거리 방패 공격은 어려운 막타를 챙기면서 보호막을 준비하는 수단이다.** 방패가 떨어진 자리가 상대 쪽이면 무리해서 줍지 않는다. 상대가 방패를 밟으러 움직이는 순간 `망치 강타(Q)` 범위로 유도하거나, 안전한 쪽에 떨어졌을 때만 주워 다음 근접 교환을 연다.
+
+## `Q` 두 번째 폭발까지 맞힐 자리를 고른다
+
+**`망치 강타(Q)`는 첫 타격 뒤 지대가 다시 폭발한다.** 상대가 자유롭게 옆으로 빠질 수 있는 중앙보다 막타를 치는 순간이나 벽 쪽에 몰렸을 때 사용한다. 첫 타격을 맞혔다고 기본 공격을 오래 이어 가기보다 두 번째 폭발 범위로 상대가 움직이게 만든 뒤 거리를 정리한다.
+
+## 벽꿍은 상대가 벽에 붙은 뒤 찾으면 늦다
+
+**`용감한 돌진(E)` 각은 뽀삐와 상대, 충돌할 지형이 한 줄이 될 때 열린다.** **라인 중앙에서부터 상대의 퇴로 반대편으로 몸을 옮겨 벽 쪽 선택을 강요한다.** 각이 아닌데 `E`로 접근하면 상대를 안전한 방향으로 밀어주고 퇴로까지 잃는다. 벽 충돌이 확실하지 않으면 `Q`와 방패로 짧게 교환한다.
+
+## `W`와 궁극기는 한타의 사람 수를 바꾼다
+
+**`굳건한 태세(W)`는 상대 돌진을 막고 다시 이동기를 쓰지 못하게 한다.** 먼저 뛰어들기보다 아군 딜러에게 들어오는 핵심 돌진에 남기면 교전이 단순해진다. `수호자의 심판(R)`은 빠르게 눌러 띄우거나 충전해 멀리 보낼 수 있다. 잡을 대상을 날리지 말고, **싸움에서 가장 오래 빼 두면 좋은 적**을 고른다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 챔피언 정보의 돌진 차단·벽 충돌·전투 이탈 구조와 공략 게시판의 실전 사례를 재구성했다.
+
+- [뽀삐 공략 게시판](https://lol.inven.co.kr/dataninfo/champion/manualTool.php?champnum=49)
+- [뽀삐 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=49)', 1, '16.17.1', 'guarded', '2026-09-13T06:00:00.000Z', '2026-09-13T06:00:00.000Z', 'user-system'
+WHERE NOT EXISTS (SELECT 1 FROM wiki_docs WHERE id = 'doc-ai-champion-poppy-20260913' OR (kind = 'article' AND title_key = '뽀삐'));
+INSERT INTO wiki_edits (id, doc_id, me_slug, base_revision, body, summary, status, author, created_at, accepted_via, revision)
+SELECT 'edit-ai-champion-poppy-20260913', id, NULL, 0, general, '탑 탱커 챔피언 위키 작성', 'accepted', 'user-system', '2026-09-13T06:00:00.000Z', 'admin', 1 FROM wiki_docs
+WHERE id = 'doc-ai-champion-poppy-20260913' AND revision = 1 AND general = '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 방패 막타 뒤의 착지 위치를 본다 · 벽꿍은 벽보다 상대의 퇴로에서 시작한다 · `W`는 진입보다 역진입을 막을 때 더 값지다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 방패는 안전한 막타와 다음 교환을 함께 만든다
+
+**원거리 방패 공격은 어려운 막타를 챙기면서 보호막을 준비하는 수단이다.** 방패가 떨어진 자리가 상대 쪽이면 무리해서 줍지 않는다. 상대가 방패를 밟으러 움직이는 순간 `망치 강타(Q)` 범위로 유도하거나, 안전한 쪽에 떨어졌을 때만 주워 다음 근접 교환을 연다.
+
+## `Q` 두 번째 폭발까지 맞힐 자리를 고른다
+
+**`망치 강타(Q)`는 첫 타격 뒤 지대가 다시 폭발한다.** 상대가 자유롭게 옆으로 빠질 수 있는 중앙보다 막타를 치는 순간이나 벽 쪽에 몰렸을 때 사용한다. 첫 타격을 맞혔다고 기본 공격을 오래 이어 가기보다 두 번째 폭발 범위로 상대가 움직이게 만든 뒤 거리를 정리한다.
+
+## 벽꿍은 상대가 벽에 붙은 뒤 찾으면 늦다
+
+**`용감한 돌진(E)` 각은 뽀삐와 상대, 충돌할 지형이 한 줄이 될 때 열린다.** **라인 중앙에서부터 상대의 퇴로 반대편으로 몸을 옮겨 벽 쪽 선택을 강요한다.** 각이 아닌데 `E`로 접근하면 상대를 안전한 방향으로 밀어주고 퇴로까지 잃는다. 벽 충돌이 확실하지 않으면 `Q`와 방패로 짧게 교환한다.
+
+## `W`와 궁극기는 한타의 사람 수를 바꾼다
+
+**`굳건한 태세(W)`는 상대 돌진을 막고 다시 이동기를 쓰지 못하게 한다.** 먼저 뛰어들기보다 아군 딜러에게 들어오는 핵심 돌진에 남기면 교전이 단순해진다. `수호자의 심판(R)`은 빠르게 눌러 띄우거나 충전해 멀리 보낼 수 있다. 잡을 대상을 날리지 말고, **싸움에서 가장 오래 빼 두면 좋은 적**을 고른다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 챔피언 정보의 돌진 차단·벽 충돌·전투 이탈 구조와 공략 게시판의 실전 사례를 재구성했다.
+
+- [뽀삐 공략 게시판](https://lol.inven.co.kr/dataninfo/champion/manualTool.php?champnum=49)
+- [뽀삐 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=49)'
+AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = 'edit-ai-champion-poppy-20260913');
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-poppy-20260913', NULL, '분류:탑', '분류:탑' FROM wiki_docs WHERE id = 'doc-ai-champion-poppy-20260913';
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-poppy-20260913', NULL, '분류:탱커', '분류:탱커' FROM wiki_docs WHERE id = 'doc-ai-champion-poppy-20260913';
+
+-- 마오카이 (1159자)
+INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)
+SELECT 'doc-ai-champion-maokai-20260913', 'article', '마오카이', '마오카이', 'published', NULL, '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 패시브 회복 공격을 놓치지 않는다 · `Q`는 피해보다 밀어낼 방향을 고른다 · 궁극기는 정면보다 옆으로 길을 닫는다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 회복 가능한 기본 공격을 안전한 대상에 쓴다
+
+**마오카이의 유지력은 패시브가 준비됐을 때 기본 공격을 실제로 넣어야 생긴다.** 체력이 낮다고 상대 챔피언에게 걸어가 억지로 치지 않고 가까운 미니언으로 회복한다. 상대가 막타를 먹으러 오는 순간에는 회복 공격과 `덤불 주먹(Q)`을 함께 사용해 체력과 라인 위치를 동시에 챙긴다.
+
+## `Q`는 상대를 어디로 보낼지 정하고 누른다
+
+**가까운 적은 `덤불 주먹(Q)`에 밀려난다.** 상대를 아군 쪽으로 당겨 두고 싶다면 뒤로 돌아가 밀고, 교환을 끝내려면 정면에서 밀어낸다. **피해를 조금 더 넣겠다고 상대를 안전한 포탑 쪽으로 보내는 실수**가 자주 나온다. 웨이브를 밀 때도 챔피언을 어느 방향으로 튕길지 먼저 본다.
+
+## `W`는 회피와 속박을 동시에 해결한다
+
+**`뒤틀린 전진(W)`으로 이동하는 동안 대상으로 지정되지 않는다.** 상대의 큰 기술이 날아오는 순간에 맞춰 사라지고, 나타난 뒤 `Q`로 아군 쪽에 밀어 연계한다. 사거리 끝의 적에게 먼저 쓰면 적진 한가운데 고립되므로 아군이 닿거나 빠져나올 `Q` 방향이 있을 때 들어간다.
+
+## 묘목과 궁극기로 싸울 공간을 먼저 만든다
+
+**`묘목 던지기(E)`는 수풀에서 강해지지만 무작정 많이 던지면 마나와 웨이브가 함께 흔들린다.** 교전이 날 입구와 상대가 돌아올 수풀에 미리 둔다. `대자연의 마수(R)`는 정면으로 따라가며 쓰면 빠른 적이 먼저 피한다. 옆에서 통로를 가로지르거나 퇴로를 덮어 상대가 아군 쪽으로 움직이게 만든다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 공략의 1레벨 라인 압박, 수풀 묘목과 궁극기 방향 팁을 현재 스킬 구조로 정리했다.
+
+- [마오카이에 대한 팁들](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=141364&vtype=pc)
+- [시즌 8 마오카이 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=141885&vtype=pc)', 1, '16.17.1', 'guarded', '2026-09-13T06:00:00.000Z', '2026-09-13T06:00:00.000Z', 'user-system'
+WHERE NOT EXISTS (SELECT 1 FROM wiki_docs WHERE id = 'doc-ai-champion-maokai-20260913' OR (kind = 'article' AND title_key = '마오카이'));
+INSERT INTO wiki_edits (id, doc_id, me_slug, base_revision, body, summary, status, author, created_at, accepted_via, revision)
+SELECT 'edit-ai-champion-maokai-20260913', id, NULL, 0, general, '탑 탱커 챔피언 위키 작성', 'accepted', 'user-system', '2026-09-13T06:00:00.000Z', 'admin', 1 FROM wiki_docs
+WHERE id = 'doc-ai-champion-maokai-20260913' AND revision = 1 AND general = '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 패시브 회복 공격을 놓치지 않는다 · `Q`는 피해보다 밀어낼 방향을 고른다 · 궁극기는 정면보다 옆으로 길을 닫는다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 회복 가능한 기본 공격을 안전한 대상에 쓴다
+
+**마오카이의 유지력은 패시브가 준비됐을 때 기본 공격을 실제로 넣어야 생긴다.** 체력이 낮다고 상대 챔피언에게 걸어가 억지로 치지 않고 가까운 미니언으로 회복한다. 상대가 막타를 먹으러 오는 순간에는 회복 공격과 `덤불 주먹(Q)`을 함께 사용해 체력과 라인 위치를 동시에 챙긴다.
+
+## `Q`는 상대를 어디로 보낼지 정하고 누른다
+
+**가까운 적은 `덤불 주먹(Q)`에 밀려난다.** 상대를 아군 쪽으로 당겨 두고 싶다면 뒤로 돌아가 밀고, 교환을 끝내려면 정면에서 밀어낸다. **피해를 조금 더 넣겠다고 상대를 안전한 포탑 쪽으로 보내는 실수**가 자주 나온다. 웨이브를 밀 때도 챔피언을 어느 방향으로 튕길지 먼저 본다.
+
+## `W`는 회피와 속박을 동시에 해결한다
+
+**`뒤틀린 전진(W)`으로 이동하는 동안 대상으로 지정되지 않는다.** 상대의 큰 기술이 날아오는 순간에 맞춰 사라지고, 나타난 뒤 `Q`로 아군 쪽에 밀어 연계한다. 사거리 끝의 적에게 먼저 쓰면 적진 한가운데 고립되므로 아군이 닿거나 빠져나올 `Q` 방향이 있을 때 들어간다.
+
+## 묘목과 궁극기로 싸울 공간을 먼저 만든다
+
+**`묘목 던지기(E)`는 수풀에서 강해지지만 무작정 많이 던지면 마나와 웨이브가 함께 흔들린다.** 교전이 날 입구와 상대가 돌아올 수풀에 미리 둔다. `대자연의 마수(R)`는 정면으로 따라가며 쓰면 빠른 적이 먼저 피한다. 옆에서 통로를 가로지르거나 퇴로를 덮어 상대가 아군 쪽으로 움직이게 만든다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 공략의 1레벨 라인 압박, 수풀 묘목과 궁극기 방향 팁을 현재 스킬 구조로 정리했다.
+
+- [마오카이에 대한 팁들](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=141364&vtype=pc)
+- [시즌 8 마오카이 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=141885&vtype=pc)'
+AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = 'edit-ai-champion-maokai-20260913');
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-maokai-20260913', NULL, '분류:탑', '분류:탑' FROM wiki_docs WHERE id = 'doc-ai-champion-maokai-20260913';
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-maokai-20260913', NULL, '분류:탱커', '분류:탱커' FROM wiki_docs WHERE id = 'doc-ai-champion-maokai-20260913';
+
+-- 나서스 (1228자)
+INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)
+SELECT 'doc-ai-champion-nasus-20260913', 'article', '나서스', '나서스', 'published', NULL, '# 탑 라인 실전 운용
+
+> **한눈에 보기** — `Q` 스택 하나보다 살아 있는 웨이브가 먼저다 · `E`는 방어력을 낮춘 자리에서 싸운다 · 궁극기 시간 동안 도망가는 적을 끝없이 쫓지 않는다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 초반 목표는 모든 스택이 아니라 무너지지 않는 라인이다
+
+**`흡수의 일격(Q)` 막타 하나를 위해 체력과 웨이브 위치를 함께 잃으면 다음 스택 여러 개가 사라진다.** 상대가 강할 때는 원거리 미니언이나 대포 하나를 포기해도 된다. 라인이 아군 쪽으로 오게 두고, 상대 핵심 기술이 빠진 짧은 시간에만 앞으로 나가 `Q` 막타를 챙긴다.
+
+## `쇠약(W)`은 싸움을 시작할 때보다 상대가 빠질 때 강하다
+
+**상대가 아직 이동기를 들고 먼 거리에 있을 때 걸면 지속시간 대부분을 접근에 쓴다.** 적이 공격하려 들어왔거나 도주 기술을 사용한 뒤에 `W`를 걸어 이동 속도와 공격 속도 감소를 끝까지 활용한다. 갱 호응에서도 정글러가 보이기 전에 너무 일찍 걸어 상대에게 퇴각 신호를 주지 않는다.
+
+## `E` 위에서 교환하고 라인이 밀리는 비용을 센다
+
+**`영혼의 불길(E)`은 범위 안 적의 방어력을 낮춰 `Q` 피해를 키운다.** 상대가 막타 때문에 멈추는 위치에 깔고, 그 위에서만 짧게 때린다. 미니언 전체에 계속 사용하면 라인이 밀려 갱에 노출되고 포탑 아래 `Q` 막타도 어려워진다. 주도권이 필요한 웨이브와 당겨야 할 웨이브를 구분한다.
+
+## 궁극기는 강한 시간이지 모든 추격의 허가가 아니다
+
+**`사막의 분노(R)` 동안 체력과 방어 능력이 오르고 `Q`를 더 자주 쓸 수 있다.** 상대가 넓은 공간에서 계속 빠지면 궁극기 시간을 걷는 데 쓰지 않는다. 포탑, 오브젝트, 좁은 길처럼 상대가 자리를 포기하기 어려운 곳에서 켠다. 성장 뒤에도 깊은 사이드에서 시야 없이 한 웨이브를 더 먹는 죽음이 가장 큰 손해다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 탑 나서스 공략에서 반복되는 라인 당기기·스택 비용·중반 합류 판단을 현재 스킬 구조에 맞춰 추렸다.
+
+- [TOP 나서스에 대해](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=133482&vtype=pc)
+- [TOP 나서스, 한 번 해보지 않을래?](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=110707)', 1, '16.17.1', 'guarded', '2026-09-13T06:00:00.000Z', '2026-09-13T06:00:00.000Z', 'user-system'
+WHERE NOT EXISTS (SELECT 1 FROM wiki_docs WHERE id = 'doc-ai-champion-nasus-20260913' OR (kind = 'article' AND title_key = '나서스'));
+INSERT INTO wiki_edits (id, doc_id, me_slug, base_revision, body, summary, status, author, created_at, accepted_via, revision)
+SELECT 'edit-ai-champion-nasus-20260913', id, NULL, 0, general, '탑 탱커 챔피언 위키 작성', 'accepted', 'user-system', '2026-09-13T06:00:00.000Z', 'admin', 1 FROM wiki_docs
+WHERE id = 'doc-ai-champion-nasus-20260913' AND revision = 1 AND general = '# 탑 라인 실전 운용
+
+> **한눈에 보기** — `Q` 스택 하나보다 살아 있는 웨이브가 먼저다 · `E`는 방어력을 낮춘 자리에서 싸운다 · 궁극기 시간 동안 도망가는 적을 끝없이 쫓지 않는다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 초반 목표는 모든 스택이 아니라 무너지지 않는 라인이다
+
+**`흡수의 일격(Q)` 막타 하나를 위해 체력과 웨이브 위치를 함께 잃으면 다음 스택 여러 개가 사라진다.** 상대가 강할 때는 원거리 미니언이나 대포 하나를 포기해도 된다. 라인이 아군 쪽으로 오게 두고, 상대 핵심 기술이 빠진 짧은 시간에만 앞으로 나가 `Q` 막타를 챙긴다.
+
+## `쇠약(W)`은 싸움을 시작할 때보다 상대가 빠질 때 강하다
+
+**상대가 아직 이동기를 들고 먼 거리에 있을 때 걸면 지속시간 대부분을 접근에 쓴다.** 적이 공격하려 들어왔거나 도주 기술을 사용한 뒤에 `W`를 걸어 이동 속도와 공격 속도 감소를 끝까지 활용한다. 갱 호응에서도 정글러가 보이기 전에 너무 일찍 걸어 상대에게 퇴각 신호를 주지 않는다.
+
+## `E` 위에서 교환하고 라인이 밀리는 비용을 센다
+
+**`영혼의 불길(E)`은 범위 안 적의 방어력을 낮춰 `Q` 피해를 키운다.** 상대가 막타 때문에 멈추는 위치에 깔고, 그 위에서만 짧게 때린다. 미니언 전체에 계속 사용하면 라인이 밀려 갱에 노출되고 포탑 아래 `Q` 막타도 어려워진다. 주도권이 필요한 웨이브와 당겨야 할 웨이브를 구분한다.
+
+## 궁극기는 강한 시간이지 모든 추격의 허가가 아니다
+
+**`사막의 분노(R)` 동안 체력과 방어 능력이 오르고 `Q`를 더 자주 쓸 수 있다.** 상대가 넓은 공간에서 계속 빠지면 궁극기 시간을 걷는 데 쓰지 않는다. 포탑, 오브젝트, 좁은 길처럼 상대가 자리를 포기하기 어려운 곳에서 켠다. 성장 뒤에도 깊은 사이드에서 시야 없이 한 웨이브를 더 먹는 죽음이 가장 큰 손해다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 탑 나서스 공략에서 반복되는 라인 당기기·스택 비용·중반 합류 판단을 현재 스킬 구조에 맞춰 추렸다.
+
+- [TOP 나서스에 대해](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=133482&vtype=pc)
+- [TOP 나서스, 한 번 해보지 않을래?](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=110707)'
+AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = 'edit-ai-champion-nasus-20260913');
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-nasus-20260913', NULL, '분류:탑', '분류:탑' FROM wiki_docs WHERE id = 'doc-ai-champion-nasus-20260913';
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-nasus-20260913', NULL, '분류:탱커', '분류:탱커' FROM wiki_docs WHERE id = 'doc-ai-champion-nasus-20260913';
+
+-- 자크 (1085자)
+INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)
+SELECT 'doc-ai-champion-zac-20260913', 'article', '자크', '자크', 'published', NULL, '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 조각을 주울 수 있는 쪽으로 교환한다 · `Q`는 두 번째 대상을 먼저 확보한다 · `E`는 착지보다 충전 위치를 숨긴다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 체력 비용은 조각을 회수할 수 있을 때만 싸진다
+
+**자크는 기술을 맞혀 떨어진 조각을 주워야 소모한 체력과 교환 손해를 되돌린다.** 조각이 상대 포탑 쪽에 떨어졌다면 한 번 더 맞으면서 줍지 않는다. 내 쪽이나 수풀 쪽으로 상대를 유도하고, 조각 하나를 줍는 움직임에 `불안정 물질(W)` 재사용까지 연결한다.
+
+## `Q`는 첫 대상보다 붙여 칠 두 번째 대상을 본다
+
+**`탄성 주먹(Q)`으로 챔피언을 잡은 뒤 다른 미니언을 기본 공격하면 둘을 충돌시킬 수 있다.** 상대만 바라보고 던지기보다 **내가 바로 때릴 수 있는 미니언이나 다른 적이 남아 있는지** 먼저 본다. 웨이브가 비었으면 연계가 약해지므로 사거리 끝 `Q`를 낭비하지 않는다.
+
+## `E`는 화면 밖에서 시작할수록 위협적이다
+
+**`새총 발사(E)`를 상대 시야 안에서 오래 모으면 착지점이 읽힌다.** 수풀과 벽 너머에서 충전을 시작하고, 상대의 뒤보다 퇴로와 아군 방향 사이에 착지한다. 라인에서 도주용으로 남겨야 할 상황이라면 짧은 교환에 먼저 쓰지 않는다.
+
+## 궁극기 중에도 조각과 다음 위치를 본다
+
+**`바운스!(R)`는 여러 번 튀며 적을 띄우고 둔화한다.** 첫 적중 뒤 무조건 깊이 따라가기보다 떨어진 조각과 아군의 공격 범위를 따라 움직인다. 패시브가 있다고 죽음을 가볍게 보면 안 된다. 네 조각이 적에게 쉽게 정리될 위치라면 부활까지 포함해도 손해다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 탑 자크 공략의 조각 회수·새총 각도·진형 붕괴 설명을 현재 스킬 구조로 다시 정리했다.
+
+- [탑, 미드 자크 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=146717)
+- [자크장인 탑자크 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=115999)', 1, '16.17.1', 'guarded', '2026-09-13T06:00:00.000Z', '2026-09-13T06:00:00.000Z', 'user-system'
+WHERE NOT EXISTS (SELECT 1 FROM wiki_docs WHERE id = 'doc-ai-champion-zac-20260913' OR (kind = 'article' AND title_key = '자크'));
+INSERT INTO wiki_edits (id, doc_id, me_slug, base_revision, body, summary, status, author, created_at, accepted_via, revision)
+SELECT 'edit-ai-champion-zac-20260913', id, NULL, 0, general, '탑 탱커 챔피언 위키 작성', 'accepted', 'user-system', '2026-09-13T06:00:00.000Z', 'admin', 1 FROM wiki_docs
+WHERE id = 'doc-ai-champion-zac-20260913' AND revision = 1 AND general = '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 조각을 주울 수 있는 쪽으로 교환한다 · `Q`는 두 번째 대상을 먼저 확보한다 · `E`는 착지보다 충전 위치를 숨긴다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 체력 비용은 조각을 회수할 수 있을 때만 싸진다
+
+**자크는 기술을 맞혀 떨어진 조각을 주워야 소모한 체력과 교환 손해를 되돌린다.** 조각이 상대 포탑 쪽에 떨어졌다면 한 번 더 맞으면서 줍지 않는다. 내 쪽이나 수풀 쪽으로 상대를 유도하고, 조각 하나를 줍는 움직임에 `불안정 물질(W)` 재사용까지 연결한다.
+
+## `Q`는 첫 대상보다 붙여 칠 두 번째 대상을 본다
+
+**`탄성 주먹(Q)`으로 챔피언을 잡은 뒤 다른 미니언을 기본 공격하면 둘을 충돌시킬 수 있다.** 상대만 바라보고 던지기보다 **내가 바로 때릴 수 있는 미니언이나 다른 적이 남아 있는지** 먼저 본다. 웨이브가 비었으면 연계가 약해지므로 사거리 끝 `Q`를 낭비하지 않는다.
+
+## `E`는 화면 밖에서 시작할수록 위협적이다
+
+**`새총 발사(E)`를 상대 시야 안에서 오래 모으면 착지점이 읽힌다.** 수풀과 벽 너머에서 충전을 시작하고, 상대의 뒤보다 퇴로와 아군 방향 사이에 착지한다. 라인에서 도주용으로 남겨야 할 상황이라면 짧은 교환에 먼저 쓰지 않는다.
+
+## 궁극기 중에도 조각과 다음 위치를 본다
+
+**`바운스!(R)`는 여러 번 튀며 적을 띄우고 둔화한다.** 첫 적중 뒤 무조건 깊이 따라가기보다 떨어진 조각과 아군의 공격 범위를 따라 움직인다. 패시브가 있다고 죽음을 가볍게 보면 안 된다. 네 조각이 적에게 쉽게 정리될 위치라면 부활까지 포함해도 손해다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 탑 자크 공략의 조각 회수·새총 각도·진형 붕괴 설명을 현재 스킬 구조로 다시 정리했다.
+
+- [탑, 미드 자크 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=146717)
+- [자크장인 탑자크 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=115999)'
+AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = 'edit-ai-champion-zac-20260913');
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-zac-20260913', NULL, '분류:탑', '분류:탑' FROM wiki_docs WHERE id = 'doc-ai-champion-zac-20260913';
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-zac-20260913', NULL, '분류:탱커', '분류:탱커' FROM wiki_docs WHERE id = 'doc-ai-champion-zac-20260913';
+
+-- 탐 켄치 (1127자)
+INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)
+SELECT 'doc-ai-champion-tahmkench-20260913', 'article', '탐 켄치', '탐켄치', 'published', NULL, '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 세 번째 절대 미각 중첩 전에 다음 행동을 정한다 · `Q`는 견제와 회복을 동시에 노린다 · `E` 보호막은 상대의 마지막 피해 묶음에 맞춘다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 절대 미각 세 중첩이 교환의 기준선이다
+
+**탐 켄치는 기본 공격과 `혀 채찍(Q)`으로 중첩을 쌓고, 세 중첩에서 기절이나 집어삼키기로 교환을 크게 만든다.** 한두 중첩을 묻혔다고 적 포탑까지 따라가지 않는다. 세 번째 공격이 닿을 거리와 상대의 도주 기술을 보고 계속할지 끝낼지 미리 정한다.
+
+## `Q`는 미니언 사이의 빈 선을 기다린다
+
+**`혀 채찍(Q)`은 처음 맞는 유닛에 막힌다.** 상대가 막타를 치러 미니언 옆으로 나오는 순간 각을 열고, 챔피언에게 맞혀 피해와 회복을 함께 챙긴다. 무작정 웨이브를 밀어 미니언 방패를 없애기보다 라인을 길게 두고 상대가 빈 선을 지나게 만든다.
+
+## `W`는 도착 지점을 아군 쪽으로 잡는다
+
+**`심연 잠수(W)`는 멀리 이동해 범위 안 적을 띄운다.** 상대 바로 뒤를 찍기보다 퇴로와 내 포탑 사이에 나타나야 다음 기본 공격이 이어진다. 시야 안에서 길게 준비하면 쉽게 피하므로 수풀이나 다른 기술의 둔화 뒤에 사용한다. 빗나갔다면 걸어서 긴 추격을 시작하지 않는다.
+
+## 회색 체력과 궁극기로 피해 순서를 바꾼다
+
+**`두꺼운 피부(E)`는 받은 피해 일부를 저장했다가 회복하거나 보호막으로 바꾼다.** 작은 피해에 바로 보호막을 쓰지 않고 상대의 마지막 폭발 피해가 들어오기 직전에 켠다. `집어삼키기(R)`는 적을 격리하거나 아군을 보호한다. 처치 욕심으로 적을 삼켜 아군 기술을 피하게 만들지 말고, **그 몇 초 동안 전장에서 없어져야 할 대상**을 고른다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 탑 탐 켄치 공략의 전투력 구간과 중첩 압박을 현재 스킬 구조에 맞춰 재서술했다.
+
+- [탑 플래티넘 길라잡이](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=143266)
+- [탐 켄치 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=126)', 1, '16.17.1', 'guarded', '2026-09-13T06:00:00.000Z', '2026-09-13T06:00:00.000Z', 'user-system'
+WHERE NOT EXISTS (SELECT 1 FROM wiki_docs WHERE id = 'doc-ai-champion-tahmkench-20260913' OR (kind = 'article' AND title_key = '탐켄치'));
+INSERT INTO wiki_edits (id, doc_id, me_slug, base_revision, body, summary, status, author, created_at, accepted_via, revision)
+SELECT 'edit-ai-champion-tahmkench-20260913', id, NULL, 0, general, '탑 탱커 챔피언 위키 작성', 'accepted', 'user-system', '2026-09-13T06:00:00.000Z', 'admin', 1 FROM wiki_docs
+WHERE id = 'doc-ai-champion-tahmkench-20260913' AND revision = 1 AND general = '# 탑 라인 실전 운용
+
+> **한눈에 보기** — 세 번째 절대 미각 중첩 전에 다음 행동을 정한다 · `Q`는 견제와 회복을 동시에 노린다 · `E` 보호막은 상대의 마지막 피해 묶음에 맞춘다
+
+[[분류:탑]] [[분류:탱커]]
+
+## 절대 미각 세 중첩이 교환의 기준선이다
+
+**탐 켄치는 기본 공격과 `혀 채찍(Q)`으로 중첩을 쌓고, 세 중첩에서 기절이나 집어삼키기로 교환을 크게 만든다.** 한두 중첩을 묻혔다고 적 포탑까지 따라가지 않는다. 세 번째 공격이 닿을 거리와 상대의 도주 기술을 보고 계속할지 끝낼지 미리 정한다.
+
+## `Q`는 미니언 사이의 빈 선을 기다린다
+
+**`혀 채찍(Q)`은 처음 맞는 유닛에 막힌다.** 상대가 막타를 치러 미니언 옆으로 나오는 순간 각을 열고, 챔피언에게 맞혀 피해와 회복을 함께 챙긴다. 무작정 웨이브를 밀어 미니언 방패를 없애기보다 라인을 길게 두고 상대가 빈 선을 지나게 만든다.
+
+## `W`는 도착 지점을 아군 쪽으로 잡는다
+
+**`심연 잠수(W)`는 멀리 이동해 범위 안 적을 띄운다.** 상대 바로 뒤를 찍기보다 퇴로와 내 포탑 사이에 나타나야 다음 기본 공격이 이어진다. 시야 안에서 길게 준비하면 쉽게 피하므로 수풀이나 다른 기술의 둔화 뒤에 사용한다. 빗나갔다면 걸어서 긴 추격을 시작하지 않는다.
+
+## 회색 체력과 궁극기로 피해 순서를 바꾼다
+
+**`두꺼운 피부(E)`는 받은 피해 일부를 저장했다가 회복하거나 보호막으로 바꾼다.** 작은 피해에 바로 보호막을 쓰지 않고 상대의 마지막 폭발 피해가 들어오기 직전에 켠다. `집어삼키기(R)`는 적을 격리하거나 아군을 보호한다. 처치 욕심으로 적을 삼켜 아군 기술을 피하게 만들지 말고, **그 몇 초 동안 전장에서 없어져야 할 대상**을 고른다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 탑 탐 켄치 공략의 전투력 구간과 중첩 압박을 현재 스킬 구조에 맞춰 재서술했다.
+
+- [탑 플래티넘 길라잡이](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=143266)
+- [탐 켄치 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=126)'
+AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = 'edit-ai-champion-tahmkench-20260913');
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-tahmkench-20260913', NULL, '분류:탑', '분류:탑' FROM wiki_docs WHERE id = 'doc-ai-champion-tahmkench-20260913';
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-tahmkench-20260913', NULL, '분류:탱커', '분류:탱커' FROM wiki_docs WHERE id = 'doc-ai-champion-tahmkench-20260913';
+
+-- 문도 박사 (1166자)
+INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)
+SELECT 'doc-ai-champion-drmundo-20260913', 'article', '문도 박사', '문도박사', 'published', NULL, '# 탑 라인 실전 운용
+
+> **한눈에 보기** — `Q`가 미니언에 막힐 각을 먼저 지운다 · `W`는 피해를 받은 뒤 되돌릴 대상 곁에서 끝낸다 · 궁극기는 죽기 직전보다 싸움 초반에 쓴다
+
+[[분류:탑]] [[분류:탱커]]
+
+## `Q`는 맞히는 횟수보다 빈 선을 만드는 과정이다
+
+**`오염된 뼈톱(Q)`은 첫 유닛에 막히므로 상대와 나 사이의 낮은 체력 미니언을 먼저 정리하거나 옆으로 각을 바꾼다.** 최대 거리에서 무작정 던져 체력만 소모하지 않는다. 상대가 막타를 치려고 미니언 옆으로 나오는 순간 맞히고, 둔화가 묻었을 때만 다음 기본 공격 거리를 본다.
+
+## `W`는 켜는 순간보다 끝내는 자리가 중요하다
+
+**`심장 전기 충격(W)`은 받은 피해 일부를 저장하고, 종료할 때 적을 맞혀야 더 많이 회복한다.** 상대의 큰 교환이 시작될 때 켜고, 재사용 순간 챔피언이나 미니언 곁에 있도록 움직인다. 회복하려고 적 포탑까지 따라가기보다 안전한 미니언에 적중시켜 교환을 끝낸다.
+
+## `E`로 처치할 미니언의 뒤를 본다
+
+**`둔기에 의한 외상(E)`으로 적을 처치하면 뒤로 날아가 경로의 적에게 피해를 준다.** 낮은 체력 미니언과 상대 챔피언을 한 줄로 맞추면 막타와 견제를 함께 해결한다. 라인을 당겨야 할 때는 무심코 미니언을 밀어 웨이브 전체를 빠르게 정리하지 않는다.
+
+## 군중 제어 면역과 궁극기를 체력 여유로 바꾼다
+
+**문도 박사는 처음 맞는 이동 불가 효과를 막고 떨어진 화학 물질을 주워 회복할 수 있다.** 적의 핵심 제어기를 대신 맞을 때는 주울 길까지 본다. `최대 투여량(R)`은 체력이 사라진 뒤 누르는 구조가 아니다. **상대의 폭발 피해가 들어오기 전에 사용해 회복할 시간을 확보하고**, 얻은 이동 속도로 앞선을 유지할지 빠질지 결정한다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 탑 문도 공략의 뼈톱 견제와 궁극기 조기 사용 판단을 현재 개편된 스킬 구조에 맞춰 재서술했다.
+
+- [문도 박사 연구 결과 및 분석 - 탑](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=112977&vtype=pc)
+- [문도 박사 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=13)', 1, '16.17.1', 'guarded', '2026-09-13T06:00:00.000Z', '2026-09-13T06:00:00.000Z', 'user-system'
+WHERE NOT EXISTS (SELECT 1 FROM wiki_docs WHERE id = 'doc-ai-champion-drmundo-20260913' OR (kind = 'article' AND title_key = '문도박사'));
+INSERT INTO wiki_edits (id, doc_id, me_slug, base_revision, body, summary, status, author, created_at, accepted_via, revision)
+SELECT 'edit-ai-champion-drmundo-20260913', id, NULL, 0, general, '탑 탱커 챔피언 위키 작성', 'accepted', 'user-system', '2026-09-13T06:00:00.000Z', 'admin', 1 FROM wiki_docs
+WHERE id = 'doc-ai-champion-drmundo-20260913' AND revision = 1 AND general = '# 탑 라인 실전 운용
+
+> **한눈에 보기** — `Q`가 미니언에 막힐 각을 먼저 지운다 · `W`는 피해를 받은 뒤 되돌릴 대상 곁에서 끝낸다 · 궁극기는 죽기 직전보다 싸움 초반에 쓴다
+
+[[분류:탑]] [[분류:탱커]]
+
+## `Q`는 맞히는 횟수보다 빈 선을 만드는 과정이다
+
+**`오염된 뼈톱(Q)`은 첫 유닛에 막히므로 상대와 나 사이의 낮은 체력 미니언을 먼저 정리하거나 옆으로 각을 바꾼다.** 최대 거리에서 무작정 던져 체력만 소모하지 않는다. 상대가 막타를 치려고 미니언 옆으로 나오는 순간 맞히고, 둔화가 묻었을 때만 다음 기본 공격 거리를 본다.
+
+## `W`는 켜는 순간보다 끝내는 자리가 중요하다
+
+**`심장 전기 충격(W)`은 받은 피해 일부를 저장하고, 종료할 때 적을 맞혀야 더 많이 회복한다.** 상대의 큰 교환이 시작될 때 켜고, 재사용 순간 챔피언이나 미니언 곁에 있도록 움직인다. 회복하려고 적 포탑까지 따라가기보다 안전한 미니언에 적중시켜 교환을 끝낸다.
+
+## `E`로 처치할 미니언의 뒤를 본다
+
+**`둔기에 의한 외상(E)`으로 적을 처치하면 뒤로 날아가 경로의 적에게 피해를 준다.** 낮은 체력 미니언과 상대 챔피언을 한 줄로 맞추면 막타와 견제를 함께 해결한다. 라인을 당겨야 할 때는 무심코 미니언을 밀어 웨이브 전체를 빠르게 정리하지 않는다.
+
+## 군중 제어 면역과 궁극기를 체력 여유로 바꾼다
+
+**문도 박사는 처음 맞는 이동 불가 효과를 막고 떨어진 화학 물질을 주워 회복할 수 있다.** 적의 핵심 제어기를 대신 맞을 때는 주울 길까지 본다. `최대 투여량(R)`은 체력이 사라진 뒤 누르는 구조가 아니다. **상대의 폭발 피해가 들어오기 전에 사용해 회복할 시간을 확보하고**, 얻은 이동 속도로 앞선을 유지할지 빠질지 결정한다.
+
+---
+
+## 출처
+
+> **출처 링크** — 인벤 탑 문도 공략의 뼈톱 견제와 궁극기 조기 사용 판단을 현재 개편된 스킬 구조에 맞춰 재서술했다.
+
+- [문도 박사 연구 결과 및 분석 - 탑](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=112977&vtype=pc)
+- [문도 박사 챔피언 정보](https://lol.inven.co.kr/dataninfo/champion/detail.php?code=13)'
+AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = 'edit-ai-champion-drmundo-20260913');
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-drmundo-20260913', NULL, '분류:탑', '분류:탑' FROM wiki_docs WHERE id = 'doc-ai-champion-drmundo-20260913';
+INSERT OR IGNORE INTO wiki_links (source_doc, source_key, target_key, target_title)
+SELECT 'doc-ai-champion-drmundo-20260913', NULL, '분류:탱커', '분류:탱커' FROM wiki_docs WHERE id = 'doc-ai-champion-drmundo-20260913';
 
