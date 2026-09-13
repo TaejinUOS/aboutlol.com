@@ -12,7 +12,7 @@ import {
   stripInlineMarkup,
 } from "@/lib/wikiMarkup";
 
-import { MarkdownBody } from "./MarkdownBody";
+import { MarkdownBody, MarkdownInline } from "./MarkdownBody";
 import styles from "./WikiDocument.module.css";
 
 /**
@@ -243,7 +243,7 @@ function NodeView({
 
         <Heading className={styles.title}>
           <span className={`mono ${styles.number}`}>{node.number}</span>
-          <span>{stripInlineMarkup(node.title)}</span>
+          <MarkdownInline text={node.title} footnotes={notes} resolveLink={resolveLink} />
         </Heading>
 
         {section?.badgePosition === "after" && section.badge}

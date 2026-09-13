@@ -94,6 +94,23 @@
   word-break: keep-all;
 }
 
+/*
+ * 개요 파서가 떼어 낸 제목도 인라인 마크다운을 다시 그린다. 본문용 `.body code`는
+ * 제목까지 닿지 않으므로, 스킬 키처럼 제목에 적힌 인라인 코드는 여기서 같은 문법으로
+ * 보이게 한다.
+ */
+.title code {
+  padding: 1px 5px;
+  background: var(--paper-shade);
+  border-radius: var(--radius-card);
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+}
+
+.title strong {
+  font-weight: 900;
+}
+
 .node[data-level="1"] > .head > .title {
   font-size: 23px;
 }

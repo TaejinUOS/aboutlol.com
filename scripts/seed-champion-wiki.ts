@@ -22,11 +22,16 @@ import { checkArticleTitle, titleKey } from "../src/lib/wikiTitle";
 const AI_DRAFT_HEADING = "AI 작성 초안";
 
 const drafts = [
-  // 2026-09-11 운영 D1의 mid / assassin sort_order 1~5를 확인한 명단.
-  ...["katarina", "zed", "akali", "fizz", "leblanc"].map((slug) => ({
+  // 2026-09-13 운영 D1의 미드 암살자·메이지 문서를 마크다운 조판까지 반영한 원고.
+  ...[
+    "katarina", "zed", "akali", "fizz", "leblanc", "naafiri", "talon", "qiyana",
+    "ahri", "malzahar", "viktor", "mel", "syndra", "ryze", "xerath", "twistedfate",
+    "lux", "aurora", "orianna", "anivia", "zoe", "veigar", "vex", "cassiopeia",
+    "taliyah", "annie", "aurelionsol", "hwei", "lissandra", "azir",
+  ].map((slug) => ({
     slug,
-    createdAt: "2026-09-11T05:03:01.000Z",
-    richMarkup: true,
+    createdAt: "2026-09-13T00:00:00.000Z",
+    format: "lane" as const,
   })),
   // 2026-09-12 taxonomy.ts의 mid / bruiser-adc 전체 명단.
   ...[
@@ -47,7 +52,7 @@ const drafts = [
   ].map((slug) => ({
     slug,
     createdAt: "2026-09-12T00:00:00.000Z",
-    richMarkup: true,
+    format: "ai" as const,
   })),
 ];
 const quote = (value: string) => `'${value.replace(/'/g, "''")}'`;
@@ -57,20 +62,26 @@ const lines = [
   "-- 기존 문서·제안·작성자 권한은 변경하지 않는다. 시스템 계정이 없으면 FK로 실패한다.",
 ];
 
-for (const { slug, createdAt, richMarkup } of drafts) {
+for (const { slug, createdAt, format } of drafts) {
   const champion = catalog.champions.find((entry) => entry.slug === slug);
   assert(champion, `카탈로그에 없는 챔피언: ${slug}`);
   assert.equal(checkArticleTitle(champion.name), null);
   const body = readFileSync(join("seeds/champion-wiki", `${slug}.md`), "utf8")
     .replace(/\r\n?/g, "\n")
     .trim();
-  assert(body.startsWith(`# ${AI_DRAFT_HEADING}\n\n`));
   assert(body.length <= MAX_BODY_LENGTH);
   const outline = buildOutline(body, "article-body", 2, new Set());
-  assert.equal(outline.children.length, 1);
-  assert.equal(outline.children[0].title, AI_DRAFT_HEADING);
-  assert(outline.children[0].children.length >= (richMarkup ? 3 : 5));
-  if (richMarkup) {
+  if (format === "lane") {
+    assert(body.startsWith("# 라인전 실전 팁\n\n> **한눈에 보기** — "));
+    assert.equal(outline.children.length, 1);
+    assert(outline.children[0].children.length >= 4);
+    assert(/`[QWER]{1,2}`/u.test(body), `${slug}: 기술 키 문법 누락`);
+    assert(/^- \[.+\]\(https?:\/\//mu.test(body), `${slug}: 출처 링크 목록 누락`);
+  } else {
+    assert(body.startsWith(`# ${AI_DRAFT_HEADING}\n\n`));
+    assert.equal(outline.children.length, 1);
+    assert.equal(outline.children[0].title, AI_DRAFT_HEADING);
+    assert(outline.children[0].children.length >= 3);
     assert(body.includes("**"), `${slug}: 강조 문법 누락`);
     assert(/^- /mu.test(body), `${slug}: 목록 문법 누락`);
     assert(collectWikiLinkTitles(body).length >= 2, `${slug}: 위키링크 문법 누락`);
@@ -80,9 +91,9 @@ for (const { slug, createdAt, richMarkup } of drafts) {
   const batch = createdAt.slice(0, 10).replaceAll("-", "");
   const id = `doc-ai-champion-${slug}-${batch}`;
   const editId = `edit-ai-champion-${slug}-${batch}`;
-  const editSummary = richMarkup
-    ? "AI 작성: 실전 라인전 초안"
-    : "AI 작성: 챔피언 소개·스킬·실전 운용 초안";
+  const editSummary = format === "lane"
+    ? "미드 챔피언 문서 마크다운 조판 반영"
+    : "AI 작성: 실전 라인전 초안";
   lines.push(
     `-- ${champion.name} (${body.length}자)`,
     "INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)",

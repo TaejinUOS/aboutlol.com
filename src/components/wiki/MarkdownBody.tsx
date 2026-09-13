@@ -52,6 +52,10 @@ function Prose({ children }: PropsWithChildren) {
   return <div className={styles.prose}>{children}</div>;
 }
 
+function Inline({ children }: PropsWithChildren) {
+  return <span>{children}</span>;
+}
+
 export function MarkdownBody({ text, footnotes, resolveLink = NO_LINK }: Props) {
   if (!text.trim()) return null;
 
@@ -89,6 +93,33 @@ export function MarkdownBody({ text, footnotes, resolveLink = NO_LINK }: Props) 
       }}
     >
       {markdown}
+    </Markdown>
+  );
+}
+
+/**
+ * 개요 파서가 본문에서 떼어 낸 제목의 인라인 마크다운.
+ *
+ * 제목은 블록 구조를 다시 만들면 안 되므로 `forceInline`으로 링크·강조·코드·각주만
+ * 렌더한다. 원시 HTML 차단과 링크 분기는 본문과 똑같이 유지한다.
+ */
+export function MarkdownInline({ text, footnotes = [], resolveLink = NO_LINK }: Props) {
+  if (!text.trim()) return null;
+
+  return (
+    <Markdown
+      options={{
+        disableParsingRawHTML: true,
+        forceInline: true,
+        forceWrapper: true,
+        wrapper: Inline,
+        overrides: {
+          a: { component: makeLink(footnotes, resolveLink) },
+          img: { component: BlockedImage },
+        },
+      }}
+    >
+      {linkifyWikiLinks(text, resolveLink)}
     </Markdown>
   );
 }
