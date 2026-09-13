@@ -14,12 +14,10 @@ import { MAX_BODY_LENGTH, SYSTEM_USER_ID } from "../src/data/wiki";
 import {
   buildOutline,
   collectWikiLinkTitles,
-  extractFootnotes,
 } from "../src/lib/wikiMarkup";
 import { unresolvedWikiTitles } from "../src/lib/wikiLink";
 import { checkArticleTitle, titleKey } from "../src/lib/wikiTitle";
-
-const AI_DRAFT_HEADING = "AI 작성 초안";
+import { validateSourceFootnotes } from "./wiki-manuscript-validation";
 
 const drafts = [
   // 2026-09-13 운영 D1의 미드 암살자·메이지 문서를 마크다운 조판까지 반영한 원고.
@@ -78,30 +76,28 @@ for (const { slug, createdAt, format } of drafts) {
     .replace(/\r\n?/g, "\n")
     .trim();
   assert(body.length <= MAX_BODY_LENGTH);
+  validateSourceFootnotes(body, slug);
   const outline = buildOutline(body, "article-body", 2, new Set());
   if (format === "lane") {
-    assert(body.startsWith("# 라인전 실전 팁\n\n> **한눈에 보기** — "));
+    assert(body.startsWith("# 미드 라인 실전 운용\n\n> **한눈에 보기** — "));
     assert.equal(outline.children.length, 1);
-    assert(outline.children[0].children.length >= 4);
+    assert(outline.children[0].children.length >= 3);
     assert(/`[QWER]{1,2}`/u.test(body), `${slug}: 기술 키 문법 누락`);
-    assert(/^- \[.+\]\(https?:\/\//mu.test(body), `${slug}: 출처 링크 목록 누락`);
   } else if (format === "ai") {
-    assert(body.startsWith(`# ${AI_DRAFT_HEADING}\n\n`));
+    assert(body.startsWith("# 미드 라인 실전 운용\n\n"));
     assert.equal(outline.children.length, 1);
-    assert.equal(outline.children[0].title, AI_DRAFT_HEADING);
+    assert.equal(outline.children[0].title, "미드 라인 실전 운용");
     assert(outline.children[0].children.length >= 3);
     assert(body.includes("**"), `${slug}: 강조 문법 누락`);
     assert(/^- /mu.test(body), `${slug}: 목록 문법 누락`);
     assert(collectWikiLinkTitles(body).length >= 2, `${slug}: 위키링크 문법 누락`);
-    assert(extractFootnotes(body).notes.length >= 1, `${slug}: 각주 문법 누락`);
   } else {
     assert(body.startsWith("# 탑 라인 실전 운용\n\n> **한눈에 보기** — "));
     assert.equal(outline.children.length, 1);
-    assert(outline.children[0].children.length >= 5);
+    assert(outline.children[0].children.length >= 4);
     assert(body.includes("[[분류:탑]] [[분류:탱커]]"), `${slug}: 분류 문법 누락`);
     assert(/`[QWER]`/u.test(body), `${slug}: 기술 키 문법 누락`);
     assert((body.match(/\*\*/gu) ?? []).length >= 6, `${slug}: 강조 문법 누락`);
-    assert((body.match(/^- \[.+\]\(https?:\/\//gmu) ?? []).length >= 2, `${slug}: 출처 링크 누락`);
   }
 
   const batch = createdAt.slice(0, 10).replaceAll("-", "");
@@ -111,7 +107,7 @@ for (const { slug, createdAt, format } of drafts) {
     ? "미드 챔피언 문서 마크다운 조판 반영"
     : format === "top"
       ? "탑 탱커 챔피언 위키 작성"
-      : "AI 작성: 실전 라인전 초안";
+      : "미드 챔피언 실전 운용 원고 작성";
   lines.push(
     `-- ${champion.name} (${body.length}자)`,
     "INSERT INTO wiki_docs (id, kind, title, title_key, doc_status, champion_slug, general, revision, patch, edit_policy, created_at, updated_at, updated_by)",

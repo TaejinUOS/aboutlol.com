@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## 감옥이 생기기 전에 바깥으로 나간다
 
-`사건의 지평선(E)`은 테두리가 생긴 뒤 닿으면 기절한다. 예고가 보였을 때 가장 가까운 바깥으로 빠지는 것이 우선이다. 이미 안에 갇혔다면 **테두리를 억지로 넘지 말고 내부에서 `암흑 물질(W)` 착지점을 피한다.**[* 인벤 베이가 공략은 E 없이는 기술 적중과 연계가 어려우며, 피해를 넣으려면 어느 정도 접근해야 한다는 약점을 설명한다. 트위스티드 페이트 상대법도 6레벨 전 베이가를 압박 가능한 성장형 상대로 분류한다. [미드 베이가 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=138154), [베이가 라인전 분류](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=137848)]
+`사건의 지평선(E)`은 테두리가 생긴 뒤 닿으면 기절한다. 예고가 보였을 때 가장 가까운 바깥으로 빠지는 것이 우선이다. 이미 안에 갇혔다면 **테두리를 억지로 넘지 말고 내부에서 `암흑 물질(W)` 착지점을 피한다.**[* [미드 베이가 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=138154)][* [베이가 라인전 분류](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=137848)]
 
 - 베이가가 Q로 막타와 챔피언을 함께 맞히지 못하게 웨이브와 사선으로 선다.
 - E가 빠진 뒤에는 베이가의 자기 보호 수단이 줄어든다.

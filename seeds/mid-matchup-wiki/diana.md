@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## Q가 빗나간 순간이 가장 분명한 창이다
 
-다이애나는 `초승달 검기(Q)`가 묻은 대상에게 `월광 쇄도(E)`를 쓰면 E를 다시 쓸 수 있다. Q를 옆으로 피하면 진입 거리와 추격 횟수가 동시에 줄어든다. **Q가 없는 다이애나에게는 먼저 한 번 때리고 빠져도 된다.**[* 인벤 다이애나 공략은 Q 적중 뒤 E를 다시 사용할 수 있다는 점과, 6레벨 전 원거리 상대로 버티는 구도를 반복해서 강조한다. [미드 다이애나 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=146055), [다이애나 장문 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=138638)]
+다이애나는 `초승달 검기(Q)`가 묻은 대상에게 `월광 쇄도(E)`를 쓰면 E를 다시 쓸 수 있다. Q를 옆으로 피하면 진입 거리와 추격 횟수가 동시에 줄어든다. **Q가 없는 다이애나에게는 먼저 한 번 때리고 빠져도 된다.**[* [미드 다이애나 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=146055)][* [다이애나 장문 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=138638)]
 
 - Q는 휘어 들어오므로 다이애나 반대쪽보다 안쪽으로 짧게 비키는 선택도 섞는다.
 - `은빛 가호(W)` 구체 세 개가 모두 터진 동안에는 긴 교환을 피한다.

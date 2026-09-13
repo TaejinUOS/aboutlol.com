@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## 미니언과 일직선으로 서지 않는다
 
-`얼음 파편(Q)`은 첫 대상에서 부서진 뒤 뒤쪽으로 더 뻗는다. 미니언 뒤가 안전지대가 아니므로 웨이브와 사선으로 선다. **리산드라 몸 주변의 `서릿발(W)` 범위 밖에서 교환을 시작한다.**[* 인벤 리산드라 상대법은 미니언을 통과해 길어지는 Q, 근접 진입을 끊는 W, E 재사용 위치와 확정 궁극기를 중심으로 설명한다. [에코의 리산드라 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=134573), [카타리나의 리산드라 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=122233)]
+`얼음 파편(Q)`은 첫 대상에서 부서진 뒤 뒤쪽으로 더 뻗는다. 미니언 뒤가 안전지대가 아니므로 웨이브와 사선으로 선다. **리산드라 몸 주변의 `서릿발(W)` 범위 밖에서 교환을 시작한다.**[* [에코의 리산드라 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=134573)][* [카타리나의 리산드라 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=122233)]
 
 - `얼음갈퀴 길(E)`이 지나가면 리산드라보다 갈퀴 끝 위치를 먼저 본다.
 - E 끝에 제어 기술을 미리 두거나, 착지 범위에서 벗어난다.

@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## 관문보다 투사체를 먼저 본다
 
-제이스는 `전격 폭발(Q)`을 먼저 쏜 뒤 투사체 앞에 `가속 관문(E)`을 열어 반응 시간을 줄일 수 있다. 관문이 없다고 방심하지 말고 Q의 시작 동작부터 본다. **원거리 미니언을 사이에 두면 강화 Q 폭발을 대신 받아낼 수 있다.**[* 인벤 제이스 공략은 상대가 막타를 칠 때 평타와 포킹을 넣고, Q-E를 빠르게 연결하며, 해머 진입 뒤 밀어내기로 교환을 끝내는 방식을 설명한다. [제이스 입문서](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=125682), [미드 제이스 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=148113)]
+제이스는 `전격 폭발(Q)`을 먼저 쏜 뒤 투사체 앞에 `가속 관문(E)`을 열어 반응 시간을 줄일 수 있다. 관문이 없다고 방심하지 말고 Q의 시작 동작부터 본다. **원거리 미니언을 사이에 두면 강화 Q 폭발을 대신 받아낼 수 있다.**[* [제이스 입문서](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=125682)][* [미드 제이스 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=148113)]
 
 - 미니언에서 너무 붙어 서서 폭발 피해를 함께 받지는 않는다.
 - 캐논 Q와 관문이 빠졌다면 원거리 견제 압력이 크게 줄어든다.

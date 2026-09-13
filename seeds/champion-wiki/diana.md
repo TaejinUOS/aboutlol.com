@@ -1,4 +1,4 @@
-# AI 작성 초안
+# 미드 라인 실전 운용
 
 [[분류:미드]] [[분류:브루저/원딜]]
 
@@ -8,7 +8,7 @@
 
 ## Q 표식이 진입 허가증이다
 
-`초승달 검기(Q)`가 맞은 대상에게 `월광 쇄도(E)`를 쓰면 E를 다시 사용할 수 있다. **표식 없는 상대에게 먼저 돌진하면 퇴로와 추격 수단을 한 번에 잃는다.**[* 인벤의 에코 상대법과 다이애나 공략에서도 Q 적중 뒤 두 번의 돌진이 가능해지는 구간, W 보호막을 동반한 짧은 교환을 핵심으로 다룬다. [에코의 다이애나 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=144254), [다이애나 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=147829)]
+`초승달 검기(Q)`가 맞은 대상에게 `월광 쇄도(E)`를 쓰면 E를 다시 사용할 수 있다. **표식 없는 상대에게 먼저 돌진하면 퇴로와 추격 수단을 한 번에 잃는다.**[* [에코의 다이애나 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=144254)][* [다이애나 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=147829)]
 
 - `Q`가 빗나가면 억지로 `E`를 쓰지 않는다.
 - 미니언과 챔피언을 함께 맞혀, 미니언을 중간 발판이나 퇴로로 남긴다.

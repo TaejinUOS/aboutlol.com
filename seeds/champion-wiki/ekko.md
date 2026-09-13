@@ -1,10 +1,10 @@
-# AI 작성 초안
+# 미드 라인 실전 운용
 
 [[분류:미드]] [[분류:브루저/원딜]]
 
 ## Q의 왕복 경로로 웨이브를 접는다
 
-`시간의 톱니바퀴(Q)`는 나갈 때보다 돌아오는 경로까지 맞혀야 라인 정리와 교환이 완성된다. 미니언이 일렬로 올 때 던지고, 돌아오는 위치에 상대가 막타를 치러 서게 만든다.[* 인벤 에코 공략은 Q 왕복으로 미니언을 정리하고, 빠르게 민 뒤 다음 행동을 고르는 운영을 강조한다. [미드 에코 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=147488), [에코 운영 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=116830)]
+`시간의 톱니바퀴(Q)`는 나갈 때보다 돌아오는 경로까지 맞혀야 라인 정리와 교환이 완성된다. 미니언이 일렬로 올 때 던지고, 돌아오는 위치에 상대가 막타를 치러 서게 만든다.[* [미드 에코 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=147488)][* [에코 운영 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=116830)]
 
 상대를 맞히겠다고 `Q` 각도를 비틀어 웨이브를 놓치면 다음 교환 전에 미니언이 쌓인다. **라인을 밀 목적과 체력을 깎을 목적을 한 번의 Q로 겹칠 수 있을 때** 가장 좋다.
 

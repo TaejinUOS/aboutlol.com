@@ -13,7 +13,8 @@
     "cf:build": "opennextjs-cloudflare build",
     "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "wiki:seed": "tsx scripts/seed-wiki.ts"
+    "wiki:seed": "tsx scripts/seed-wiki.ts",
+    "wiki:check": "tsx scripts/check-wiki-manuscripts.ts"
   },
   "dependencies": {
     "markdown-to-jsx": "^9.10.2",

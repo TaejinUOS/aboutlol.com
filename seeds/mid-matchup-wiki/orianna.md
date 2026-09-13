@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## 챔피언보다 구체 위치를 본다
 
-오리아나의 모든 위협은 구체에서 시작한다. 오리아나와 멀리 떨어져 있어도 구체 옆에 서면 `명령: 불협화음(W)`과 `명령: 충격파(R)` 범위다. **구체 반대편으로 이동하면 다음 Q 이동 거리와 반응 시간이 늘어난다.**[* 인벤 오리아나 상대법은 구체 위치를 계속 확인하고, Q-W가 빠졌을 때 전진하며, 구체 주변에서 궁극기를 보고 피하려 하지 말라고 조언한다. [아리의 오리아나 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=122420), [신드라의 오리아나 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=132083)]
+오리아나의 모든 위협은 구체에서 시작한다. 오리아나와 멀리 떨어져 있어도 구체 옆에 서면 `명령: 불협화음(W)`과 `명령: 충격파(R)` 범위다. **구체 반대편으로 이동하면 다음 Q 이동 거리와 반응 시간이 늘어난다.**[* [아리의 오리아나 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=122420)][* [신드라의 오리아나 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=132083)]
 
 - 구체가 바닥에 있을 때 그 근처 막타를 억지로 치지 않는다.
 - 구체가 오리아나에게 돌아오는 `명령: 보호(E)` 경로에서도 피해를 받지 않게 옆으로 선다.

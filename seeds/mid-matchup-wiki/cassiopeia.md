@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## Q를 피하면 쌍독니의 긴 교환도 끊긴다
 
-카시오페아는 `맹독 폭발(Q)`을 맞힌 뒤 이동 속도를 얻고 강화된 `쌍독니(E)`를 반복한다. 첫 Q를 옆으로 피하고, 맞았다면 독이 끝날 때까지 뒤로 빠진다. **독에 걸린 채 제자리에서 맞딜하는 것이 가장 나쁜 선택**이다.[* 인벤 카시오페아 라인전 공략과 상대법은 Q 적중 뒤 이어지는 E 연타, 독기의 늪에서 이동기가 막히는 점, 궁극기를 예상해 시선을 돌리는 대응을 핵심으로 다룬다. [카시오페아 라인전 디테일](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=145069), [카시오페아 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=137300)]
+카시오페아는 `맹독 폭발(Q)`을 맞힌 뒤 이동 속도를 얻고 강화된 `쌍독니(E)`를 반복한다. 첫 Q를 옆으로 피하고, 맞았다면 독이 끝날 때까지 뒤로 빠진다. **독에 걸린 채 제자리에서 맞딜하는 것이 가장 나쁜 선택**이다.[* [카시오페아 라인전 디테일](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=145069)][* [카시오페아 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=137300)]
 
 - `독기의 늪(W)` 위에서는 이동 기술이 막히므로 가장 가까운 가장자리로 걷는다.
 - Q가 빗나가면 카시오페아가 E를 길게 이어갈 이유가 줄어든다.

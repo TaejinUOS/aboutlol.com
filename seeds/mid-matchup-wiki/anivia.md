@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## 느린 Q를 옆으로 피하고 냉각된 상태에서 물러난다
 
-`냉기 폭발(Q)`은 투사체와 폭발에 맞으면 기절한다. 직선으로 뒤로 빼면 오래 따라오므로 옆으로 비킨다. Q나 완성된 `얼음 폭풍(R)`에 맞아 냉각됐다면 **`동상(E)`의 두 배 피해가 오기 전에 사거리 밖으로 나간다.**[* 인벤 애니비아 상대법은 느린 Q를 피하고, 6레벨 전 푸시와 이동을 통해 성장 시간을 압박하며, 패시브 알까지 계산하지 않은 마무리를 경계한다. [야스오의 애니비아 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=136999), [애니비아 맞춤 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=120543)]
+`냉기 폭발(Q)`은 투사체와 폭발에 맞으면 기절한다. 직선으로 뒤로 빼면 오래 따라오므로 옆으로 비킨다. Q나 완성된 `얼음 폭풍(R)`에 맞아 냉각됐다면 **`동상(E)`의 두 배 피해가 오기 전에 사거리 밖으로 나간다.**[* [야스오의 애니비아 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=136999)][* [애니비아 맞춤 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=120543)]
 
 - 벽과 애니비아 사이의 좁은 통로로 들어가지 않는다.
 - R 장판이 커지기 전에 즉시 벗어나고, 장판 안에서 막타를 버티지 않는다.

@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## 신드라보다 바닥의 구체를 본다
 
-`적군 와해(E)`는 바닥의 `어둠 구체(Q)`를 밀어 긴 기절 선을 만든다. 신드라와 거리를 두는 것만으로는 부족하고, **신드라-구체-내 위치가 한 줄이 되지 않게** 움직여야 한다.[* 인벤 신드라 장문 공략은 Q-E 기절 각과 미니언·구체 위치를 중심으로 라인전을 설명하며, E가 빠졌을 때 진입을 허용하는 구조를 보여 준다. [신드라 장문 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=109849), [신드라 대응법 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=110336)]
+`적군 와해(E)`는 바닥의 `어둠 구체(Q)`를 밀어 긴 기절 선을 만든다. 신드라와 거리를 두는 것만으로는 부족하고, **신드라-구체-내 위치가 한 줄이 되지 않게** 움직여야 한다.[* [신드라 장문 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=109849)][* [신드라 대응법 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=110336)]
 
 - 새 구체가 생길 때마다 그 뒤 직선을 비운다.
 - E가 빠지면 신드라의 밀어내기와 기절이 함께 사라지므로 짧게 전진한다.

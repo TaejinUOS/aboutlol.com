@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## 아지르가 아니라 병사 사거리를 피한다
 
-아지르의 기본 공격은 모래 병사 위치에서 시작한다. 챔피언 본체와 거리가 있어도 병사 가까이에 서면 계속 맞는다. **병사 옆이 아니라 병사 공격선의 바깥으로 움직여야 한다.**[* 인벤 아지르 상대법은 1레벨부터 맞푸시해 일방적인 견제를 줄이고, W-Q 병사 이동을 계속 움직이며 피하며, 무리한 맞교환보다 웨이브를 유지하라고 설명한다. [아지르 라인전 대처](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=137848), [탈리야 공략의 아지르 항목](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=129711)]
+아지르의 기본 공격은 모래 병사 위치에서 시작한다. 챔피언 본체와 거리가 있어도 병사 가까이에 서면 계속 맞는다. **병사 옆이 아니라 병사 공격선의 바깥으로 움직여야 한다.**[* [아지르 라인전 대처](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=137848)][* [탈리야 공략의 아지르 항목](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=129711)]
 
 - 병사가 없는 쪽으로 막타 위치를 바꾼다.
 - `사막의 맹습(Q)`으로 병사들이 이동하는 순간 옆으로 비켜 추가 공격을 줄인다.

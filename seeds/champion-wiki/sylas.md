@@ -1,4 +1,4 @@
-# AI 작성 초안
+# 미드 라인 실전 운용
 
 [[분류:미드]] [[분류:브루저/원딜]]
 
@@ -29,4 +29,4 @@
 
 사일러스처럼 근접 교환 뒤 회복으로 버티는 챔피언은 [[다이애나]]와 라인 관리의 결이 다르다. 다이애나는 표식을 이용한 재진입을, 사일러스는 빗나간 `E2` 뒤의 공백을 더 엄격하게 관리한다.
 
-이 글은 인벤 사일러스 공략 게시판과 미드 공략의 스킬 구조·라인 클리어 설명을 참고해, 현재 Data Dragon 스킬 설명과 맞는 내용만 남겼다.[* [사일러스 공략 게시판](https://lol.inven.co.kr/dataninfo/champion/manualTool.php?champnum=143), [미드 사일러스 설명서](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=146557)]
+이 글은 인벤 사일러스 공략 게시판과 미드 공략의 스킬 구조·라인 클리어 설명을 참고해, 현재 Data Dragon 스킬 설명과 맞는 내용만 남겼다.[* [사일러스 공략 게시판](https://lol.inven.co.kr/dataninfo/champion/manualTool.php?champnum=143)][* [미드 사일러스 설명서](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=146557)]

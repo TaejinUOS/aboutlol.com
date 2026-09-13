@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## 미니언과 한 줄로 서지 않는다
 
-갈리오는 `전장의 돌풍(Q)`으로 미니언과 챔피언을 함께 맞힐 때 가장 편하다. 원거리 미니언 옆이 아니라 **웨이브와 사선으로 떨어져 서면** 갈리오가 라인 정리와 견제 중 하나를 포기해야 한다.[* 인벤의 갈리오 상대 설명은 Q와 돌진을 피하면서 보호막이 빠진 구간을 노리고, 미드 갈리오가 로밍을 위해 무리하게 움직일 때 정글 동선을 확인하라고 조언한다. [애니의 갈리오 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=135420), [신드라 공략의 갈리오 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=132083)]
+갈리오는 `전장의 돌풍(Q)`으로 미니언과 챔피언을 함께 맞힐 때 가장 편하다. 원거리 미니언 옆이 아니라 **웨이브와 사선으로 떨어져 서면** 갈리오가 라인 정리와 견제 중 하나를 포기해야 한다.[* [애니의 갈리오 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=135420)][* [신드라 공략의 갈리오 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=132083)]
 
 - `정의의 주먹(E)`은 시작할 때 갈리오가 잠깐 뒤로 물러난다. 이 동작이 보이면 옆으로 비킨다.
 - `듀란드의 방패(W)`를 모으는 동안에는 범위 밖으로 걷고, 끝난 뒤에 짧게 때린다.

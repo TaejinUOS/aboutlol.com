@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## 1레벨에 밀어 두고, 벽에서 싸우지 않는다
 
-키아나는 원소가 갖춰지기 전 첫 레벨이 약하다. 이때 미니언을 먼저 치되, 2레벨이 되는 순간에는 강가·수풀·벽 쪽으로 물러나지 않는다. **벽 가까이 선 채 체력을 절반 이하로 내주는 것이 가장 위험한 구도**다.[* 인벤 키아나 공략은 1레벨이 매우 약하며, 미니언을 탄 `E-Q-W-Q` 진입과 강·수풀·벽에서 강해지는 궁극기 각을 핵심으로 설명한다. [M1 키아나 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=144987), [키아나 A to Z](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=147203)]
+키아나는 원소가 갖춰지기 전 첫 레벨이 약하다. 이때 미니언을 먼저 치되, 2레벨이 되는 순간에는 강가·수풀·벽 쪽으로 물러나지 않는다. **벽 가까이 선 채 체력을 절반 이하로 내주는 것이 가장 위험한 구도**다.[* [M1 키아나 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=144987)][* [키아나 A to Z](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=147203)]
 
 - 키아나가 원소를 줍는 방향을 보고 다음 Q 효과를 예상한다.
 - 아군 미니언이 낮은 체력일 때 그 미니언 뒤에 서지 않는다. `대담무쌍(E)`의 발판이 된다.

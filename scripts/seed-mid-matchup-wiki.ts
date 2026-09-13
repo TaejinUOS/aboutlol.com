@@ -11,9 +11,9 @@ import { join } from "node:path";
 import catalog from "../src/data/generated/champions.json";
 import { classifications } from "../src/data/taxonomy";
 import { MAX_BODY_LENGTH, SYSTEM_USER_ID } from "../src/data/wiki";
-import { buildOutline, extractFootnotes } from "../src/lib/wikiMarkup";
+import { buildOutline } from "../src/lib/wikiMarkup";
+import { validateSourceFootnotes } from "./wiki-manuscript-validation";
 
-const AI_DRAFT_HEADING = "AI 작성 초안";
 const CREATED_AT = "2026-09-12T12:30:00.000Z";
 const slugs = [
   "qiyana",
@@ -66,15 +66,15 @@ for (const slug of slugs) {
   const body = readFileSync(join("seeds/mid-matchup-wiki", `${slug}.md`), "utf8")
     .replace(/\r\n?/g, "\n")
     .trim();
-  assert(body.startsWith(`# ${AI_DRAFT_HEADING}\n\n`));
+  assert(body.startsWith("# 미드 라인 상대법\n\n"));
   assert(body.length <= MAX_BODY_LENGTH);
+  validateSourceFootnotes(body, slug);
   assert(!/(?:^|\s)(?:룬|아이템|소환사 주문)(?:\s|$)/mu.test(body), `${slug}: 제외 주제 포함`);
   assert(body.includes("**"), `${slug}: 강조 문법 누락`);
   assert(/^- /mu.test(body), `${slug}: 목록 문법 누락`);
-  assert(extractFootnotes(body).notes.length >= 1, `${slug}: 출처 각주 누락`);
   const outline = buildOutline(body, "matchup-body", 2, new Set());
   assert.equal(outline.children.length, 1);
-  assert.equal(outline.children[0].title, AI_DRAFT_HEADING);
+  assert.equal(outline.children[0].title, "미드 라인 상대법");
   assert(outline.children[0].children.length >= 2);
 
   const docId = `doc-c-${slug}`;
@@ -88,7 +88,7 @@ for (const slug of slugs) {
     `WHERE kind = 'matchup' AND champion_slug = ${quote(slug)} AND revision = 0 AND TRIM(general) = ''`,
     `AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = ${quote(editId)});`,
     "INSERT INTO wiki_edits (id, doc_id, me_slug, base_revision, body, summary, status, author, created_at, accepted_via, revision)",
-    `SELECT ${quote(editId)}, id, NULL, 0, general, 'AI 작성: 인벤 기반 실전 라인전 상대법', 'accepted', ${quote(SYSTEM_USER_ID)}, ${quote(CREATED_AT)}, 'admin', 1 FROM wiki_docs`,
+    `SELECT ${quote(editId)}, id, NULL, 0, general, '인벤 기반 미드 라인 상대법 작성', 'accepted', ${quote(SYSTEM_USER_ID)}, ${quote(CREATED_AT)}, 'admin', 1 FROM wiki_docs`,
     `WHERE kind = 'matchup' AND champion_slug = ${quote(slug)} AND revision = 1 AND general = ${quote(body)}`,
     `AND updated_at = ${quote(CREATED_AT)} AND updated_by = ${quote(SYSTEM_USER_ID)}`,
     `AND NOT EXISTS (SELECT 1 FROM wiki_edits WHERE id = ${quote(editId)});`,

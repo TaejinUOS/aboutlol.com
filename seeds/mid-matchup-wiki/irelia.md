@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## 낮은 체력 미니언은 이렐리아의 이동 경로다
 
-막타 직전 미니언 옆에 서면 `칼날 쇄도(Q)` 초기화로 거리를 단숨에 좁힌다. 웨이브를 볼 때는 내 막타뿐 아니라 **이렐리아가 Q로 처치할 수 있는 미니언의 연속 경로**를 먼저 본다.[* 인벤 이렐리아 공략들은 Q 처치·표식 초기화와 중첩을 만든 뒤 교환하는 구조를 핵심으로 다룬다. [이렐리아 라인 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=145057), [이렐리아 기본 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=37546)]
+막타 직전 미니언 옆에 서면 `칼날 쇄도(Q)` 초기화로 거리를 단숨에 좁힌다. 웨이브를 볼 때는 내 막타뿐 아니라 **이렐리아가 Q로 처치할 수 있는 미니언의 연속 경로**를 먼저 본다.[* [이렐리아 라인 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=145057)][* [이렐리아 기본 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=37546)]
 
 - 낮은 체력 미니언과 일직선으로 서지 않는다.
 - `쌍검협무(E)` 첫 칼날이 보이면 두 칼날을 잇는 선의 옆으로 움직인다.

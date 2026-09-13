@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## 폭발 화약 네 번째 타격을 주지 않는다
 
-`폭발 화약(E)`가 붙으면 트리스타나는 기본 공격과 기술로 중첩을 올린다. 두세 번 맞은 뒤 뒤늦게 맞서지 말고 즉시 사거리 밖으로 빠진다. **최대 중첩 폭발은 `로켓 점프(W)`까지 다시 준비시킬 수 있다.**[* 인벤 트리스타나 상대법과 공략은 E 중첩, W 착지 위치, 최대 중첩 폭발 뒤 W 초기화를 핵심으로 설명한다. [트리스타나 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=109535), [트리스타나 스킬 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=146264)]
+`폭발 화약(E)`가 붙으면 트리스타나는 기본 공격과 기술로 중첩을 올린다. 두세 번 맞은 뒤 뒤늦게 맞서지 말고 즉시 사거리 밖으로 빠진다. **최대 중첩 폭발은 `로켓 점프(W)`까지 다시 준비시킬 수 있다.**[* [트리스타나 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=109535)][* [트리스타나 스킬 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=146264)]
 
 - E가 붙지 않은 평타 한두 대와 E가 붙은 교환을 같은 피해로 생각하지 않는다.
 - 트리스타나가 W로 앞으로 들어오면 착지 지점에서 먼저 벗어난다.

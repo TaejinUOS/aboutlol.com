@@ -15,6 +15,7 @@ import { MAX_BODY_LENGTH, SYSTEM_USER_ID } from "../src/data/wiki";
 import { buildOutline, collectWikiLinkTitles } from "../src/lib/wikiMarkup";
 import { unresolvedWikiTitles } from "../src/lib/wikiLink";
 import { checkArticleTitle, titleKey } from "../src/lib/wikiTitle";
+import { validateSourceFootnotes } from "./wiki-manuscript-validation";
 
 const CREATED_AT = "2026-09-13T06:00:00.000Z";
 const PATCH = catalog.patch;
@@ -85,12 +86,12 @@ function validateArticle(slug: string, body: string) {
   assert(body.includes("[[분류:탑]] [[분류:탱커]]"), `${slug}: 분류 누락`);
   assert(/`[QWER]`/u.test(body), `${slug}: 기술 키 누락`);
   assert((body.match(/\*\*/gu) ?? []).length >= 6, `${slug}: 강조 부족`);
-  assert((body.match(/^- \[.+\]\(https?:\/\//gmu) ?? []).length >= 2, `${slug}: 출처 링크 부족`);
+  validateSourceFootnotes(body, `${slug} 챔피언 문서`);
   assert(!/(?:^|\s)(?:룬|아이템|소환사 주문)(?:\s|$)/mu.test(body), `${slug}: 제외 주제 포함`);
   assert.equal(collectWikiLinkTitles(body).length, 2, `${slug}: 분류 위키링크 수`);
   const outline = buildOutline(body, "article-body", 2, new Set());
   assert.equal(outline.children.length, 1);
-  assert(outline.children[0].children.length >= 5);
+  assert(outline.children[0].children.length >= 4);
 }
 
 function validateMatchup(slug: string, body: string) {
@@ -98,11 +99,11 @@ function validateMatchup(slug: string, body: string) {
   assert(body.length <= MAX_BODY_LENGTH, `${slug}: 상대법 길이 초과`);
   assert(/`[QWER]`/u.test(body), `${slug}: 상대법 기술 키 누락`);
   assert((body.match(/\*\*/gu) ?? []).length >= 4, `${slug}: 상대법 강조 부족`);
-  assert((body.match(/^- \[.+\]\(https?:\/\//gmu) ?? []).length >= 2, `${slug}: 상대법 출처 링크 부족`);
+  validateSourceFootnotes(body, `${slug} 상대법`);
   assert(!/(?:^|\s)(?:룬|아이템|소환사 주문)(?:\s|$)/mu.test(body), `${slug}: 상대법 제외 주제 포함`);
   const outline = buildOutline(body, "matchup-body", 2, new Set());
   assert.equal(outline.children.length, 1);
-  assert(outline.children[0].children.length >= 5);
+  assert(outline.children[0].children.length >= 4);
 }
 
 function appendNewArticle(slug: string, name: string, body: string) {

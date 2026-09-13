@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## 돌아오는 Q와 세 번째 타격을 끊는다
 
-`시간의 톱니바퀴(Q)`는 나갈 때보다 돌아올 때까지 맞으면 교환이 커진다. 첫 타를 맞았더라도 에코와 일직선으로 뒤로 빠지지 말고 옆으로 움직인다. **두 번 맞고 세 번째 타격까지 허용하는 구도를 끊는 것**이 핵심이다.[* 인벤 에코 공략과 상대법은 Q 왕복, 3타 뒤 이동 속도, W 범위와 궁극기 잔상을 계속 확인해야 한다고 설명한다. [미드 에코 상대법 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=141126), [구체적 에코 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=134573)]
+`시간의 톱니바퀴(Q)`는 나갈 때보다 돌아올 때까지 맞으면 교환이 커진다. 첫 타를 맞았더라도 에코와 일직선으로 뒤로 빠지지 말고 옆으로 움직인다. **두 번 맞고 세 번째 타격까지 허용하는 구도를 끊는 것**이 핵심이다.[* [미드 에코 상대법 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=141126)][* [구체적 에코 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=134573)]
 
 - 에코가 `시간 도약(E)` 첫 동작을 쓰면 순간이동할 대상과 거리를 벌린다.
 - 보이지 않는 곳에서 나타난 큰 원은 `평행 시간 교차(W)`다. 안에서 싸우지 않는다.

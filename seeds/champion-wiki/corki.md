@@ -1,10 +1,10 @@
-# AI 작성 초안
+# 미드 라인 실전 운용
 
 [[분류:미드]] [[분류:브루저/원딜]]
 
 ## 라인 정리와 견제를 같은 방향에 둔다
 
-코르키는 `인광탄(Q)`과 `개틀링 건(E)`으로 미니언을 밀면서 상대를 함께 때릴 때 라인전이 편해진다.[* 인벤 코르키 공략들은 원거리 미니언에 Q와 E를 겹쳐 빠르게 정리하고, 초반에는 과감한 앞무빙보다 안전한 라인 관리가 중요하다고 설명한다. [코르키 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=134908), [코르키 딜교 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=148079)] **상대만 향해 Q를 던지다 빗나가면 웨이브를 밀 수단과 견제 수단을 동시에 잃는다.**
+코르키는 `인광탄(Q)`과 `개틀링 건(E)`으로 미니언을 밀면서 상대를 함께 때릴 때 라인전이 편해진다.[* [코르키 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=134908)][* [코르키 딜교 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=148079)] **상대만 향해 Q를 던지다 빗나가면 웨이브를 밀 수단과 견제 수단을 동시에 잃는다.**
 
 - 상대가 원거리 미니언 옆에 설 때 Q 범위를 겹친다.
 - E를 켰다면 정면을 계속 향해야 한다. 옆으로 크게 틀어 피해 시간을 버리지 않는다.

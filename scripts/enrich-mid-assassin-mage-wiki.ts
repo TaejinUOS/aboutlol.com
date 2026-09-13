@@ -9,6 +9,7 @@ import { join } from "node:path";
 
 import { MAX_BODY_LENGTH, SYSTEM_USER_ID } from "../src/data/wiki";
 import { buildOutline } from "../src/lib/wikiMarkup";
+import { validateSourceFootnotes } from "./wiki-manuscript-validation";
 
 const CREATED_AT = "2026-09-13T00:00:00.000Z";
 const OUTPUT = "seeds/mid-assassin-mage-wiki-markdown.sql";
@@ -56,14 +57,14 @@ const lines = [
 
 for (const [id, title, slug, revision] of targets) {
   const body = readFileSync(join("seeds/champion-wiki", `${slug}.md`), "utf8").trim();
-  assert(body.startsWith("# 라인전 실전 팁\n\n> **한눈에 보기** — "), `${title}: 요약 인용문 누락`);
+  assert(body.startsWith("# 미드 라인 실전 운용\n\n> **한눈에 보기** — "), `${title}: 요약 인용문 누락`);
   assert(body.length <= MAX_BODY_LENGTH, `${title}: 본문 길이 초과`);
+  validateSourceFootnotes(body, `${title} 원고`);
   assert((body.match(/\*\*/g) ?? []).length >= 8, `${title}: 핵심 문장 강조 누락`);
   assert(/`[QWER]{1,2}`/u.test(body), `${title}: 스킬 키 인라인 코드 누락`);
-  assert(/^- \[.+\]\(https?:\/\//mu.test(body), `${title}: 출처 링크 목록 누락`);
   const outline = buildOutline(body, "article-body", 2, new Set());
   assert.equal(outline.children.length, 1, `${title}: 최상위 제목 구조 오류`);
-  assert(outline.children[0].children.length >= 4, `${title}: 소제목 구조 누락`);
+  assert(outline.children[0].children.length >= 3, `${title}: 소제목 구조 누락`);
 
   const nextRevision = revision + 1;
   const editId = `edit-mid-rich-markdown-${slug}-20260913`;

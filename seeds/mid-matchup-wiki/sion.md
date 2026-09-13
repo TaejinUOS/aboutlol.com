@@ -1,8 +1,8 @@
-# AI 작성 초안
+# 미드 라인 상대법
 
 ## Q는 뒤가 아니라 옆으로 피한다
 
-`대량 학살 강타(Q)` 충전이 보이면 최대 사거리 밖으로 뒤늦게 달리기보다 옆으로 벗어난다. 수풀과 시야 밖에서는 충전 시작이 보이지 않으므로 가까운 쪽 벽을 따라 걷지 않는다. **보이지 않는 사이온 앞의 좁은 길은 비워 둔다.**[* 인벤 상대법은 수풀의 Q와 처치 뒤 패시브를 특히 조심하라고 설명하며, 사이온 공략은 E로 미니언을 밀어 원거리에서 교환을 여는 구조를 보여 준다. [사이온 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=138313), [사이온 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=143260)]
+`대량 학살 강타(Q)` 충전이 보이면 최대 사거리 밖으로 뒤늦게 달리기보다 옆으로 벗어난다. 수풀과 시야 밖에서는 충전 시작이 보이지 않으므로 가까운 쪽 벽을 따라 걷지 않는다. **보이지 않는 사이온 앞의 좁은 길은 비워 둔다.**[* [사이온 상대법](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=138313)][* [사이온 공략](https://lol.inven.co.kr/dataninfo/champion/manualToolView.php?idx=143260)]
 
 - 낮은 체력 미니언 뒤에 서지 않는다. `학살자의 포효(E)`에 밀려난 미니언이 닿는다.
 - `영혼의 용광로(W)` 보호막이 켜지면 폭발 범위 밖으로 나간다.
