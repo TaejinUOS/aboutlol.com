@@ -1,4 +1,4 @@
-/** 위키 원고 93개의 제목과 인벤 링크 전용 인라인 각주를 한 번에 점검한다. */
+/** 위키 원고의 제목과 인벤 링크 전용 인라인 각주를 한 번에 점검한다. */
 import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -6,9 +6,10 @@ import { join } from "node:path";
 import { validateSourceFootnotes } from "./wiki-manuscript-validation";
 
 const groups = [
-  { root: "seeds/champion-wiki", count: 55 },
+  { root: "seeds/champion-wiki", count: 64 },
   { root: "seeds/mid-matchup-wiki", count: 26 },
   { root: "seeds/top-tank-matchup-wiki", count: 12 },
+  { root: "seeds/top-bruiser-matchup-wiki", count: 10 },
 ] as const;
 
 let documents = 0;
@@ -37,6 +38,6 @@ for (const group of groups) {
   }
 }
 
-assert.equal(documents, 93);
-assert.equal(sources, 169, "인벤 링크 수가 정규화 전과 달라졌다");
+assert.equal(documents, 112);
+assert.equal(sources, 208, "인벤 링크 수가 예상과 달라졌다");
 console.log(`위키 원고 검증 통과: ${documents}개 · 링크 전용 인벤 각주 ${sources}개`);

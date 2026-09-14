@@ -31,7 +31,8 @@ const drafts = [
     createdAt: "2026-09-13T00:00:00.000Z",
     format: "lane" as const,
   })),
-  // 2026-09-12 taxonomy.ts의 mid / bruiser-adc 전체 명단.
+  // 2026-09-12 taxonomy.ts의 mid / bruiser-adc 원고. 이렐리아는 2026-09-14에 탑
+  // 딜탱 원고로 보강해 scripts/seed-top-bruiser-wiki.ts가 전담한다.
   ...[
     "sylas",
     "yone",
@@ -39,7 +40,6 @@ const drafts = [
     "galio",
     "ekko",
     "diana",
-    "irelia",
     "corki",
     "jayce",
     "smolder",
