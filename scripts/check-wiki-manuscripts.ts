@@ -6,10 +6,11 @@ import { join } from "node:path";
 import { validateSourceFootnotes } from "./wiki-manuscript-validation";
 
 const groups = [
-  { root: "seeds/champion-wiki", count: 76 },
+  { root: "seeds/champion-wiki", count: 84 },
   { root: "seeds/mid-matchup-wiki", count: 26 },
   { root: "seeds/top-tank-matchup-wiki", count: 12 },
   { root: "seeds/top-bruiser-matchup-wiki", count: 22 },
+  { root: "seeds/top-damage-matchup-wiki", count: 9 },
 ] as const;
 
 let documents = 0;
@@ -38,6 +39,6 @@ for (const group of groups) {
   }
 }
 
-assert.equal(documents, 136);
-assert.equal(sources, 232, "인벤 링크 수가 예상과 달라졌다");
+assert.equal(documents, 153);
+assert.equal(sources, 249, "인벤 링크 수가 예상과 달라졌다");
 console.log(`위키 원고 검증 통과: ${documents}개 · 링크 전용 인벤 각주 ${sources}개`);
