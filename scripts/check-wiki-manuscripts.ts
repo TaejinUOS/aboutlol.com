@@ -6,13 +6,14 @@ import { join } from "node:path";
 import { validateSourceFootnotes } from "./wiki-manuscript-validation";
 
 const groups = [
-  { root: "seeds/champion-wiki", count: 116 },
+  { root: "seeds/champion-wiki", count: 138 },
   { root: "seeds/mid-matchup-wiki", count: 26 },
   { root: "seeds/top-tank-matchup-wiki", count: 12 },
   { root: "seeds/top-bruiser-matchup-wiki", count: 22 },
   { root: "seeds/top-damage-matchup-wiki", count: 9 },
   { root: "seeds/jungle-ad-matchup-wiki", count: 20 },
   { root: "seeds/jungle-ap-matchup-wiki", count: 11 },
+  { root: "seeds/adc-matchup-wiki", count: 23 },
 ] as const;
 
 let documents = 0;
@@ -29,7 +30,8 @@ for (const group of groups) {
       assert(
         body.startsWith("# 미드 라인 실전 운용\n") ||
           body.startsWith("# 탑 라인 실전 운용\n") ||
-          body.startsWith("# 정글 실전 운용\n"),
+          body.startsWith("# 정글 실전 운용\n") ||
+          body.startsWith("# 원딜 실전 운용\n"),
         `${path}: 챔피언 문서 제목이 올바르지 않다`,
       );
     } else if (group.root === "seeds/mid-matchup-wiki") {
@@ -39,6 +41,8 @@ for (const group of groups) {
       group.root === "seeds/jungle-ap-matchup-wiki"
     ) {
       assert(body.startsWith("# 정글 상대법\n"), `${path}: 정글 상대법 제목이 올바르지 않다`);
+    } else if (group.root === "seeds/adc-matchup-wiki") {
+      assert(body.startsWith("# 원딜 상대법\n"), `${path}: 원딜 상대법 제목이 올바르지 않다`);
     } else {
       assert(body.startsWith("# 탑 라인 상대법\n"), `${path}: 탑 상대법 제목이 올바르지 않다`);
     }
@@ -48,6 +52,6 @@ for (const group of groups) {
   }
 }
 
-assert.equal(documents, 216);
-assert.equal(sources, 312, "인벤 링크 수가 예상과 달라졌다");
+assert.equal(documents, 261);
+assert.equal(sources, 357, "인벤 링크 수가 예상과 달라졌다");
 console.log(`위키 원고 검증 통과: ${documents}개 · 링크 전용 인벤 각주 ${sources}개`);
