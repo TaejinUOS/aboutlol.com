@@ -1,4 +1,4 @@
-/** 위키 원고의 제목과 인벤 링크 전용 인라인 각주를 한 번에 점검한다. */
+/** 위키 원고의 제목과 허용 출처 링크 전용 인라인 각주를 한 번에 점검한다. */
 import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -67,5 +67,5 @@ for (const group of groups) {
 }
 
 assert.equal(documents, 318);
-assert.equal(sources, 414, "인벤 링크 수가 예상과 달라졌다");
-console.log(`위키 원고 검증 통과: ${documents}개 · 링크 전용 인벤 각주 ${sources}개`);
+assert.equal(sources, 438, "출처 링크 수가 예상과 달라졌다");
+console.log(`위키 원고 검증 통과: ${documents}개 · 링크 전용 출처 각주 ${sources}개`);
