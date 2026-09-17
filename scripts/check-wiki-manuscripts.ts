@@ -10,8 +10,8 @@ const groups = [
   { root: "seeds/mid-matchup-wiki", count: 26 },
   { root: "seeds/top-tank-matchup-wiki", count: 12 },
   { root: "seeds/top-bruiser-matchup-wiki", count: 22 },
-  { root: "seeds/top-damage-matchup-wiki", count: 9 },
-  { root: "seeds/jungle-ad-matchup-wiki", count: 20 },
+  { root: "seeds/top-damage-matchup-wiki", count: 10 },
+  { root: "seeds/jungle-ad-matchup-wiki", count: 21 },
   { root: "seeds/jungle-ap-matchup-wiki", count: 11 },
   { root: "seeds/adc-matchup-wiki", count: 23 },
   { root: "seeds/non-adc-matchup-wiki", count: 9 },
@@ -66,6 +66,6 @@ for (const group of groups) {
   }
 }
 
-assert.equal(documents, 318);
-assert.equal(sources, 482, "출처 링크 수가 예상과 달라졌다");
+assert.equal(documents, 320);
+assert.equal(sources, 521, "출처 링크 수가 예상과 달라졌다");
 console.log(`위키 원고 검증 통과: ${documents}개 · 링크 전용 출처 각주 ${sources}개`);
