@@ -10,7 +10,7 @@ import styles from "./SiteHeader.module.css";
 type NavItem = {
   label: string;
   href: string;
-  /** MVP에서 `추후 개발` 안내 화면으로 이동하는 메뉴 (PRD 5.7). */
+  /** `추후 개발` 안내 화면으로 이동하는 메뉴. */
   soon?: boolean;
   /** 현재 위치로 볼 추가 경로 접두사. */
   match?: string;
@@ -23,7 +23,7 @@ const NAV: NavItem[] = [
    * 앞선다 (`docs/WIKI_EXPANSION.md` "위키 메뉴").
    */
   { label: "위키", href: "/wiki" },
-  { label: "전적", href: "/records", soon: true },
+  { label: "전적", href: "/records" },
   { label: "통계", href: "/stats", soon: true },
   { label: "티어표", href: "/tier-list", soon: true },
   { label: "강의", href: "/lessons", soon: true },

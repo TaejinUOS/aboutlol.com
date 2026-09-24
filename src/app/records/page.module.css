@@ -1,0 +1,62 @@
+.page { padding-block: clamp(32px, 6vw, 80px) 100px; }
+.hero { position: relative; min-height: 260px; padding: 24px 0 48px; border-bottom: 2px solid var(--paper); }
+.title { margin-top: 22px; font-size: clamp(84px, 17vw, 220px); color: var(--paper); text-shadow: 8px 8px 0 var(--gum); }
+.intro { max-width: 47ch; margin-top: 22px; color: var(--smoke); }
+.heroSticker { position: absolute; right: 6%; bottom: 54px; transform: rotate(-5deg); }
+
+.searchPanel {
+  display: grid; grid-template-columns: minmax(180px, 1fr) minmax(0, 2fr);
+  gap: clamp(20px, 4vw, 64px); margin-top: 38px; padding: clamp(22px, 4vw, 48px);
+  background: var(--paper); color: var(--ink); border: var(--line); box-shadow: var(--shadow-cut);
+}
+.searchHeading p, .resultsHeading p { font-size: 12px; font-weight: 700; }
+.searchHeading h2 { margin-top: 12px; font-size: clamp(26px, 3vw, 42px); font-weight: 800; line-height: 1.2; }
+.form label { display: block; margin-bottom: 8px; font-weight: 800; }
+.inputRow { display: flex; gap: 8px; }
+.inputRow input { flex: 1; min-width: 0; padding: 12px 16px; background: white; color: var(--ink); border: var(--line); border-radius: 0; }
+.inputRow input:focus-visible { outline-color: var(--cobalt); }
+.inputRow button { flex: none; }
+.inputRow button:disabled, .inputRow input:disabled { opacity: 0.55; cursor: not-allowed; }
+.hint, .notice { margin-top: 10px; color: var(--ink-soft); font-size: 14px; }
+.notice { grid-column: 1 / -1; margin-top: 0; padding-top: 14px; border-top: 1px solid var(--paper-line); }
+.feedback, .empty { margin-top: 32px; padding: 18px 22px; border: 2px solid var(--paper); color: var(--paper); }
+
+.results { margin-top: 74px; }
+.resultsHeading { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding-bottom: 16px; border-bottom: 2px solid var(--paper); }
+.resultsHeading h2 { margin-top: 8px; font-size: clamp(28px, 4vw, 54px); font-weight: 800; overflow-wrap: anywhere; }
+.matchList { display: grid; gap: 14px; margin-top: 22px; }
+.match { padding: 20px 24px; background: var(--paper); color: var(--ink); border-left: 8px solid var(--cobalt); }
+.loss { border-left-color: var(--ink-soft); }
+.matchLead, .matchBody, .champion, .metrics, .matchupLink { display: flex; align-items: center; }
+.matchLead { gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--paper-line); }
+.matchIndex { margin-right: 6px; font-size: 13px; }
+.result { padding: 3px 9px; font-weight: 800; }
+.resultWin { background: var(--cobalt); color: var(--paper); }
+.resultLoss { background: var(--ink); color: var(--paper); }
+.queue { color: var(--ink-soft); font-size: 14px; }
+.matchBody { justify-content: space-between; gap: 20px; padding-top: 16px; }
+.champion { gap: 14px; min-width: 0; }
+.icon { flex: none; width: 64px; height: 64px; border: var(--line); }
+.championName { font-size: 22px; font-weight: 800; }
+.matchDate { color: var(--ink-soft); font-size: 12px; }
+.metrics { flex-wrap: wrap; justify-content: flex-end; gap: 12px clamp(16px, 2vw, 36px); }
+.metrics div { min-width: 78px; }
+.metrics dt { color: var(--ink-soft); font-size: 12px; font-weight: 700; }
+.metrics dd { margin: 2px 0 0; font-family: var(--font-mono); font-weight: 700; font-variant-numeric: tabular-nums; }
+.matchupLink { width: fit-content; gap: 8px; margin-top: 16px; color: var(--cobalt-ink); font-weight: 800; text-decoration: underline; text-underline-offset: 4px; }
+.footnote { margin-top: 20px; color: var(--smoke); font-size: 13px; }
+
+@media (max-width: 800px) {
+  .searchPanel { grid-template-columns: 1fr; }
+  .matchBody { align-items: flex-start; flex-direction: column; }
+  .metrics { justify-content: flex-start; }
+}
+@media (max-width: 520px) {
+  .hero { min-height: 250px; }
+  .heroSticker { right: 0; bottom: 26px; font-size: 11px; }
+  .inputRow { flex-direction: column; }
+  .inputRow button { width: 100%; }
+  .resultsHeading { align-items: flex-start; flex-direction: column; }
+  .match { padding: 16px; }
+  .metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+}
