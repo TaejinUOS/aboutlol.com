@@ -27,7 +27,9 @@
   "routes": [
     { "pattern": "kkaenam.com", "custom_domain": true },
     // www로 들어와도 끊기지 않게 받아 두고, next.config.ts가 apex로 넘긴다.
-    { "pattern": "www.kkaenam.com", "custom_domain": true }
+    { "pattern": "www.kkaenam.com", "custom_domain": true },
+    { "pattern": "aboutlol.com", "custom_domain": true },
+    { "pattern": "www.aboutlol.com", "custom_domain": true }
   ],
   // 상대법 위키 저장소. 스키마는 migrations/, 설계는 docs/WIKI_MODEL.md.
   "d1_databases": [
