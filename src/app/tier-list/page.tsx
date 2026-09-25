@@ -5,8 +5,7 @@ import Link from "next/link";
 import { DEFAULT_POSITION_SLUG, getPosition, positions } from "@/data/taxonomy";
 import { getViewer } from "@/lib/authGuard";
 import { getTierEntries, TIERS } from "@/lib/tierStore";
-import { articleHref, titleKey } from "@/lib/wikiTitle";
-import { getArticleView } from "@/lib/wikiStore";
+import { articleHref } from "@/lib/wikiTitle";
 
 import styles from "./page.module.css";
 
@@ -17,6 +16,7 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 const BASIS_TITLE = "티어표 작성 근거";
+const SUGGESTIONS_TITLE = "티어표 건의";
 
 export default async function TierListPage({ searchParams }: {
   searchParams: Promise<{ position?: string | string[] }>;
@@ -25,26 +25,27 @@ export default async function TierListPage({ searchParams }: {
   const positionSlug = typeof requested === "string" && getPosition(requested)
     ? requested : DEFAULT_POSITION_SLUG;
   const position = getPosition(positionSlug)!;
-  const [article, entries, viewer] = await Promise.all([
-    getArticleView(titleKey(BASIS_TITLE)),
+  const [entries, viewer] = await Promise.all([
     getTierEntries(positionSlug),
     getViewer(),
   ]);
-  const hasBasis = article?.status === "published";
-  const basisHref = articleHref(BASIS_TITLE);
 
   return (
     <div className={`shell ${styles.page}`}>
       <h1 className="sr-only">티어표</h1>
 
-      <section className={styles.basis} aria-labelledby="basis-heading">
-        <div className={styles.basisText}>
-          <p className="mono">WIKI / RANKING GUIDE</p>
-          <h2 id="basis-heading">{BASIS_TITLE}</h2>
-          <p>{hasBasis ? "등급 기준과 변경 이유를 위키 문서에서 확인하세요." : "작성 근거 문서를 준비 중입니다."}</p>
-        </div>
-        <Link className={`btn btn--acid ${styles.basisLink}`} href={basisHref}>
-          {hasBasis ? "근거 문서 보기" : "근거 문서 작성"} <span aria-hidden="true">↗</span>
+      <section className={styles.documents} aria-label="티어표 위키 문서">
+        <Link className={styles.document} href={articleHref(BASIS_TITLE)}>
+          <span className="mono">WIKI / RANKING GUIDE</span>
+          <strong>{BASIS_TITLE}</strong>
+          <span className={styles.documentDescription}>등급 기준과 변경 이유를 확인하고 고쳐 주세요.</span>
+          <span className={styles.documentArrow} aria-hidden="true">↗</span>
+        </Link>
+        <Link className={`${styles.document} ${styles.suggestion}`} href={articleHref(SUGGESTIONS_TITLE)}>
+          <span className="mono">WIKI / YOUR IDEAS</span>
+          <strong>{SUGGESTIONS_TITLE}</strong>
+          <span className={styles.documentDescription}>챔피언 등급에 대한 의견을 위키 문서에 더해 주세요.</span>
+          <span className={styles.documentArrow} aria-hidden="true">↗</span>
         </Link>
       </section>
 
