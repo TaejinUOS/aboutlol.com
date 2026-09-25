@@ -17,13 +17,13 @@ type NavItem = {
 };
 
 const NAV: NavItem[] = [
-  { label: "챔피언", href: "/", match: "/matchup" },
+  { label: "홈", href: "/" },
+  { label: "챔피언", href: "/champions", match: "/matchup" },
   /*
    * 이 사이트에서 위키는 곁다리가 아니라 본체이므로 `soon` 딱지가 붙은 메뉴들보다
    * 앞선다 (`docs/WIKI_EXPANSION.md` "위키 메뉴").
    */
   { label: "위키", href: "/wiki" },
-  { label: "전적", href: "/records" },
   { label: "통계", href: "/stats", soon: true },
   { label: "티어표", href: "/tier-list", soon: true },
   { label: "강의", href: "/lessons", soon: true },
@@ -35,7 +35,8 @@ function isCurrent(pathname: string, item: NavItem) {
   if (item.href === "/") {
     return pathname === "/" || (item.match ? pathname.startsWith(item.match) : false);
   }
-  return pathname === item.href || pathname.startsWith(`${item.href}/`);
+  return pathname === item.href || pathname.startsWith(`${item.href}/`) ||
+    (item.match ? pathname.startsWith(item.match) : false);
 }
 
 export function SiteHeader({

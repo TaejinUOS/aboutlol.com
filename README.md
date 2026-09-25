@@ -9,8 +9,8 @@
 
 | 문서 | 역할 |
 | --- | --- |
-| [`docs/PRD.md`](./docs/PRD.md) | 기능 범위와 사용자 흐름의 기준 (v0.7) |
-| [`docs/DESIGN_BLUEPRINT.md`](./docs/DESIGN_BLUEPRINT.md) | 시각 기준 — GLOWING MATCHUP ZINE (v0.6) |
+| [`docs/PRD.md`](./docs/PRD.md) | 기능 범위와 사용자 흐름의 기준 |
+| [`docs/DESIGN_BLUEPRINT.md`](./docs/DESIGN_BLUEPRINT.md) | 시각 기준 — GLOWING MATCHUP ZINE |
 | [`docs/HANDOFF.md`](./docs/HANDOFF.md) | **남은 작업, 임시 구현, 알아 두어야 할 것** |
 | [`AGENTS.md`](./AGENTS.md) | 제품·디자인 규칙, 명령어, 아키텍처 — 코딩 에이전트가 읽는 지침 |
 | [`docs/DEPLOY.md`](./docs/DEPLOY.md) | 배포 방법과 자동 배포 설정 |
@@ -41,9 +41,10 @@ npm run dev          # http://localhost:3000
 
 | 경로 | 화면 |
 | --- | --- |
-| `/?position=&category=&q=` | 포지션·카테고리 선택과 챔피언 Contact Sheet |
+| `/` | Riot ID 검색, 즐겨찾는 소환사, 최근 전적과 패배 상대 위키 추천 |
+| `/champions?position=&category=&q=` | 포지션·카테고리 선택과 챔피언 Contact Sheet |
 | `/matchup/[position]/[champion]?tab=&me=` | 챔피언 상대법 위키 (Aside + 상대법·영상) |
-| `/records?riotId=게임이름%23태그` | 한국 서버 최근 전적 검색 (`RIOT_API_KEY` 설정 필요) |
+| `/records?riotId=게임이름%23태그` | 기존 전적 주소. 같은 검색어를 유지하며 `/`로 이동 |
 | `/stats` `/tier-list` `/lessons` | `추후 개발` 안내 화면 |
 
 화면 상태는 모두 URL 질의 문자열에 반영되어 새로고침과 뒤로 가기 후에도 복원됩니다.
@@ -53,8 +54,8 @@ npm run dev          # http://localhost:3000
 
 ```
 docs/                      기획 · 디자인 문서
-  PRD.md                   제품 요구사항 (v0.7)
-  DESIGN_BLUEPRINT.md      시각 기준 (v0.6)
+  PRD.md                   제품 요구사항
+  DESIGN_BLUEPRINT.md      시각 기준
   HANDOFF.md               남은 작업과 임시 구현
   design/blueprints/       승인된 목업과 생성 프롬프트
   archive/plan1.txt        최초 기획 메모 (PRD로 대체됨)

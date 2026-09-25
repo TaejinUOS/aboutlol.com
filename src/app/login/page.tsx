@@ -62,7 +62,7 @@ export default async function LoginPage({
         </form>
       </div>
 
-      <Link className={`btn btn--ghost ${styles.back}`} href="/">
+      <Link className={`btn btn--ghost ${styles.back}`} href="/champions">
         챔피언으로 돌아가기
       </Link>
     </div>

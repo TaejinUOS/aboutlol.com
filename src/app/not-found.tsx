@@ -22,7 +22,7 @@ export default function NotFound() {
         주소가 잘못되었거나, 해당 포지션에 그 챔피언이 분류되어 있지 않습니다. 포지션과 카테고리를
         다시 골라 주세요.
       </p>
-      <Link className="btn btn--acid" href="/">
+      <Link className="btn btn--acid" href="/champions">
         챔피언으로 돌아가기
       </Link>
     </div>

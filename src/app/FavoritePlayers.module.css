@@ -1,0 +1,19 @@
+.aside { align-self: start; padding: 26px 20px; border: 2px solid var(--paper); color: var(--paper); }
+.aside > p:first-child { color: var(--acid); font-size: 12px; font-weight: 700; }
+.heading { margin-top: 16px; font-size: clamp(28px, 3vw, 42px); font-weight: 800; line-height: 1.1; }
+.explain { margin-top: 14px; color: var(--smoke); font-size: 14px; line-height: 1.5; }
+.add { width: 100%; margin-top: 20px; padding: 12px; border: 2px solid var(--acid); background: var(--acid); color: var(--ink); font-weight: 800; text-align: left; overflow-wrap: anywhere; cursor: pointer; }
+.add:focus-visible, .player:focus-visible, .remove:focus-visible { outline: 3px solid var(--acid); outline-offset: 3px; }
+.empty { margin-top: 28px; padding: 18px 0; border-block: 1px solid var(--smoke); color: var(--smoke); line-height: 1.5; }
+.list { display: grid; gap: 8px; margin-top: 22px; }
+.item { display: flex; align-items: stretch; border: 1px solid var(--smoke); }
+.player { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; padding: 7px; }
+.player:hover { background: var(--acid); color: var(--ink); }
+.icon, .iconPlaceholder { width: 52px; height: 52px; flex: none; border: 1px solid var(--smoke); }
+.iconPlaceholder { display: grid; place-items: center; color: var(--acid); }
+.identity { min-width: 0; overflow-wrap: anywhere; }
+.identity strong { display: block; font-size: 14px; }
+.identity small { display: block; margin-top: 3px; font-family: var(--font-mono); font-size: 11px; }
+.remove { width: 35px; flex: none; border-left: 1px solid var(--smoke); color: var(--paper); cursor: pointer; }
+.remove:hover { background: var(--gum); color: var(--ink); }
+.limit { margin-top: 20px; color: var(--smoke); font-family: var(--font-mono); font-size: 11px; }

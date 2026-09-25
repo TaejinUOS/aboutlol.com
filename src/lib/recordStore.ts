@@ -3,15 +3,17 @@ import "server-only";
 
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 
-import { allChampions } from "@/data/champions";
+import { PATCH, allChampions } from "@/data/champions";
 
 const RIOT_HOST = "https://asia.api.riotgames.com";
+const KR_HOST = "https://kr.api.riotgames.com";
 const MATCH_COUNT = 20;
 const cache = new Map<string, { expires: number; value: unknown }>();
 const pending = new Map<string, Promise<unknown>>();
 let blockedUntil = 0;
 
 type RiotAccount = { puuid: string; gameName: string; tagLine: string };
+type RiotSummoner = { profileIconId?: number; summonerLevel?: number };
 type RiotParticipant = {
   puuid: string;
   championId: number;
@@ -56,7 +58,7 @@ export type RecordRow = {
 };
 
 export type RecordResult =
-  | { status: "ok"; riotId: string; rows: RecordRow[]; incomplete: boolean }
+  | { status: "ok"; riotId: string; rows: RecordRow[]; incomplete: boolean; profile: { iconUrl: string | null; level: number | null } }
   | { status: "invalid" | "missing" | "unavailable" | "rate-limited" | "not-configured"; retrySeconds?: number };
 
 class RiotError extends Error {
@@ -95,14 +97,14 @@ async function cached<T>(key: string, ttlMs: number, load: () => Promise<T>): Pr
   return task;
 }
 
-async function riotGet<T>(path: string, key: string): Promise<T> {
+async function riotGet<T>(path: string, key: string, host = RIOT_HOST): Promise<T> {
   if (Date.now() < blockedUntil) {
     throw new RiotError(429, Math.ceil((blockedUntil - Date.now()) / 1000));
   }
 
   let response: Response;
   try {
-    response = await fetch(`${RIOT_HOST}${path}`, {
+    response = await fetch(`${host}${path}`, {
       headers: { "X-Riot-Token": key },
       cache: "no-store",
       signal: AbortSignal.timeout(8000),
@@ -231,7 +233,24 @@ export async function getRecords(input: string): Promise<RecordResult> {
       }
     }
 
-    return { status: "ok", riotId: `${account.gameName}#${account.tagLine}`, rows, incomplete };
+    const summonerPath = `/lol/summoner/v4/summoners/by-puuid/${encodeURIComponent(account.puuid)}`;
+    const summoner = await cached(`kr:${summonerPath}`, 30 * 60_000, () =>
+      riotGet<RiotSummoner>(summonerPath, key, KR_HOST)
+    ).catch(() => null);
+    const iconId = summoner?.profileIconId;
+
+    return {
+      status: "ok",
+      riotId: `${account.gameName}#${account.tagLine}`,
+      rows,
+      incomplete,
+      profile: {
+        iconUrl: typeof iconId === "number" && Number.isInteger(iconId) && iconId >= 0
+          ? `https://ddragon.leagueoflegends.com/cdn/${PATCH}/img/profileicon/${iconId}.png`
+          : null,
+        level: typeof summoner?.summonerLevel === "number" ? summoner.summonerLevel : null,
+      },
+    };
   } catch (error) {
     if (error instanceof RiotError) {
       if (error.status === 404) return { status: "missing" };
