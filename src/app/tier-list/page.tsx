@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { MarkdownBody } from "@/components/wiki/MarkdownBody";
 import { DEFAULT_POSITION_SLUG, getPosition, positions } from "@/data/taxonomy";
 import { getViewer } from "@/lib/authGuard";
 import { getTierEntries, TIERS } from "@/lib/tierStore";
 import { articleHref, titleKey } from "@/lib/wikiTitle";
-import { getArticleView, resolveDocLinks } from "@/lib/wikiStore";
+import { getArticleView } from "@/lib/wikiStore";
 
 import styles from "./page.module.css";
 
@@ -31,42 +30,27 @@ export default async function TierListPage({ searchParams }: {
     getTierEntries(positionSlug),
     getViewer(),
   ]);
-  const publishedArticle = article?.status === "published" ? article : null;
-  const wikiLinks = publishedArticle ? await resolveDocLinks([publishedArticle.body]) : {};
+  const hasBasis = article?.status === "published";
   const basisHref = articleHref(BASIS_TITLE);
 
   return (
     <div className={`shell ${styles.page}`}>
-      <header className={styles.hero}>
-        <p className="section-index">05 / CHAMPION TIER LIST</p>
-        <h1 className={styles.title}>티어표</h1>
-        <p className={styles.intro}>포지션마다 따로 보는 챔피언 등급. 배정 이유는 위키 문서에서 함께 확인하고 고칠 수 있습니다.</p>
-      </header>
+      <h1 className="sr-only">티어표</h1>
 
       <section className={styles.basis} aria-labelledby="basis-heading">
-        <div className={styles.basisLabel}>
-          <span className="mono">01 / EDITORIAL NOTE</span>
-          <span className="sticker sticker--acid">WIKI DOCUMENT</span>
+        <div className={styles.basisText}>
+          <p className="mono">WIKI / RANKING GUIDE</p>
+          <h2 id="basis-heading">{BASIS_TITLE}</h2>
+          <p>{hasBasis ? "등급 기준과 변경 이유를 위키 문서에서 확인하세요." : "작성 근거 문서를 준비 중입니다."}</p>
         </div>
-        <h2 id="basis-heading">{BASIS_TITLE}</h2>
-        {publishedArticle ? (
-          <div className={styles.basisBody}>
-            <MarkdownBody text={publishedArticle.body} resolveLink={(target) => wikiLinks[target] ?? null} />
-          </div>
-        ) : (
-          <p className={styles.basisEmpty}>아직 작성된 근거 문서가 없습니다. 등급을 공개하기 전에 기준과 판단 근거를 이 문서에 남겨 주세요.</p>
-        )}
         <Link className={`btn btn--acid ${styles.basisLink}`} href={basisHref}>
-          {publishedArticle ? "근거 문서 읽기·편집" : "근거 문서 작성하기"} <span aria-hidden="true">↗</span>
+          {hasBasis ? "근거 문서 보기" : "근거 문서 작성"} <span aria-hidden="true">↗</span>
         </Link>
       </section>
 
       <section className={styles.board} aria-labelledby="tier-board-heading">
         <div className={styles.boardHeading}>
-          <div>
-            <p className="section-index">02 / FIVE POSITIONS</p>
-            <h2 id="tier-board-heading">포지션별 티어표</h2>
-          </div>
+          <h2 id="tier-board-heading">포지션별 티어표</h2>
           {viewer?.role === "admin" && <Link href={`/admin/tier-list?position=${positionSlug}`} className={styles.adminLink}>티어 배정 관리 ↗</Link>}
         </div>
 
@@ -80,10 +64,6 @@ export default async function TierListPage({ searchParams }: {
           ))}
         </nav>
 
-        <div className={styles.positionCaption}>
-          <strong>{position.name}</strong>
-          <span className="mono">{position.code} / {entries.length} CHAMPIONS ASSIGNED</span>
-        </div>
         <div className={styles.tierRows}>
           {TIERS.map((tier) => {
             const champions = entries.filter((entry) => entry.tier === tier);
