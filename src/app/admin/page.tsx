@@ -31,6 +31,9 @@ export default async function AdminHomePage() {
         <Link href="/admin/videos" className={`btn ${styles.link}`}>
           영상 등록
         </Link>
+        <Link href="/admin/tier-list" className={`btn ${styles.link}`}>
+          티어 배정
+        </Link>
       </div>
     </div>
   );

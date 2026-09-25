@@ -45,7 +45,9 @@ npm run dev          # http://localhost:3000
 | `/champions?position=&category=&q=` | 포지션·카테고리 선택과 챔피언 Contact Sheet |
 | `/matchup/[position]/[champion]?tab=&me=` | 챔피언 상대법 위키 (Aside + 상대법·영상) |
 | `/records?riotId=게임이름%23태그` | 기존 전적 주소. 같은 검색어를 유지하며 `/`로 이동 |
-| `/stats` `/tier-list` `/lessons` | `추후 개발` 안내 화면 |
+| `/tier-list?position=mid` | 포지션별 S~F 티어표와 작성 근거 위키 문서 |
+| `/stats` | 기존 통계 주소. 티어표로 이동 |
+| `/lessons` | `추후 개발` 안내 화면 |
 
 화면 상태는 모두 URL 질의 문자열에 반영되어 새로고침과 뒤로 가기 후에도 복원됩니다.
 포지션이 없으면 `미드`가 기본 선택됩니다.
