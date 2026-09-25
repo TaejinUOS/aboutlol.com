@@ -30,7 +30,7 @@ const RESERVED_CONTAINS = ["운영자", "관리자", "administrator", "admin"];
  * 걸린다. 그건 사칭이 아니라 애칭이다. 막아야 하는 것은 사이트나 시스템 계정 **행세**를
  * 하는 이름, 즉 이름이 그것과 똑같은 경우뿐이다.
  */
-const RESERVED_EXACT = ["깨남", "깨남.com", "깨남.gg", "kkaenam", "kkaenam.com"];
+const RESERVED_EXACT = ["깨남", "깨남.com", "깨남.gg", "kkaenam", "kkaenam.com", "aboutlol", "aboutlol.com"];
 
 export type NameCheck = { ok: true; name: string } | { ok: false; reason: string };
 

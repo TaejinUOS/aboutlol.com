@@ -50,12 +50,12 @@ export function SiteFooter() {
           근거: https://developer.riotgames.com/policies/general
         */}
         <p className={styles.legal}>
-          깨남.COM는 Riot Games가 승인하거나 후원하지 않은 비공식 프로젝트입니다. 챔피언 이미지와
+          ABOUTLOL은 Riot Games가 승인하거나 후원하지 않은 비공식 프로젝트입니다. 챔피언 이미지와
           스킬 정보는 Riot Games의 Data Dragon을 사용하며, Riot Games의 &ldquo;Legal Jibber
           Jabber&rdquo; 정책에 따른 팬 프로젝트입니다.
         </p>
         <p className={`${styles.legal} ${styles.legalEn}`} lang="en">
-          깨남.COM isn&rsquo;t endorsed by Riot Games and doesn&rsquo;t reflect the views or opinions
+          ABOUTLOL isn&rsquo;t endorsed by Riot Games and doesn&rsquo;t reflect the views or opinions
           of Riot Games or anyone officially involved in producing or managing Riot Games properties.
           Riot Games, and all associated properties are trademarks or registered trademarks of Riot
           Games, Inc.

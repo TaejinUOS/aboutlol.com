@@ -57,9 +57,9 @@ export function SiteHeader({
     <>
       <header className={styles.header}>
         <div className={`shell ${styles.bar}`}>
-          <Link href="/" className={styles.logo} aria-label="깨남.COM 홈">
-            <span className={`display ${styles.logoMark}`}>깨남</span>
-            <span className={`display ${styles.logoSuffix}`}>.COM</span>
+          <Link href="/" className={styles.logo} aria-label="ABOUTLOL 홈">
+            <span className={`display ${styles.logoMark}`}>ABOUT</span>
+            <span className={`display ${styles.logoSuffix}`}>LOL</span>
           </Link>
 
           <nav
@@ -104,7 +104,7 @@ export function SiteHeader({
             <span className={styles.myPageLabel}>{userName ?? MY_PAGE.label}</span>
             {/*
               이름만 적힌 링크는 어디로 가는지 알려 주지 않는다. 보이는 글자를 이름으로
-              바꾸는 대신 목적지를 소리로만 덧붙인다 — 읽히는 이름은 `깨남 마이페이지`가
+              바꾸는 대신 목적지를 소리로만 덧붙인다 — 읽히는 이름은 `닉네임 마이페이지`가
               되어 보이는 글자를 그대로 포함한다 (WCAG 2.5.3).
             */}
             {userName && <span className="sr-only">마이페이지</span>}

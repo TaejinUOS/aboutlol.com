@@ -1,8 +1,8 @@
 # 배포
 
-깨남.COM는 **Cloudflare Workers**에 올라간다.
+ABOUTLOL은 **Cloudflare Workers**에 올라간다.
 
-- 운영 주소: <https://kkaenam.com> (`www`는 이쪽으로 넘어온다)
+- 운영 주소: <https://aboutlol.com> (`www`와 이전 `kkaenam.com` 주소는 이쪽으로 넘어온다)
 - Worker 이름: `kkaenam-gg`
 
 ## 왜 Workers인가
@@ -75,8 +75,9 @@ Cloudflare가 DNS 레코드와 인증서를 알아서 만든다. **대시보드�
 
 | 주소 | 역할 |
 | --- | --- |
-| `kkaenam.com` | 정식 주소 |
-| `www.kkaenam.com` | 받아서 apex로 301 이동 (`next.config.ts`의 `redirects()`) |
+| `aboutlol.com` | 정식 주소 |
+| `www.aboutlol.com` | 정식 주소로 영구 이동 (`next.config.ts`의 `redirects()`) |
+| `kkaenam.com`, `www.kkaenam.com` | 이전 주소의 경로와 질의 문자열을 유지해 정식 주소로 영구 이동 |
 
 `workers.dev` 주소(`kkaenam-gg.taejin1472.workers.dev`)는 커스텀 도메인을 붙이면서
 자동으로 꺼졌다. 되살리려면 `wrangler.jsonc`에 `"workers_dev": true`를 넣는다.

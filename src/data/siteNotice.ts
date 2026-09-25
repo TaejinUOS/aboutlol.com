@@ -33,9 +33,9 @@ export type SiteNotice = {
  * 사이트 앞면에서 한 번 알린다.
  */
 export const ACTIVE_NOTICE: SiteNotice | null = {
-  id: "privacy-2026-09-06",
+  id: "privacy-2026-09-25",
   label: "공지",
-  body: "개인정보처리방침을 개정했습니다. 상대법 페이지 영상 탭에 유튜브 영상을 붙이면서 제3자 서비스 임베드(6조)를 새로 두었습니다. 2026년 9월 6일 시행.",
+  body: "사이트 이름과 주소를 ABOUTLOL(aboutlol.com)으로 바꾸고 개인정보처리방침과 이용약관에 현재 계정·편집 기능을 반영했습니다. 2026년 9월 25일 시행.",
   href: "/privacy",
   linkLabel: "자세히 보기",
 };

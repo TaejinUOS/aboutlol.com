@@ -6,10 +6,11 @@ export const metadata: Metadata = { title: "개인정보처리방침" };
 
 export default function PrivacyPage() {
   return (
-    <LegalPage index="개인정보처리방침" title="개인정보처리방침" updated="2026-09-03 제정 · 2026-09-06 개정">
+    <LegalPage index="개인정보처리방침" title="개인정보처리방침" updated="2026-09-03 제정 · 2026-09-25 개정">
       <p>
-        깨남.COM(이하 &ldquo;서비스&rdquo;)을 운영하는 개인 개발자(이하 &ldquo;운영자&rdquo;)는
-        이용자의 개인정보를 소중히 다루며, 아래와 같이 개인정보를 처리합니다.
+        ABOUTLOL(<a href="https://aboutlol.com">aboutlol.com</a>, 이하 &ldquo;서비스&rdquo;)을
+        운영하는 개인 개발자(이하 &ldquo;운영자&rdquo;)는 이용자의 개인정보를 아래와 같이
+        처리합니다.
       </p>
 
       <h2>1. 소셜 로그인 이용</h2>
@@ -33,6 +34,11 @@ export default function PrivacyPage() {
         이 외에 서비스 이용 과정에서 접속 로그, 접속 IP, 브라우저·기기 정보가 자동으로 생성되어
         수집될 수 있습니다.
       </p>
+      <p>
+        이용자가 직접 정한 닉네임과 문서 편집·제안 내용 및 이력도 서비스 운영을 위해
+        저장합니다. 로그인 상태 유지에는 인증 쿠키를, 공지 닫힘 상태 유지에는 공지 확인 쿠키를
+        사용합니다.
+      </p>
 
       <h2>3. 개인정보 수집 및 이용 목적</h2>
       <ul>
@@ -44,7 +50,7 @@ export default function PrivacyPage() {
 
       <h2>4. 보유 및 이용 기간</h2>
       <p>
-        수집한 개인정보는 <strong>회원 탈퇴 시 지체 없이 파기</strong>합니다. 다만 관계 법령에
+        계정의 개인정보는 <strong>회원 탈퇴 시 지체 없이 파기</strong>합니다. 다만 관계 법령에
         따라 보존할 의무가 있는 경우(예: 통신비밀보호법상 접속기록 보관 등)에는 해당 법령이
         정한 기간 동안 별도로 보관한 뒤 파기합니다.
       </p>
@@ -106,10 +112,9 @@ export default function PrivacyPage() {
 
       <h2>8. 이용자의 권리와 행사 방법</h2>
       <p>
-        이용자는 언제든지 자신의 개인정보 열람·정정·삭제, 처리 정지, 회원 탈퇴 및 소셜 계정
-        연결 해제를 요청할 수 있습니다. 로그인·마이페이지 기능이 준비되기 전까지는{" "}
-        <a href="mailto:taejin1472@gmail.com">taejin1472@gmail.com</a>으로 요청해 주시면
-        확인 후 처리합니다.
+        이용자는 마이페이지에서 계정 정보 확인, 닉네임 변경 및 회원 탈퇴를 할 수 있습니다.
+        개인정보 열람·정정·삭제, 처리 정지 및 소셜 계정 연결 해제에 관한 요청은{" "}
+        <a href="mailto:taejin1472@gmail.com">taejin1472@gmail.com</a>으로 보내 주세요.
       </p>
 
       <h2>9. 개인정보 파기 절차 및 방법</h2>
@@ -143,6 +148,12 @@ export default function PrivacyPage() {
       <h2>13. 개정 이력</h2>
       <ul>
         <li>
+          <strong>2026년 9월 25일 시행</strong> — 서비스 표시 이름과 주소를 ABOUTLOL 및
+          aboutlol.com으로 변경하고, 닉네임·편집 이력과 인증·공지 쿠키 사용, 현재 제공 중인
+          계정 관리 기능을 명시했습니다. 개인정보의 수집 목적과 외부 서비스 이용 방식은
+          변경하지 않았습니다.
+        </li>
+        <li>
           <strong>2026년 9월 6일 시행</strong> — 상대법 페이지 <strong>영상</strong> 탭에 유튜브
           영상 임베드를 도입하면서 <strong>6조(제3자 서비스 임베드)</strong>를 신설했습니다.
           미리보기 이미지를 표시할 때 유튜브 이미지 서버로 전달되는 정보, 재생 전까지
@@ -155,7 +166,7 @@ export default function PrivacyPage() {
         </li>
       </ul>
 
-      <p>시행일: 2026년 9월 3일 (개정 시행일: 2026년 9월 6일)</p>
+      <p>시행일: 2026년 9월 3일 (최근 개정 시행일: 2026년 9월 25일)</p>
     </LegalPage>
   );
 }

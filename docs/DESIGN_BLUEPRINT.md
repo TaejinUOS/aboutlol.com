@@ -1,4 +1,7 @@
-# 깨남.COM Visual Design Blueprint
+# ABOUTLOL Visual Design Blueprint
+
+> 2026-09-25 서비스 표시명을 `ABOUTLOL`로 변경했다. 기존 목업의 `깨남.COM` 표기는
+> 이전 이름이며, 실제 화면의 이름은 `ABOUTLOL`을 사용한다. 시각적 구성과 색 체계는 유지한다.
 
 | 항목 | 내용 |
 | --- | --- |
