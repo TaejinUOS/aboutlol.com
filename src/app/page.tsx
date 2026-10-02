@@ -9,7 +9,7 @@ import { FavoritePlayers } from "./FavoritePlayers";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "홈",
+  title: { absolute: "AboutLol" },
   description: "Riot ID로 최근 20경기를 살펴보고, 패배한 상대 챔피언의 ABOUTLOL 위키 상대법을 찾아보세요.",
 };
 export const dynamic = "force-dynamic";
