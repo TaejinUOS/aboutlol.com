@@ -5,6 +5,7 @@ import { useFormStatus } from "react-dom";
 
 import { DiffText } from "@/components/wiki/DiffText";
 import { HighlightedEditor } from "@/components/wiki/HighlightedEditor";
+import { WikiPreview } from "@/components/wiki/WikiPreview";
 import { MAX_BODY_LENGTH } from "@/data/wiki";
 import { diffStats, diffWords, hasRemoval } from "@/lib/wikiDiff";
 
@@ -86,6 +87,8 @@ export function ReviewMergeForm({
         오른쪽이 그대로 문서에 들어갑니다. 고쳐서 반영하려면 여기서 바로 고치세요.
         {summary && <span className={styles.summary}>제안자 요약: {summary}</span>}
       </p>
+
+      <WikiPreview body={body} />
 
       <label className={styles.field}>
         <span className={styles.label}>검토 메모 (거절 시 필수, 사유를 남긴다)</span>

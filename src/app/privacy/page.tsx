@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "개인정보처리방침" };
 
 export default function PrivacyPage() {
   return (
-    <LegalPage index="개인정보처리방침" title="개인정보처리방침" updated="2026-09-03 제정 · 2026-09-25 개정">
+    <LegalPage index="개인정보처리방침" title="개인정보처리방침" updated="2026-09-03 제정 · 2026-10-03 개정">
       <p>
         ABOUTLOL(<a href="https://aboutlol.com">aboutlol.com</a>, 이하 &ldquo;서비스&rdquo;)을
         운영하는 개인 개발자(이하 &ldquo;운영자&rdquo;)는 이용자의 개인정보를 아래와 같이
@@ -73,12 +73,13 @@ export default function PrivacyPage() {
       <h2>6. 제3자 서비스 임베드(유튜브)</h2>
       <p>
         상대법 페이지의 <strong>영상</strong> 탭에는 운영자가 선별해 등록한 유튜브(YouTube,
-        Google LLC) 영상이 포함됩니다. 이 과정에서 아래와 같이 이용자의 정보가 유튜브에
+        Google LLC) 영상이 포함됩니다. 위키 본문과 편집·검토 화면의 본문 미리보기에도
+        편집자가 추가한 유튜브 영상이 표시될 수 있습니다. 이 과정에서 아래와 같이 이용자의 정보가 유튜브에
         전달될 수 있습니다.
       </p>
       <ul>
         <li>
-          영상 목록에는 <strong>미리보기 이미지만</strong> 표시하며, 이때 이용자의 브라우저가
+          재생 전에는 <strong>미리보기 이미지만</strong> 표시하며, 이때 이용자의 브라우저가
           유튜브 이미지 서버(i.ytimg.com)에 직접 접속합니다. 이 과정에서 이용자의 IP 주소와
           브라우저·기기 정보가 해당 서버에 전달될 수 있습니다.
         </li>
@@ -153,6 +154,10 @@ export default function PrivacyPage() {
       <h2>13. 개정 이력</h2>
       <ul>
         <li>
+          <strong>2026년 10월 3일 시행</strong> — 유튜브 임베드의 표시 범위에 위키 본문과
+          편집·검토 화면의 본문 미리보기를 추가했습니다.
+        </li>
+        <li>
           <strong>2026년 9월 25일 시행</strong> — 서비스 표시 이름과 주소를 ABOUTLOL 및
           aboutlol.com으로 변경하고, 닉네임·편집 이력과 인증·공지 쿠키 사용, 현재 제공 중인
           계정 관리 기능을 명시했습니다. 홈 즐겨찾기의 브라우저 저장 방식과 Riot ID 전적
@@ -171,7 +176,7 @@ export default function PrivacyPage() {
         </li>
       </ul>
 
-      <p>시행일: 2026년 9월 3일 (최근 개정 시행일: 2026년 9월 25일)</p>
+      <p>시행일: 2026년 9월 3일 (최근 개정 시행일: 2026년 10월 3일)</p>
     </LegalPage>
   );
 }

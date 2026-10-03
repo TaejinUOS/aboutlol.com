@@ -10,7 +10,7 @@
 const VIDEO_ID = /^[A-Za-z0-9_-]{11}$/;
 
 /** 주소가 아니라 ID만 담긴 경로 꼴. `/embed/<id>`, `/shorts/<id>`, `/live/<id>`. */
-const ID_IN_PATH = /^\/(?:embed|shorts|live|v)\/([A-Za-z0-9_-]{11})/;
+const ID_IN_PATH = /^\/(?:embed|shorts|live|v)\/([A-Za-z0-9_-]{11})\/?$/;
 
 /**
  * 사람이 붙여 넣은 것에서 영상 ID를 뽑는다. 못 뽑으면 null.
@@ -44,6 +44,7 @@ export function parseYouTubeId(input: string): string | null {
   } catch {
     return null;
   }
+  if (!/^https?:$/.test(url.protocol) || url.username || url.password || url.port) return null;
 
   const host = url.hostname.replace(/^www\.|^m\./, "");
   const isYouTube =
@@ -63,7 +64,27 @@ export function parseYouTubeId(input: string): string | null {
   if (inPath) return inPath[1];
 
   const v = url.searchParams.get("v");
-  return v && VIDEO_ID.test(v) ? v : null;
+  return url.pathname === "/watch" && v && VIDEO_ID.test(v) ? v : null;
+}
+
+export type YouTubeVideo = { videoId: string; startSeconds: number };
+
+/** 공유 주소의 t=90, t=1m30s, start=90, #t=90에서 시작 시각만 받는다. */
+export function parseYouTubeVideo(input: string): YouTubeVideo | null {
+  const videoId = parseYouTubeId(input);
+  if (!videoId) return null;
+  let startSeconds = 0;
+  if (!VIDEO_ID.test(input.trim())) {
+    const url = new URL(/^https?:\/\//i.test(input.trim()) ? input.trim() : `https://${input.trim()}`);
+    const time = url.searchParams.get("t") ?? url.searchParams.get("start") ?? new URLSearchParams(url.hash.slice(1)).get("t");
+    if (time) {
+      const seconds = /^\d+$/.test(time) ? Number(time) : null;
+      const units = /^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/.exec(time);
+      const value = seconds ?? (units ? Number(units[1] ?? 0) * 3600 + Number(units[2] ?? 0) * 60 + Number(units[3] ?? 0) : 0);
+      if (Number.isSafeInteger(value) && value >= 0 && value <= 2147483647) startSeconds = value;
+    }
+  }
+  return { videoId, startSeconds };
 }
 
 /**
@@ -84,11 +105,11 @@ export function youTubeThumbnailUrl(videoId: string): string {
  * 않는 도메인이다 (개인정보처리방침 6조).
  * `rel=0`은 영상이 끝난 뒤 남의 채널 영상을 추천으로 채우지 않게 한다.
  */
-export function youTubeEmbedUrl(videoId: string): string {
-  return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+export function youTubeEmbedUrl(videoId: string, startSeconds = 0): string {
+  return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0${startSeconds > 0 ? `&start=${startSeconds}` : ""}`;
 }
 
 /** 유튜브에서 바로 보기. 임베드가 막힌 영상을 위한 탈출구다. */
-export function youTubeWatchUrl(videoId: string): string {
-  return `https://www.youtube.com/watch?v=${videoId}`;
+export function youTubeWatchUrl(videoId: string, startSeconds = 0): string {
+  return `https://www.youtube.com/watch?v=${videoId}${startSeconds > 0 ? `&t=${startSeconds}s` : ""}`;
 }

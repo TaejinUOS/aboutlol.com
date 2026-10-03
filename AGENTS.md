@@ -27,6 +27,7 @@ npm run typecheck    # tsc --noEmit
 npm run lint         # eslint
 
 npm run data:sync                         # Data Dragon 챔피언·스킬 재동기화
+npm run db:pull                           # 전체 운영 D1 → 로컬 (서버·빌드 종료 후, 자동 백업)
 DDRAGON_PATCH=16.18.1 npm run data:sync   # 패치 지정
 npx tsx scripts/check-taxonomy.ts         # 분류 점검 (이름 불일치·중복·커버 이미지 누락)
 npm run shots                             # 주요 화면 캡처 (dev 서버가 떠 있어야 함)

@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "data:sync": "tsx scripts/sync-ddragon.ts",
+    "db:pull": "tsx scripts/pull-db.ts",
     "shots": "tsx scripts/screenshot.ts",
     "cf:build": "opennextjs-cloudflare build",
     "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",

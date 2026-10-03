@@ -169,6 +169,15 @@ npx wrangler d1 execute kkaenam-gg --remote --command \
 
 ### 2.2 영상 탭
 
+**위키 본문 유튜브 (2026-10-03).** `[youtube(유튜브 주소 또는 영상 ID)]`를 한 줄에
+단독으로 적으면 일반 문서·상대법·역사에서 재생 버튼과 원본 링크가 나온다. 공유 URL의
+`t=90`·`t=1m30s`·`start=90`도 지원한다. 편집·검토 화면에는 「본문 미리보기」가 추가됐다.
+주소·ID 검증은 `youtube.ts`, 코드 속 예제 보존과 마크다운 변환은 `wikiVideo.ts`,
+재생 UI는 `WikiYouTube.tsx`가 맡는다. 원문 저장과 승인 정책은 기존 편집 규칙을 따른다.
+영상 탭 목록에 자동 등록하지 않는다. 재생 전에는 썸네일만 불러오고 플레이어는
+`youtube-nocookie.com`을 사용한다. 임의 이미지·HTML은 계속 차단한다.
+`npx tsx scripts/check-wiki-videos.ts`로 주소·시작 시각·코드 예제·주소 차단을 점검한다.
+
 `영상` 탭은 **빈 상태 안내만** 보여 준다. 가짜 썸네일이나 임시 영상은 넣지 않았다.
 PRD 3.2가 가짜 데이터를 금지하고, 영상의 출처·임베드 허용 범위·등록 검수 주체가
 PRD 15 미결정 8번으로 남아 있기 때문이다.
@@ -690,6 +699,17 @@ kkaenam.user.v1     로컬 데모 계정
 ### 5.7 D1 데이터베이스
 
 상대법 저장소는 Cloudflare D1 `kkaenam-gg` (APAC)이다.
+
+**운영 → 로컬 동기화 (2026-10-03).** `npm run db:pull`로 전체 운영 DB를 가져온다.
+`git pull`이나 서버 재시작만으로는 운영 분류·위키 변경이 로컬에 반영되지 않는다.
+실행 전 모든 dev/preview 서버와 빌드를 종료한다 (사용자 지정 포트 포함).
+운영에는 export만 호출하고, 별도 로컬 DB에 가져와 남은 로컬 마이그레이션 적용·무결성·
+외래키·필수 테이블 검증을 마친 뒤 현재 로컬 DB를 백업하고 교체한다.
+`--dry-run`은 교체 전 검증까지만 수행하고, `--restore <실행-ID>`는 그 실행의
+`local-before.sql` 백업을 같은 검증 과정을 거쳐 복구한다.
+덤프·백업은 gitignore 대상인 `.wrangler/db-pull/<실행-ID>/`에 보관한다.
+전체 덤프에는 계정 정보가 들어 있으므로 공유하지 않는다. 사용법은 README의
+「운영 DB를 로컬로 가져오기」, 구현은 `scripts/pull-db.ts`를 참고한다.
 
 ```bash
 npx wrangler d1 migrations apply kkaenam-gg --local    # 로컬 스키마

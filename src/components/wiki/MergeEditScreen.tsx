@@ -7,6 +7,7 @@ import { useFormStatus } from "react-dom";
 
 import { DiffText } from "@/components/wiki/DiffText";
 import { HighlightedEditor } from "@/components/wiki/HighlightedEditor";
+import { WikiPreview } from "@/components/wiki/WikiPreview";
 import { MAX_BODY_LENGTH, MAX_SUMMARY_LENGTH } from "@/data/wiki";
 import type { ActionState } from "@/lib/actions/wikiEditActions";
 import { diffStats, diffWords, hasRemoval } from "@/lib/wikiDiff";
@@ -181,6 +182,7 @@ export function MergeEditScreen({
             · 마크다운을 쓸 수 있습니다.
           </p>
 
+          <WikiPreview body={body} />
           <SyntaxHelp />
 
           <label className={styles.field}>
@@ -367,6 +369,16 @@ function SyntaxHelp() {
           이 문서를 &quot;라인전&quot; 분류에 넣는다. 본문에는 안 보이고 문서 아래에 태그로
           따로 붙는다. &quot;분류:웨이브&quot;라는 문서를 만들어 그 안에{" "}
           <code>[[분류:라인전]]</code>을 적으면, 웨이브가 라인전의 하위 분류가 된다.
+        </dd>
+
+        <dt>
+          <code>[youtube(https://youtu.be/영상ID)]</code>
+        </dt>
+        <dd>
+          유튜브 영상을 본문에 넣는다. 한 줄에 이 문법만 적고, 공유 주소나 영상 ID를
+          괄호 안에 넣는다. 주소의 <code>?t=90</code>·<code>?t=1m30s</code>는 시작
+          시간을 지정한다. 본문 미리보기에서 확인할 수 있고, 재생을 누르면 플레이어를
+          불러온다. 일반 유튜브 링크는 링크로 표시된다.
         </dd>
 
         <dt>
