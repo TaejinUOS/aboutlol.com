@@ -127,7 +127,7 @@ function stripSuffix(text: string): string {
  */
 function finish(championSlug: string | undefined): string | null {
   if (!championSlug) return null;
-  return `/matchup/${championSlug}`;
+  return `/matchup/${championSlug}?tab=board`;
 }
 
 /** 본문 여러 개에 적힌 위키링크를 한 번에 해석한다. 해석되지 않은 이름은 담지 않는다. */

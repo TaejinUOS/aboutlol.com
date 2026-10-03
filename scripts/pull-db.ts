@@ -89,6 +89,9 @@ async function main() {
     throw new Error("잘못된 인자입니다. npm run db:pull -- --help를 확인하세요.");
   }
   await checkServers();
+  if (await exists(join(ROOT, ".wrangler/build-sync/running.lock"))) {
+    throw new Error("빌드 통계 수집이 실행 중입니다. builds:sync 종료 후 다시 실행하세요.");
+  }
   await mkdir(STORE, { recursive: true });
   try { await mkdir(LOCK); }
   catch (error) {

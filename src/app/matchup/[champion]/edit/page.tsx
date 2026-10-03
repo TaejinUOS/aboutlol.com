@@ -84,8 +84,8 @@ export default async function EditSectionPage({
    * 섹션을 고른 상태로 열린다 — 편집 전에 보고 있던 그 화면이다.
    */
   const returnHref = meSlug
-    ? `/matchup/${championData.slug}?me=${meSlug}#me-${meSlug}`
-    : `/matchup/${championData.slug}#general`;
+    ? `/matchup/${championData.slug}?tab=board&me=${meSlug}#me-${meSlug}`
+    : `/matchup/${championData.slug}?tab=board#general`;
 
   return (
     <MergeEditScreen

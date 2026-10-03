@@ -30,6 +30,7 @@ npm run dev          # http://localhost:3000
 | `npm run lint` | 린트 |
 | `npm run data:sync` | Data Dragon 챔피언·스킬 동기화 |
 | `npm run db:pull` | 전체 운영 D1을 검증·백업 후 로컬 D1로 가져오기 |
+| `npm run builds:sync` | Riot 경기·타임라인으로 챔피언 빌드 통계 수집 (기본 로컬) |
 | `npx tsx scripts/check-taxonomy.ts` | 포지션·카테고리 분류 점검 |
 | `npm run shots` | 주요 화면을 모바일·태블릿·데스크톱 뷰포트로 캡처 |
 | `npm run cf:preview` | Cloudflare Workers 런타임으로 로컬 실행 (http://127.0.0.1:8788) |
@@ -44,7 +45,7 @@ npm run dev          # http://localhost:3000
 | --- | --- |
 | `/` | Riot ID 검색, 즐겨찾는 소환사, 최근 전적과 패배 상대 위키 추천 |
 | `/champions?position=&category=&q=` | 포지션·카테고리 선택과 챔피언 Contact Sheet |
-| `/matchup/[position]/[champion]?tab=&me=` | 챔피언 상대법 위키 (Aside + 상대법·영상) |
+| `/matchup/[champion]?tab=&me=&buildPosition=` | 챔피언 빌드(기본)·위키·상대법·영상. 옛 포지션 주소는 리다이렉트 |
 | `/records?riotId=게임이름%23태그` | 기존 전적 주소. 같은 검색어를 유지하며 `/`로 이동 |
 | `/tier-list?position=mid` | 포지션별 S~F 티어표와 작성 근거 위키 문서 |
 | `/stats` | 기존 통계 주소. 티어표로 이동 |

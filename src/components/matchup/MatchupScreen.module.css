@@ -65,10 +65,11 @@
   align-items: flex-end;
   gap: 4px;
   padding-left: clamp(10px, 2vw, 26px);
+  overflow-x: auto;
 }
 
 .tab {
-  padding: 10px clamp(20px, 3vw, 40px) 11px;
+  padding: 10px clamp(12px, 2vw, 30px) 11px;
   background: var(--paper-shade);
   color: #5d5245;
   border: var(--line);
@@ -88,6 +89,8 @@
   background: var(--paper);
   color: var(--ink);
 }
+
+.tab:focus-visible { outline: 3px solid var(--cobalt); outline-offset: -4px; }
 
 .tabCurrent {
   background: var(--paper);
@@ -136,7 +139,7 @@
   }
 
   .tab {
-    flex: 1;
+    flex: 1 0 auto;
     padding-inline: 10px;
   }
 }

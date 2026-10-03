@@ -28,12 +28,12 @@ export function docTitle(target: DocTarget): string {
 /** 문서 주소. 섹션을 주면 그 자리까지 데려간다. */
 export function docHref(target: DocTarget, meSlug?: string | null): string {
   if (target.kind === "article") return articleHref(target.title);
-  return `/matchup/${target.championSlug}${meSlug ? `?me=${meSlug}` : ""}`;
+  return `/matchup/${target.championSlug}?tab=board${meSlug ? `&me=${meSlug}` : ""}`;
 }
 
 /** 문서 역사 주소. */
 export function docHistoryHref(target: DocTarget): string {
-  return `${docHref(target)}/history`;
+  return target.kind === "article" ? `${articleHref(target.title)}/history` : `/matchup/${target.championSlug}/history`;
 }
 
 /**

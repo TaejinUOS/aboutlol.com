@@ -6,10 +6,12 @@ import { useCallback } from "react";
 
 import type { VideoView } from "@/lib/videoStore";
 import type { WikiLinkMap } from "@/lib/wikiLink";
+import type { BuildView } from "@/lib/buildStats";
 import type { ArticleView, DocNode, WikiView } from "@/lib/wikiStore";
 import { buildQuery } from "@/lib/url";
 
 import { ChampionAside } from "./ChampionAside";
+import { BuildPanel } from "./BuildPanel";
 import { ChampionWikiPanel } from "./ChampionWikiPanel";
 import styles from "./MatchupScreen.module.css";
 import type { ChampionOption, ChampionView, PlacementView } from "./types";
@@ -17,6 +19,7 @@ import { VideoPanel } from "./VideoPanel";
 import { WikiPanel } from "./WikiPanel";
 
 const TABS = [
+  { id: "build", label: "빌드" },
   { id: "champion" },
   { id: "board", label: "상대법" },
   { id: "video", label: "영상" },
@@ -37,6 +40,7 @@ type Props = {
    */
   placements: PlacementView[];
   champion: ChampionView;
+  builds: BuildView;
   /** 서버가 D1에서 읽어 온 위키 문서. */
   wiki: WikiView;
   /** 챔피언 이름과 같은 일반 위키 문서. 없거나 볼 수 없는 제안이면 null. */
@@ -62,6 +66,7 @@ export function MatchupScreen({
   patch,
   placements,
   champion,
+  builds,
   wiki,
   championArticle,
   championChildDocs,
@@ -84,7 +89,8 @@ export function MatchupScreen({
 
   // 탭 상태를 URL에 반영해 새로고침·뒤로 가기 후에도 복원한다 (PRD 5.3.2, FR-10).
   const tabParam = searchParams.get("tab");
-  const tab: TabId = TABS.some((t) => t.id === tabParam) ? (tabParam as TabId) : "champion";
+  const tab: TabId = TABS.some((t) => t.id === tabParam) ? (tabParam as TabId) :
+    !tabParam && searchParams.has("me") ? "board" : "build";
 
   const setParams = useCallback(
     (patchParams: Record<string, string | null>) => {
@@ -172,7 +178,16 @@ export function MatchupScreen({
                   aria-controls={`panel-${item.id}`}
                   tabIndex={current ? 0 : -1}
                   className={`${styles.tab} ${current ? styles.tabCurrent : ""}`}
-                  onClick={() => setParams({ tab: item.id === "champion" ? null : item.id })}
+                  onClick={() => setParams({ tab: item.id === "build" && !searchParams.has("me") ? null : item.id })}
+                  onKeyDown={(event) => {
+                    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+                    event.preventDefault();
+                    const index = TABS.findIndex((t) => t.id === item.id);
+                    const next = event.key === "Home" ? TABS[0] : event.key === "End" ? TABS[TABS.length - 1] :
+                      TABS[(index + (event.key === "ArrowRight" ? 1 : TABS.length - 1)) % TABS.length];
+                    document.getElementById(`tab-${next.id}`)?.focus();
+                    setParams({ tab: next.id === "build" && !searchParams.has("me") ? null : next.id });
+                  }}
                 >
                   {"label" in item ? item.label : champion.name}
                 </button>
@@ -186,7 +201,9 @@ export function MatchupScreen({
             id={`panel-${tab}`}
             aria-labelledby={`tab-${tab}`}
           >
-            {tab === "champion" ? (
+            {tab === "build" ? (
+              <BuildPanel champion={champion} view={builds} onPositionChange={(position) => setParams({ buildPosition: position })} />
+            ) : tab === "champion" ? (
               <ChampionWikiPanel
                 championName={champion.name}
                 article={championArticle}
