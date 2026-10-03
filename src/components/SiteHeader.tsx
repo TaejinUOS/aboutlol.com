@@ -17,7 +17,7 @@ type NavItem = {
 };
 
 const NAV: NavItem[] = [
-  { label: "홈", href: "/" },
+  { label: "홈", href: "/", match: "/records" },
   { label: "챔피언", href: "/champions", match: "/matchup" },
   /*
    * 이 사이트에서 위키는 곁다리가 아니라 본체이므로 `soon` 딱지가 붙은 메뉴들보다

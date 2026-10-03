@@ -62,7 +62,7 @@ export function FavoritePlayers({ current }: { current: Favorite | null }) {
         <ul className={styles.list}>
           {favorites.map((item) => (
             <li key={item.riotId} className={styles.item}>
-              <Link href={{ pathname: "/", query: { riotId: item.riotId } }} className={styles.player}>
+              <Link href={{ pathname: "/records", query: { riotId: item.riotId } }} className={styles.player}>
                 {item.iconUrl ? (
                   <Image src={item.iconUrl} alt="" width={52} height={52} className={styles.icon} />
                 ) : <span className={styles.iconPlaceholder} aria-hidden="true">✦</span>}
