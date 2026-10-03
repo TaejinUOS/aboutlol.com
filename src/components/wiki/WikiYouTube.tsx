@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 
-import { youTubeEmbedUrl, youTubeThumbnailUrl, youTubeWatchUrl, type YouTubeVideo } from "@/lib/youtube";
+import { youTubeEmbedUrl, youTubeThumbnailUrl, type YouTubeVideo } from "@/lib/youtube";
 
 import styles from "./WikiYouTube.module.css";
 
@@ -57,7 +57,6 @@ export function WikiYouTube({ videoId, startSeconds }: YouTubeVideo) {
         )}
       </span>
       <span className={styles.caption}>
-        <a href={youTubeWatchUrl(videoId, startSeconds)} target="_blank" rel="noopener noreferrer nofollow ugc">유튜브에서 보기 ↗</a>
         {playing ? (
           <button type="button" className={styles.close} onClick={() => {
             setPlaying(false);

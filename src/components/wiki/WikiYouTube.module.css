@@ -1,7 +1,7 @@
 .video {
   display: grid;
   gap: 8px;
-  width: 100%;
+  width: 65%;
   min-width: 0;
   color: var(--ink-soft);
 }
@@ -52,11 +52,13 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   gap: 8px;
   font-size: 12px;
   line-height: 1.6;
 }
 
-.caption a { color: var(--cobalt-ink); text-decoration: underline; text-underline-offset: 2px; }
 .close { padding: 0; border: 0; background: none; color: var(--cobalt-ink); text-decoration: underline; cursor: pointer; }
+
+@media (max-width: 640px) {
+  .video { width: 100%; }
+}
