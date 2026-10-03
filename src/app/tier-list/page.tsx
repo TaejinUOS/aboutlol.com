@@ -72,8 +72,8 @@ export default async function TierListPage({ searchParams }: {
               <h3 className={`${styles.grade} ${styles[`grade${tier}`]}`}>{tier}<span className="sr-only">등급</span></h3>
               <div className={styles.champions} aria-label={`${position.name} ${tier}등급 챔피언`}>
                 {champions.length ? champions.map(({ champion }) => (
-                  <Link href={`/matchup/${champion.slug}`} key={champion.slug}
-                    className={styles.champion} aria-label={`${champion.name} 위키로 이동`} title={champion.name}>
+                  <Link href={`/matchup/${champion.slug}?buildPosition=${positionSlug}`} key={champion.slug}
+                    className={styles.champion} aria-label={`${champion.name} 챔피언 페이지로 이동`} title={champion.name}>
                     <Image src={champion.iconUrl} alt="" width={72} height={72} />
                     <span>{champion.name}</span>
                   </Link>
@@ -82,7 +82,7 @@ export default async function TierListPage({ searchParams }: {
             </div>;
           })}
         </div>
-        <p className={styles.footnote}>운영자가 등급을 배정한 챔피언만 표시합니다. 아이콘을 누르면 해당 챔피언 위키로 이동합니다.</p>
+        <p className={styles.footnote}>운영자가 등급을 배정한 챔피언만 표시합니다. 아이콘을 누르면 해당 포지션의 챔피언 빌드로 이동합니다.</p>
       </section>
     </div>
   );
