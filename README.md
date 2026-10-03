@@ -30,7 +30,10 @@ npm run dev          # http://localhost:3000
 | `npm run lint` | 린트 |
 | `npm run data:sync` | Data Dragon 챔피언·스킬 동기화 |
 | `npm run db:pull` | 전체 운영 D1을 검증·백업 후 로컬 D1로 가져오기 |
-| `npm run builds:sync` | Riot 경기·타임라인으로 챔피언 빌드 통계 수집 (기본 로컬) |
+| `npm run builds:sync` | KR 다이아+ 패치 전체 누적 수집 (기본 로컬, [운영 안내](./docs/BUILD_STATS.md)) |
+| `npm run builds:sync -- --status --remote` | 운영 수집 계정 수·진행 상태 확인 |
+| `npm run builds:collector:deploy` | 독립 Cron 수집 Worker 비활성 배포 |
+| `npm run builds:collector:enable` | Production 키 설정 후 매분 수집 활성화 |
 | `npx tsx scripts/check-taxonomy.ts` | 포지션·카테고리 분류 점검 |
 | `npm run shots` | 주요 화면을 모바일·태블릿·데스크톱 뷰포트로 캡처 |
 | `npm run cf:preview` | Cloudflare Workers 런타임으로 로컬 실행 (http://127.0.0.1:8788) |

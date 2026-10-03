@@ -10,7 +10,6 @@ export type BuildPosition = (typeof BUILD_POSITIONS)[number]["slug"];
 export const BUILD_KINDS = ["starter", "boots", "core", "skills"] as const;
 export type BuildKind = (typeof BUILD_KINDS)[number];
 export const MIN_BUILD_SAMPLE = 30;
-export const BUILD_WINDOW_DAYS = 14;
 export type ItemData = {
   name: string; image: { full: string }; tags: string[];
   gold: { total: number; purchasable: boolean };
@@ -26,7 +25,7 @@ export type BuildMatch = {
   info: {
     queueId: number; mapId: number; gameVersion: string; gameDuration: number;
     gameStartTimestamp: number; gameEndTimestamp?: number;
-    participants: { participantId: number; championId: number; teamPosition: string;
+    participants: { participantId: number; championId: number; teamPosition: string; puuid?: string;
       win: boolean; gameEndedInEarlySurrender?: boolean }[];
   };
 };

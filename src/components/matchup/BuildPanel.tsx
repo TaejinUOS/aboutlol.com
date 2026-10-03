@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { BUILD_POSITIONS, BUILD_WINDOW_DAYS, MIN_BUILD_SAMPLE, type BuildGroup, type BuildView } from "@/lib/buildStats";
+import { BUILD_POSITIONS, MIN_BUILD_SAMPLE, type BuildGroup, type BuildView } from "@/lib/buildStats";
 import type { ChampionView } from "./types";
 import styles from "./BuildPanel.module.css";
 
@@ -91,7 +91,7 @@ export function BuildPanel({ champion, view, onPositionChange }: {
           className={position.slug === view.position ? styles.positionCurrent : styles.position}
           onClick={() => onPositionChange(position.slug)}>{position.name}</button>)}
       </div>
-      <p className={styles.scope}>KR · 솔로 랭크 · {view.patch ? `패치 ${view.patch}` : "수집 대기"} · 최근 {BUILD_WINDOW_DAYS}일</p>
+      <p className={styles.scope}>KR · 다이아몬드 이상 · 솔로 랭크 · {view.patch ? `패치 ${view.patch}` : "수집 대기"} · 패치 전체 누적</p>
       {view.status !== "ok" ? (
         <div className={styles.empty} role="status">
           <span className="sticker sticker--acid">{view.status === "unavailable" ? "조회 지연" : "표본 대기"}</span>
@@ -111,7 +111,7 @@ export function BuildPanel({ champion, view, onPositionChange }: {
       )}
       <footer className={styles.method}>
         {view.updatedAt && <p>마지막 수집: {date(view.updatedAt)}{view.stale && " · 갱신 지연: 24시간 이상 지난 자료입니다."}</p>}
-        <p>라이엇 API의 경기·타임라인을 ABOUTLOL이 집계합니다. 에메랄드 I 래더에서 표본 계정을 뽑은 경기이며, 참가자 티어는 혼합입니다. 전체 KR 랭크 통계를 대표하지 않습니다.</p>
+        <p>라이엇 API의 경기·타임라인을 ABOUTLOL이 집계합니다. 수집 시점에 최근 48시간 안에 KR 다이아몬드 이상 래더에서 확인한 계정의 빌드만 포함합니다. 티어는 래더 확인 시점 기준이며 경기 당시 티어를 복원한 값이 아닙니다. 패치 첫 경기부터 역탐색해 누적하며 수집은 진행 중입니다. 전체 경기의 전수 통계는 아닙니다.</p>
         <p>10분 미만 경기와 조기 항복은 제외합니다. 3코어 승률에는 장기 경기와 아이템 완성 여부의 영향이 있으므로 빌드 자체의 효과로 해석하지 마세요.</p>
       </footer>
     </div>

@@ -1,6 +1,6 @@
 import "server-only";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
-import { BUILD_KINDS, BUILD_POSITIONS, BUILD_WINDOW_DAYS, rankBuilds, type BuildPosition, type BuildView } from "./buildStats";
+import { BUILD_KINDS, BUILD_POSITIONS, rankBuilds, type BuildPosition, type BuildView } from "./buildStats";
 
 /** 페이지에서는 Riot API를 호출하지 않는다. 수집된 익명 통계만 D1에서 집계한다. */
 export async function getBuildView(championId: number, requestedPosition?: string, fallbackPosition?: string): Promise<BuildView> {
@@ -11,21 +11,19 @@ export async function getBuildView(championId: number, requestedPosition?: strin
   try {
     const { env } = await getCloudflareContext({ async: true });
     const DB = env.DB;
-    const sync = await DB.prepare(`SELECT patch, updated_at, source FROM build_syncs
-      ORDER BY CAST(substr(patch,1,instr(patch,'.')-1) AS INTEGER) DESC,
-      CAST(substr(patch,instr(patch,'.')+1) AS INTEGER) DESC LIMIT 1`)
+    const sync = await DB.prepare(`SELECT s.patch,s.updated_at,s.source FROM build_syncs s
+      JOIN build_collector_state c ON c.patch=s.patch WHERE c.id=1 AND s.source='KR solo / verified Diamond+ ladder players / full patch'`)
       .first<{ patch: string; updated_at: string; source: string }>();
     if (!sync) return empty;
-    const since = Date.now() - BUILD_WINDOW_DAYS * 86400_000;
     const positions = (await DB.prepare(`SELECT o.position AS slug, COUNT(*) AS games
       FROM build_observations o JOIN build_matches m ON m.match_id=o.match_id
-      WHERE o.champion_id=? AND m.patch=? AND m.played_at>=? GROUP BY o.position ORDER BY games DESC, o.position`)
-      .bind(championId, sync.patch, since).all<{ slug: BuildPosition; games: number }>()).results;
+      WHERE o.champion_id=? AND m.patch=? AND m.cohort='diamond-plus' GROUP BY o.position ORDER BY games DESC, o.position`)
+      .bind(championId, sync.patch).all<{ slug: BuildPosition; games: number }>()).results;
     // 명시한 포지션은 빈 표본이어도 유지한다. 최초에는 분류, 그 자리에 표본이 없으면 최다 관측 포지션.
     const position = requestedPosition && BUILD_POSITIONS.some((p) => p.slug === requestedPosition) ? fallback :
       positions.some((p) => p.slug === fallback) ? fallback : positions[0]?.slug ?? fallback;
-    const filter = "FROM build_observations o JOIN build_matches m ON m.match_id=o.match_id WHERE o.champion_id=? AND o.position=? AND m.patch=? AND m.played_at>=?";
-    const bind = [championId, position, sync.patch, since];
+    const filter = "FROM build_observations o JOIN build_matches m ON m.match_id=o.match_id WHERE o.champion_id=? AND o.position=? AND m.patch=? AND m.cohort='diamond-plus'";
+    const bind = [championId, position, sync.patch];
     const [summary, ...groups] = await Promise.all([
       DB.prepare(`SELECT COUNT(*) AS games, COALESCE(SUM(o.win),0) AS wins, MIN(m.played_at) AS start, MAX(m.played_at) AS end ${filter}`)
         .bind(...bind).first<{ games: number; wins: number; start: number | null; end: number | null }>(),

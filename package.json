@@ -11,6 +11,8 @@
     "data:sync": "tsx scripts/sync-ddragon.ts",
     "db:pull": "tsx scripts/pull-db.ts",
     "builds:sync": "tsx scripts/sync-builds.ts",
+    "builds:collector:deploy": "wrangler deploy --config wrangler.collector.jsonc",
+    "builds:collector:enable": "wrangler deploy --config wrangler.collector.jsonc --env production",
     "shots": "tsx scripts/screenshot.ts",
     "cf:build": "opennextjs-cloudflare build",
     "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
