@@ -33,6 +33,20 @@ export async function getTierEntries(positionSlug: string): Promise<TierEntry[]>
     .sort((a, b) => a.champion.name.localeCompare(b.champion.name, "ko"));
 }
 
+/**
+ * 다섯 포지션의 배정을 한 번에 읽는다. 라인 선택 화면이 라인 전환마다 서버를
+ * 왕복하지 않도록 첫 응답에 모두 싣기 위해서다. 키는 `${포지션}/${챔피언}`.
+ */
+export async function getAllTierPlacements(): Promise<Map<string, Tier>> {
+  const DB = await db();
+  const rows = await DB.prepare(
+    `SELECT position_slug, champion_slug, tier FROM tier_placements`,
+  ).all<TierRow & { position_slug: string }>();
+  return new Map((rows.results ?? [])
+    .filter((row) => TIERS.includes(row.tier))
+    .map((row) => [`${row.position_slug}/${row.champion_slug}`, row.tier]));
+}
+
 /** 관리자에게는 현재 배정 여부와 관계없이 저장된 값을 보여 준다. */
 export async function getTierAssignments(positionSlug: string): Promise<Map<string, Tier>> {
   const DB = await db();

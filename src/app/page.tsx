@@ -26,15 +26,18 @@ export default async function HomePage({ searchParams }: {
   const configured = await recordsConfigured();
 
   return (
-    <div className={`shell ${styles.page}`}>
-      <div className={styles.hero}>
-        <p className="section-index">01 / ABOUTLOL HOME</p>
-        <h1 className={styles.title} aria-label="홈">HOME</h1>
-        <p className={styles.intro}>지난 판의 기록에서 다음 상대법으로. 최근 20경기의 데스와 분당 CS를 읽고, 어려웠던 상대를 다시 봅니다.</p>
-        <span className={`sticker sticker--acid ${styles.heroSticker}`}>MATCH ARCHIVE / KR</span>
+    // 홈만 필트오버(위의 도시)로 칠한다. 자운으로 칠한 나머지 화면과 대비를 만든다 (DESIGN_ARCANE.md 6.7).
+    <div className={`piltover ${styles.piltover}`}>
+      <div className={styles.skyline}>
+        <div className={`shell ${styles.homeHero}`}>
+          <p className={`mono ${styles.homeIndex}`}>01 / ABOUTLOL HOME</p>
+          <h1 className={styles.homeTitle} aria-label="홈">HOME</h1>
+          <p className={styles.homeIntro}>지난 판의 기록에서 다음 상대법으로. 최근 20경기의 데스와 분당 CS를 읽고, 어려웠던 상대를 다시 봅니다.</p>
+          <span className={`sticker sticker--acid ${styles.homeSticker}`}>MATCH ARCHIVE / KR</span>
+        </div>
       </div>
 
-      <div className={styles.contentGrid}>
+      <div className={`shell ${styles.contentGrid}`}>
         <FavoritePlayers current={null} />
 
         <div className={styles.content}>

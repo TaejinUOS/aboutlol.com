@@ -17,3 +17,23 @@
 .remove { width: 35px; flex: none; border-left: 1px solid var(--smoke); color: var(--paper); cursor: pointer; }
 .remove:hover { background: var(--gum); color: var(--ink); }
 .limit { margin-top: 20px; color: var(--smoke); font-family: var(--font-mono); font-size: 11px; }
+
+/* 홈(필트오버)에서는 상아 지면 위 남색 글자. /records는 위의 자운 규칙 그대로다 (DESIGN_ARCANE.md 6.7). */
+:global(.piltover) .aside { position: relative; padding-top: 44px; padding-bottom: 104px; background: var(--ivory) url("/images/piltover/ornament-clock.webp") center bottom 20px / 64px auto no-repeat; border-color: var(--navy); box-shadow: 6px 6px 0 var(--navy); color: var(--navy); }
+:global(.piltover) .aside::before { content: ""; position: absolute; top: 8px; left: 8px; width: 48px; height: 32px; background: url("/images/piltover/ornament-corner-tl.webp") left top / contain no-repeat; pointer-events: none; }
+:global(.piltover) .aside > p:first-child { color: var(--gold-ink); }
+:global(.piltover) .heading { padding-bottom: 12px; border-bottom: 3px double var(--gold); }
+:global(.piltover) .explain,
+:global(.piltover) .empty,
+:global(.piltover) .limit { color: var(--navy-soft); }
+:global(.piltover) .empty { border-color: var(--gold); }
+:global(.piltover) .item { border-color: var(--navy); background: white; }
+:global(.piltover) .icon,
+:global(.piltover) .iconPlaceholder { border-color: var(--navy); }
+:global(.piltover) .iconPlaceholder { color: var(--gold-ink); }
+:global(.piltover) .player:hover { background: var(--sky); color: var(--navy); }
+:global(.piltover) .remove { border-color: var(--navy); color: var(--navy); }
+:global(.piltover) .add { border-color: var(--navy); color: var(--navy); }
+:global(.piltover) .add:focus-visible,
+:global(.piltover) .player:focus-visible,
+:global(.piltover) .remove:focus-visible { outline-color: var(--navy); }
