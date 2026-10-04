@@ -1,0 +1,462 @@
+/*
+ * 라인 선택 화면 — DESIGN_ARCANE.md 6.2 (UNDERCITY GRAFFITI).
+ * 배경은 그려 넣은 자운 원경과 연기 띠, 정보는 그 위의 표지·목록이 맡는다.
+ */
+
+.screen {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(20px, 3vw, 40px) 72px;
+}
+
+/*
+ * 그림으로 칠한 배경 (DESIGN_ARCANE.md 3장: 빛과 연무는 래스터로만).
+ * 원경 아래쪽을 바탕색으로 이어 주는 것은 빛이 아니라 이음매라 그라디언트를 허용한다.
+ */
+.backdrop {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  /* 첫 화면 높이만 칠하고 그 아래는 바탕색으로 잇는다. 페이지가 길어져도 원경이 늘어나지 않는다. */
+  height: clamp(760px, 100vh, 1100px);
+  background:
+    linear-gradient(to bottom, transparent 62%, var(--under)),
+    url("/images/arcane/zaun-wide.webp") center top / cover no-repeat,
+    var(--under);
+}
+
+/* 연기 띠는 표지 아래를 받친다. 원경과 따로 두어야 화면 폭에 맞춰 표지 쪽에 붙일 수 있다. */
+.backdrop::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(clamp(300px, 34vw, 480px) + 40px);
+  height: clamp(240px, 26vw, 420px);
+  background: url("/images/arcane/smoke-1.webp") center bottom / 100% auto no-repeat;
+}
+
+@media (max-width: 767px) {
+  .backdrop {
+    height: 900px;
+    background:
+      linear-gradient(to bottom, transparent 55%, var(--under)),
+      url("/images/arcane/zaun-tall.webp") center top / cover no-repeat,
+      var(--under);
+  }
+
+  .backdrop::after {
+    top: 250px;
+    height: 200px;
+    background-size: 200% auto;
+  }
+}
+
+.inner {
+  position: relative;
+}
+
+/* ------------------------------------------------------------- 헤드라인 */
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px 24px;
+  margin-bottom: clamp(28px, 3.4vw, 48px);
+}
+
+.headline {
+  font-size: clamp(44px, 6.4vw, 104px);
+  color: var(--chalk);
+  text-shadow: 4px 4px 0 var(--under);
+}
+
+.question {
+  position: relative;
+  display: inline-block;
+  margin-left: 0.04em;
+}
+
+.questionCircle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1.25em;
+  max-width: none;
+  transform: translate(-50%, -46%) rotate(-8deg);
+  pointer-events: none;
+}
+
+.meta {
+  margin-left: 1.2em;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--chalk);
+  opacity: 0.8;
+  padding-bottom: 0.6em;
+}
+
+/* --------------------------------------------------------------- 라인 표지 */
+
+.lanes {
+  display: flex;
+  gap: clamp(6px, 1vw, 14px);
+  height: clamp(300px, 34vw, 480px);
+}
+
+.lane {
+  position: relative;
+  flex: 2 1 0;
+  min-width: 0;
+  display: block;
+  text-align: left;
+  transition: flex-grow var(--t-position) var(--ease), filter var(--t-position) var(--ease);
+  filter: brightness(0.72) saturate(0.85);
+}
+
+.lane:hover,
+.lane:focus-visible {
+  filter: none;
+}
+
+.laneCurrent {
+  flex-grow: 4;
+  filter: none;
+  z-index: 1;
+}
+
+.poster {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  /* 굵은 붓으로 칠하다 멈춘 가장자리 (DESIGN_ARCANE.md 5장). */
+  -webkit-mask: url("/images/arcane/brush-mask.svg") center / 100% 100% no-repeat;
+  mask: url("/images/arcane/brush-mask.svg") center / 100% 100% no-repeat;
+  background: var(--sump);
+}
+
+.posterImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: var(--art-punch);
+  transition: transform var(--t-position) var(--ease);
+}
+
+.lane:hover .posterImage {
+  transform: scale(1.03);
+}
+
+/* 선택한 표지: Sky 테두리 + 발광. 포스터가 붓 마스크로 잘려 있어 같은 마스크를 한 겹 크게 깐다. */
+.laneCurrent::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: -1;
+  background: var(--sky);
+  -webkit-mask: url("/images/arcane/brush-mask.svg") center / 100% 100% no-repeat;
+  mask: url("/images/arcane/brush-mask.svg") center / 100% 100% no-repeat;
+  filter: drop-shadow(var(--glow-sky));
+}
+
+.laneName {
+  position: absolute;
+  left: 10%;
+  bottom: 9%;
+  z-index: 2;
+  font-size: clamp(26px, 3.3vw, 54px);
+  color: var(--chalk);
+  white-space: nowrap;
+  text-shadow: 3px 3px 0 var(--under);
+  transform: rotate(-6deg);
+  transform-origin: left bottom;
+}
+
+/* 굵은 붓 밑줄. 선택된 라인만 Sky, 나머지는 Chalk (DESIGN_ARCANE.md 6.2). */
+.laneName::after {
+  content: "";
+  position: absolute;
+  left: -4%;
+  right: -10%;
+  bottom: -0.18em;
+  height: 0.16em;
+  border-radius: 999px 40% 999px 30%;
+  background: var(--chalk);
+  box-shadow: 2px 2px 0 var(--under);
+}
+
+.laneCurrent .laneName::after {
+  background: var(--sky);
+}
+
+.lane:nth-child(2) .laneName {
+  transform: rotate(-4deg);
+}
+
+.lane:nth-child(4) .laneName {
+  transform: rotate(-8deg);
+}
+
+/* 평평한 폭발 모양. 선택한 표지 뒤에서 한 번 튀어나온다. */
+.burst {
+  position: absolute;
+  z-index: -2;
+  right: -18%;
+  top: -14%;
+  width: 62%;
+  max-width: none;
+  animation: pop var(--t-position) var(--ease) both;
+  pointer-events: none;
+}
+
+.burstPink {
+  fill: var(--pink);
+}
+
+.burstLime {
+  fill: var(--lime);
+}
+
+.crown {
+  position: absolute;
+  z-index: 3;
+  left: -5%;
+  top: -8%;
+  width: clamp(54px, 6.4vw, 100px);
+  transform: rotate(-14deg);
+  pointer-events: none;
+}
+
+.monkey {
+  position: absolute;
+  z-index: 3;
+  right: -8%;
+  top: -6%;
+  width: clamp(48px, 6vw, 92px);
+  transform: rotate(10deg);
+  pointer-events: none;
+}
+
+/* 끝이 둥근 굵은 방울 몇 줄 (DESIGN_ARCANE.md 5장). 표지와 목록을 잇는다. */
+.drips {
+  position: absolute;
+  z-index: 0;
+  left: 28%;
+  top: calc(100% - 10px);
+  width: 34%;
+  max-width: 170px;
+  fill: var(--sky);
+  pointer-events: none;
+  animation: drip var(--t-reveal) var(--ease) both;
+  transform-origin: top;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.4) rotate(-20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes drip {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+/* -------------------------------------------------------------- 티어 목록 */
+
+.board {
+  position: relative;
+  max-width: 1180px;
+  margin-top: clamp(36px, 4vw, 56px);
+  padding: clamp(18px, 2.4vw, 28px) clamp(16px, 2.4vw, 32px) 20px;
+  background: var(--sump);
+  border: var(--line);
+  box-shadow: var(--shadow-cut);
+}
+
+.arrow {
+  position: absolute;
+  right: -96px;
+  top: -64px;
+  width: 84px;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.boardHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(241, 238, 244, 0.16);
+}
+
+.boardTitle {
+  font-size: clamp(26px, 2.6vw, 36px);
+  color: var(--chalk);
+}
+
+.boardNote {
+  font-size: 14px;
+  color: var(--smog);
+}
+
+.groups {
+  animation: unfold var(--t-reveal) var(--ease) both;
+}
+
+@keyframes unfold {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+.group {
+  display: grid;
+  grid-template-columns: clamp(64px, 8vw, 104px) 1fr;
+  border-bottom: 1px solid rgba(241, 238, 244, 0.16);
+}
+
+.tier {
+  /* 줄이 길어져도 등급 글자가 따라오도록 묶음 안에서 붙여 둔다. */
+  position: sticky;
+  top: calc(var(--header-h) + 8px);
+  align-self: start;
+  padding-top: 10px;
+  font-size: clamp(42px, 5vw, 68px);
+  color: var(--chalk);
+  text-shadow: 3px 3px 0 var(--under);
+}
+
+.tierTop {
+  color: var(--sky);
+}
+
+.tierUnranked {
+  font-size: clamp(18px, 1.8vw, 22px);
+  color: var(--smog);
+  text-shadow: none;
+  padding-top: 22px;
+}
+
+.rows {
+  display: grid;
+  /* 넓은 화면에서는 두 줄로 흘려 줄이 화면 끝까지 늘어나지 않게 한다 (DESIGN_ARCANE.md 6.2). */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  border-left: 1px solid rgba(241, 238, 244, 0.16);
+}
+
+.rows li {
+  border-bottom: 1px solid rgba(241, 238, 244, 0.1);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 7px 14px;
+  transition: background-color var(--t-poster) var(--ease);
+}
+
+.row:hover {
+  background: rgba(216, 255, 62, 0.08);
+}
+
+.row:hover .name {
+  color: var(--lime);
+}
+
+.row:focus-visible {
+  outline-offset: -3px;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  flex: none;
+  border: 2px solid var(--under);
+  filter: var(--art-punch);
+}
+
+.name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--chalk);
+}
+
+.category {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--smog);
+}
+
+.empty,
+.footnote {
+  padding-top: 16px;
+  font-size: 13px;
+  color: var(--smog);
+}
+
+/* -------------------------------------------------------------- 반응형 */
+
+@media (max-width: 1199px) {
+  .arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .lanes {
+    height: 230px;
+    gap: 4px;
+  }
+
+  .lane {
+    flex-basis: 0;
+  }
+
+  .laneCurrent {
+    flex-grow: 3.4;
+  }
+
+  .laneName {
+    left: 50%;
+    bottom: 6%;
+    font-size: 22px;
+    transform: translateX(-50%) rotate(-6deg);
+    transform-origin: center;
+  }
+
+  .lane:nth-child(n) .laneName {
+    transform: translateX(-50%) rotate(-6deg);
+  }
+
+  /* 낙서는 모바일에서 화면당 하나까지 (DESIGN_ARCANE.md 8장). */
+  .monkey,
+  .questionCircle {
+    display: none;
+  }
+
+  .crown {
+    width: 48px;
+    right: -4%;
+  }
+
+  .category {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .burst,
+  .drips,
+  .groups {
+    animation: none;
+  }
+}
