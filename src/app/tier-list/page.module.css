@@ -19,7 +19,7 @@
 .tierRow { display: grid; grid-template-columns: clamp(88px, 12vw, 150px) minmax(0, 1fr); min-height: 116px; border-bottom: 2px solid var(--paper); }
 .tierRow:last-child { border-bottom: 0; }
 .grade { display: grid; place-items: center; background: var(--ink-raised); color: var(--paper); border-right: 2px solid var(--paper); font-family: var(--font-mono); font-size: clamp(48px, 6vw, 80px); font-weight: 700; line-height: 1; }
-.gradeS { color: var(--acid); } .gradeA { color: var(--gum); } .gradeB { color: var(--paper); } .gradeC, .gradeD, .gradeE, .gradeF { color: var(--smoke); }
+.gradeS { color: var(--acid); } .grade1 { color: var(--gum); } .grade2 { color: var(--paper); } .grade3, .grade4, .grade5 { color: var(--smoke); }
 .champions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; padding: 16px 22px; }
 .champion { display: grid; justify-items: center; gap: 5px; width: 78px; color: var(--paper); font-size: 12px; font-weight: 700; text-align: center; line-height: 1.2; }
 .champion img { width: 72px; height: 72px; border: 2px solid var(--paper); }

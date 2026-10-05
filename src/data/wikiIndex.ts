@@ -15,7 +15,7 @@ import type { DocNode } from "@/lib/wikiStore";
 import { articleHref } from "@/lib/wikiTitle";
 
 import { getCategoriesFor, positions } from "./champions";
-import { coverPortals, shelfPortals, type Portal } from "./portals";
+import { orderedPortals, type Portal } from "./portals";
 
 export type PortalView = Portal & {
   /**
@@ -76,8 +76,8 @@ export type SearchEntry = {
 };
 
 export type WikiIndexData = {
-  cover: PortalView[];
-  shelf: PortalView[];
+  /** 관문 전부를 `order` 순으로. 수가 많으면 화면이 원통형 진열로 바꿔 건다. */
+  portals: PortalView[];
   tree: TreeBranch[];
   search: SearchEntry[];
   /** 어떤 문서 아래에도 놓이지 않은 게시된 일반 문서. "분류 없음" 통에 쓰인다. */
@@ -168,7 +168,7 @@ export function buildWikiIndexData(
       match: `${article.title} ${article.titleKey}`,
     });
   }
-  for (const portal of [...coverPortals(), ...shelfPortals()]) {
+  for (const portal of orderedPortals()) {
     search.push({
       title: portal.label,
       href: `/wiki?${new URLSearchParams({ 분류: portal.key })}`,
@@ -202,7 +202,7 @@ export function buildWikiIndexData(
     },
     {
       label: "일반 문서",
-      items: [...coverPortals(), ...shelfPortals()].map((portal) => ({
+      items: orderedPortals().map((portal) => ({
         label: portal.label,
         href: `/wiki?${new URLSearchParams({ 분류: portal.key })}`,
         pending: countOf(trees[portal.key]) === 0,
@@ -210,7 +210,8 @@ export function buildWikiIndexData(
       })),
     },
     {
-      label: "기타",
+      /* `기타` 관문과 이름이 겹치지 않게 한다 — 여기는 어느 관문에도 안 걸린 문서 자리다. */
+      label: "분류 밖",
       items: [
         {
           label: "분류 없음",
@@ -223,8 +224,7 @@ export function buildWikiIndexData(
   ];
 
   return {
-    cover: coverPortals().map(withCount),
-    shelf: shelfPortals().map(withCount),
+    portals: orderedPortals().map(withCount),
     tree,
     search,
     uncategorized,

@@ -3,7 +3,7 @@ import { Suspense } from "react";
 
 import { WikiIndexScreen, type RecentRow, type WorkCounter } from "@/components/wiki/WikiIndexScreen";
 import { buildWikiIndexData, classifiedChampionSlugs } from "@/data/wikiIndex";
-import { coverPortals, shelfPortals } from "@/data/portals";
+import { orderedPortals } from "@/data/portals";
 import { relativeTime } from "@/lib/relativeTime";
 import { getTaxonomy } from "@/lib/taxonomyStore";
 import { docHref, docSectionLabel, docTitle } from "@/lib/wikiDocTarget";
@@ -28,7 +28,7 @@ const RECENT_ON_INDEX = 8;
  * 구역의 "분류 없음" 통을 채운다.
  */
 export default async function WikiIndexPage() {
-  const portalKeys = [...coverPortals(), ...shelfPortals()].map((p) => p.key);
+  const portalKeys = orderedPortals().map((p) => p.key);
 
   const [stats, changes, taxonomy, articles, wantedArticleCount, trees, uncategorized] =
     await Promise.all([

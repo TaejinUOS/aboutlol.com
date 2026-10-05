@@ -1,25 +1,16 @@
-import { Suspense } from "react";
-import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
-import { LaneSelectionScreen } from "@/components/lanes/LaneSelectionScreen";
-import { PATCH } from "@/data/champions";
-import { buildLaneData } from "@/data/lanes";
-import { DEFAULT_POSITION_SLUG } from "@/data/taxonomy";
-import { getTaxonomy } from "@/lib/taxonomyStore";
-import { getAllTierPlacements } from "@/lib/tierStore";
-
-/** 분류와 티어가 D1에 있으므로 운영자가 고친 배치가 바로 보여야 한다. */
-export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "챔피언" };
-
-export default async function ChampionsPage() {
-  const [taxonomy, tiers] = await Promise.all([getTaxonomy(), getAllTierPlacements()]);
-  const lanes = buildLaneData(taxonomy, tiers);
-
-  return (
-    // useSearchParams를 쓰는 화면이라 Suspense 경계가 필요하다.
-    <Suspense fallback={<div style={{ minHeight: "60vh" }} />}>
-      <LaneSelectionScreen lanes={lanes} defaultLane={DEFAULT_POSITION_SLUG} patch={PATCH} />
-    </Suspense>
-  );
+/** 챔피언 화면은 이제 사이트 첫 화면(`/`)이다. 예전 주소는 쿼리를 유지한 채 넘겨 준다. */
+export default async function ChampionsPage({ searchParams }: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = await searchParams;
+  const query = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    for (const item of Array.isArray(value) ? value : value === undefined ? [] : [value]) {
+      query.append(key, item);
+    }
+  }
+  const search = query.toString();
+  redirect(search ? `/?${search}` : "/");
 }

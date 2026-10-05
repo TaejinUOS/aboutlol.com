@@ -28,9 +28,6 @@ export default async function AdminHomePage() {
         <Link href="/admin/wiki/deleted" className={`btn ${styles.link}`}>
           내린 문서
         </Link>
-        <Link href="/admin/videos" className={`btn ${styles.link}`}>
-          영상 등록
-        </Link>
         <Link href="/admin/tier-list" className={`btn ${styles.link}`}>
           티어 배정
         </Link>

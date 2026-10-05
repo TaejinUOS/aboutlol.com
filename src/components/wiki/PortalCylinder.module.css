@@ -1,0 +1,157 @@
+/*
+ * 원통형 관문 진열 (`PortalCylinder.tsx`).
+ *
+ * 이웃 커버 사이 각도(--step)는 관문 수와 무관하게 고정이다. 보이는 것이 세 장뿐이라
+ * 진짜 원통 둘레를 n등분하면 관문 수에 따라 양옆이 너무 꺾이거나 너무 펴진다.
+ * 반지름은 커버 폭과 그 각도로 셈한다: r = (폭 / 2) / tan(step / 2).
+ * 원통 전체를 -r만큼 뒤로 밀어, 정면 커버가 평면 포스터와 같은 크기로 보이게 한다.
+ */
+
+.root {
+  --face-w: clamp(180px, 20vw, 250px);
+  --poster-h: clamp(260px, 28vw, 400px);
+  --step: 34deg;
+  --radius: calc(var(--face-w) / 2 / tan(calc(var(--step) / 2)) * 1.06);
+  --t-spin: 620ms;
+  /* 커버 위로 튀어나오는 라벨·장식이 잘리지 않게 비워 두는 높이. */
+  --cylinder-top: 30px;
+  /* 커버 아래 이름·설명(위키)이나 물감 방울(라인)이 들어갈 높이. */
+  --cylinder-bottom: 90px;
+  display: grid;
+  gap: 14px;
+}
+
+.viewport {
+  position: relative;
+  /* 라벨이 프레임 위로 튀어나오므로 위에 여유를 둔다. */
+  height: calc(var(--poster-h) + var(--cylinder-top) + var(--cylinder-bottom));
+  padding-top: var(--cylinder-top);
+  perspective: 1600px;
+  perspective-origin: 50% 40%;
+  /* 세로 스크롤은 브라우저에 맡기고 가로 끌기만 받는다. */
+  touch-action: pan-y;
+  user-select: none;
+  overflow: hidden;
+}
+
+.stage {
+  position: absolute;
+  inset: var(--cylinder-top) 0 0;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(var(--radius) * -1));
+}
+
+.face {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--face-w);
+  margin-left: calc(var(--face-w) / -2);
+  /*
+   * --s는 정면에서 몇 칸 옆인지(오른쪽 +), --d는 그 절댓값. 드래그 중에는 소수다.
+   * 정면(0)은 원래 크기, 양옆(1)은
+   * --side-scale까지 줄인다. 그보다 먼 커버는 1.5칸을 넘으며 사라진다 — 한 번에
+   * 보이는 것은 세 장이다.
+   */
+  --side-scale: 0.7;
+  transform:
+    rotateY(calc(var(--s) * var(--step)))
+    translateZ(var(--radius))
+    scale(calc(1 - (1 - var(--side-scale)) * min(var(--d), 1)));
+  backface-visibility: hidden;
+  opacity: clamp(0, min(calc(1 - var(--d) * 0.12), calc((1.5 - var(--d)) * 3)), 1);
+  transition:
+    transform var(--t-spin) cubic-bezier(0.22, 1, 0.36, 1),
+    opacity var(--t-spin) ease;
+  cursor: pointer;
+}
+
+.face[inert] {
+  pointer-events: none;
+}
+
+.stageDragging .face {
+  transition: none;
+  cursor: grabbing;
+}
+
+.face > * {
+  width: 100%;
+}
+
+/* 드래그 중 이미지가 따로 끌려 나가지 않게 한다. */
+.face img {
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.arrow {
+  min-width: 48px;
+  font-size: 18px;
+}
+
+.counter {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-width: 8em;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--cylinder-ink, var(--ink));
+}
+
+.counterLabel {
+  font-size: 14px;
+  letter-spacing: 0;
+  color: var(--cylinder-ink-soft, var(--ink-soft));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .face {
+    transition: none;
+  }
+}
+
+/* 좁은 화면에서는 원통을 풀고 평면 포스터처럼 세로로 쌓는다. */
+@media (max-width: 767px) {
+  .root {
+    --poster-h: 200px;
+  }
+
+  .viewport {
+    height: auto;
+    perspective: none;
+    overflow: visible;
+  }
+
+  .stage {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    transform: none;
+    transition: none;
+  }
+
+  .face {
+    position: static;
+    width: auto;
+    margin: 0;
+    transform: none;
+    opacity: 1;
+    backface-visibility: visible;
+  }
+
+  .controls {
+    display: none;
+  }
+}

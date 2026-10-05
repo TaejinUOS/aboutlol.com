@@ -99,19 +99,43 @@
  * 같은 컴포넌트를 쓰는 /records는 자운 화면으로 남으므로 모두 .piltover 아래에만 건다.
  * ------------------------------------------------------------------ */
 
-.piltover { padding-bottom: 100px; background: var(--cream); color: var(--navy); }
+.piltover { position: relative; isolation: isolate; overflow: hidden; padding-bottom: 100px; background: var(--cream); color: var(--navy); }
 
-.skyline { position: relative; border-bottom: 2px solid var(--navy); background: url("/images/piltover/skyline-wide.webp") center 38% / cover no-repeat, var(--ivory); }
-/* 스카이라인과 지면 사이의 금 이중선. */
-.skyline::after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 6px; border-block: 1px solid var(--gold); }
+/*
+ * 스카이라인 배경. 챔피언 첫 화면의 자운 원경처럼 위쪽만 칠하고 아래로 지면색(cream)에
+ * 녹여, 제목과 검색 사이에 선을 긋지 않고 한 장으로 잇는다.
+ */
+.skyline { position: absolute; inset: 0 0 auto; z-index: -1; height: clamp(520px, 52vw, 760px); background: linear-gradient(to bottom, transparent 40%, var(--cream) 92%), url("/images/piltover/skyline-wide.webp") center 38% / cover no-repeat, var(--ivory); }
 
-.homeHero { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; min-height: clamp(340px, 30vw, 440px); padding-block: 40px 44px; }
-.homeIndex { padding: 3px 8px; background: var(--ivory); color: var(--gold-ink); font-size: 12px; font-weight: 700; }
-.homeTitle { margin-top: 10px; font-family: var(--font-display); font-size: clamp(84px, 12vw, 150px); font-weight: 400; line-height: 0.95; color: var(--ivory); -webkit-text-stroke: 3px var(--navy); paint-order: stroke fill; text-shadow: 7px 7px 0 var(--navy); }
-.homeIntro { max-width: 60ch; margin-top: 18px; padding: 8px 14px; background: var(--ivory); border-left: 4px solid var(--gold); color: var(--navy); font-weight: 700; }
-.homeSticker { margin-top: 16px; color: var(--navy); border-color: var(--navy); box-shadow: 4px 4px 0 var(--navy); }
+/* 챔피언 첫 화면(`LaneSelectionScreen.module.css`의 .headline)과 같은 크기. */
+.homeHero { padding-block: clamp(20px, 3vw, 40px) 0; }
+.homeTitle { font-size: clamp(44px, 6.4vw, 104px); color: var(--ivory); text-shadow: 4px 4px 0 var(--navy); }
 
 .piltover .contentGrid { margin-top: 48px; }
+
+/* 전적 첫 화면의 검색창. 상자 없이 배경 위 가운데에 입력창과 버튼만 둔다. */
+.searchStage { display: flex; justify-content: center; padding-block: clamp(28px, 4vw, 56px) clamp(40px, 5vw, 72px); }
+.bareSearch { width: min(100%, 680px); }
+.bareSearch .inputRow input { padding: 16px 20px; font-size: 18px; }
+.bareSearch .inputRow button { padding-inline: 28px; font-size: 17px; }
+.bareSearch .hint { text-align: center; }
+.piltover .bareSearch .hint { color: var(--navy); font-weight: 700; }
+.bareSearch .notice { margin-top: 12px; text-align: center; border: 0; }
+
+/*
+ * 즐겨찾기와 패배한 상대를 한 상자에 두 칸으로 묶는다. 칸 사이는 금 이중선 하나뿐이다.
+ * 각 칸은 자기 상자 없이(`embedded`) 이 상자 안에 선다.
+ */
+/* 챔피언 첫 화면의 티어 목록 상자와 같은 폭으로 가운데에 둔다. 양옆은 배너 광고 자리다. */
+.recordBoard { max-width: 880px; margin-inline: auto; position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); background: var(--ivory); color: var(--navy); border: 2px solid var(--navy); box-shadow: 6px 6px 0 var(--navy); }
+.recordBoard::before,
+.recordBoard::after { content: ""; position: absolute; top: 8px; width: 56px; height: 38px; background: url("/images/piltover/ornament-corner-tl.webp") left top / contain no-repeat; pointer-events: none; }
+.recordBoard::before { left: 8px; }
+.recordBoard::after { right: 8px; background-image: url("/images/piltover/ornament-corner-tr.webp"); background-position: right top; }
+.recordBoard > * { padding: clamp(30px, 3.4vw, 40px) clamp(20px, 2.6vw, 32px); }
+.recordBoard > * + * { border-left: 3px double var(--gold); }
+.recordBoard h2 { margin-top: 0; font-size: clamp(22px, 2.2vw, 28px); font-weight: 800; line-height: 1.2; word-break: keep-all; }
+.recommendationsEmbedded { min-width: 0; }
 
 /* 상아 지면 + 남색 선 + 하드 그림자. 금 모서리 장식은 위 두 귀퉁이에만 단다. */
 .piltover .searchPanel,
@@ -142,9 +166,9 @@
 .piltover .recommendIcon { border: 2px solid var(--navy); background: var(--cream); }
 
 @media (max-width: 767px) {
-  .skyline { background-image: url("/images/piltover/skyline-tall.webp"); background-position: center top; }
-  .homeHero { min-height: 420px; }
-  .homeTitle { -webkit-text-stroke-width: 2px; text-shadow: 5px 5px 0 var(--navy); }
+  .recordBoard { grid-template-columns: 1fr; }
+  .recordBoard > * + * { border-left: 0; border-top: 3px double var(--gold); }
+  .skyline { background-image: linear-gradient(to bottom, transparent 40%, var(--cream) 92%), url("/images/piltover/skyline-tall.webp"); background-position: center top; }
   .piltover .searchPanel::before,
   .piltover .searchPanel::after,
   .piltover .recommendations::before,

@@ -177,9 +177,6 @@ export default async function MyPage({
             <Link href="/admin/wiki/deleted" className="btn">
               내린 문서
             </Link>
-            <Link href="/admin/videos" className="btn">
-              영상 등록
-            </Link>
           </div>
         </section>
       )}

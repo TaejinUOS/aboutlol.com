@@ -13,12 +13,13 @@ type NavItem = {
   /** `추후 개발` 안내 화면으로 이동하는 메뉴. */
   soon?: boolean;
   /** 현재 위치로 볼 추가 경로 접두사. */
-  match?: string;
+  match?: string[];
 };
 
 const NAV: NavItem[] = [
-  { label: "홈", href: "/", match: "/records" },
-  { label: "챔피언", href: "/champions", match: "/matchup" },
+  // 사이트 첫 화면이 챔피언(라인 선택) 화면이다.
+  { label: "챔피언", href: "/", match: ["/champions", "/matchup"] },
+  { label: "전적", href: "/records" },
   /*
    * 이 사이트에서 위키는 곁다리가 아니라 본체이므로 `soon` 딱지가 붙은 메뉴들보다
    * 앞선다 (`docs/WIKI_EXPANSION.md` "위키 메뉴").
@@ -31,11 +32,9 @@ const NAV: NavItem[] = [
 const MY_PAGE: NavItem = { label: "마이페이지", href: "/my" };
 
 function isCurrent(pathname: string, item: NavItem) {
-  if (item.href === "/") {
-    return pathname === "/" || (item.match ? pathname.startsWith(item.match) : false);
-  }
-  return pathname === item.href || pathname.startsWith(`${item.href}/`) ||
-    (item.match ? pathname.startsWith(item.match) : false);
+  const matched = item.match?.some((prefix) => pathname.startsWith(prefix)) ?? false;
+  if (item.href === "/") return pathname === "/" || matched;
+  return pathname === item.href || pathname.startsWith(`${item.href}/`) || matched;
 }
 
 export function SiteHeader({

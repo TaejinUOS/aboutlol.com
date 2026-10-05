@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { getRecords, recordsConfigured, type RecordResult, type RecordRow } from "@/lib/recordStore";
+import { allChampions } from "@/data/champions";
 import { FavoritePlayers } from "../FavoritePlayers";
-import { RememberMatchups } from "../NextMatchups";
+import { NextMatchups, RememberMatchups } from "../NextMatchups";
 import { RecordSearch } from "../RecordSearch";
 import styles from "../page.module.css";
 
@@ -72,6 +73,37 @@ export default async function RecordsPage({ searchParams }: {
   const params = await searchParams;
   const riotId = typeof params.riotId === "string" ? params.riotId.slice(0, 80) : "";
   const configured = await recordsConfigured();
+
+  if (!riotId) {
+    return (
+      // 전적 첫 화면은 필트오버(위의 도시)로 칠한다. 자운으로 칠한 나머지 화면과 대비를 만든다 (DESIGN_ARCANE.md 6.7).
+      <div className={`piltover ${styles.piltover}`}>
+        {/* 스카이라인은 그림으로 칠한 배경이다. 아래로 지면색에 녹아들어 구분선 없이 이어진다. */}
+        <div className={styles.skyline} aria-hidden="true" />
+        {/* 서체·크기는 챔피언 첫 화면의 `어느 라인 가?`와 같다. */}
+        <header className={`shell ${styles.homeHero}`}>
+          <h1 className={`display ${styles.homeTitle}`}>지난 판 어땠어?</h1>
+        </header>
+
+        {/* 검색창은 상자 없이 배경 위 가운데에 둔다. */}
+        <div className={`shell ${styles.searchStage}`}>
+          <RecordSearch configured={configured} bare />
+        </div>
+
+        {/* 즐겨찾기와 패배한 상대는 상자 하나에 두 칸으로 묶는다. */}
+        <div className="shell">
+          <div className={styles.recordBoard}>
+            <FavoritePlayers current={null} embedded />
+            <NextMatchups
+              embedded
+              championIcons={Object.fromEntries(allChampions.map((champion) => [champion.slug, champion.iconUrl]))}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const result = riotId ? await getRecords(riotId) : null;
   const rows = result?.status === "ok" ? result.rows : [];
   const recommendations = rows
@@ -85,7 +117,7 @@ export default async function RecordsPage({ searchParams }: {
     <div className={`shell ${styles.page}`}>
       {result?.status === "ok" && <RememberMatchups current={{ riotId: result.riotId, recommendations }} />}
       <div className={styles.hero}>
-        <Link href="/" className={styles.backLink}>← 홈으로</Link>
+        <Link href="/records" className={styles.backLink}>← 전적 첫 화면으로</Link>
         <p className="section-index">MATCH ARCHIVE / KR</p>
         <h1 className={styles.title}>전적</h1>
         <p className={styles.intro}>최근 20경기의 기록을 확인합니다. 데스와 분당 CS를 비교하고, 경기별 상대법으로 이어집니다.</p>

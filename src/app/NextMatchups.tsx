@@ -41,7 +41,11 @@ export function RememberMatchups({ current }: { current: MatchupSnapshot }) {
   return null;
 }
 
-export function NextMatchups({ championIcons }: { championIcons: Record<string, string> }) {
+export function NextMatchups({ championIcons, embedded = false }: {
+  championIcons: Record<string, string>;
+  /** 다른 칸과 한 상자에 들어갈 때. 자기 상자와 번호를 뺀다. */
+  embedded?: boolean;
+}) {
   const [snapshot, setSnapshot] = useState<MatchupSnapshot | null>(null);
 
   useEffect(() => {
@@ -49,9 +53,9 @@ export function NextMatchups({ championIcons }: { championIcons: Record<string, 
   }, []);
 
   return (
-    <section className={styles.recommendations} aria-labelledby="recommend-heading">
+    <section className={embedded ? styles.recommendationsEmbedded : styles.recommendations} aria-labelledby="recommend-heading">
       <div className={styles.sectionHeading}>
-        <p className="mono">03 / NEXT MATCHUP</p>
+        {!embedded && <p className="mono">03 / NEXT MATCHUP</p>}
         <h2 id="recommend-heading">패배한 상대, 다음엔 다르게</h2>
       </div>
       {snapshot && <p className={styles.recommendSource}>최근 검색 · {snapshot.riotId}</p>}

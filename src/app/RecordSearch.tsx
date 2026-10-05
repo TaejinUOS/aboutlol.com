@@ -1,6 +1,26 @@
 import styles from "./page.module.css";
 
-export function RecordSearch({ configured, riotId = "" }: { configured: boolean; riotId?: string }) {
+export function RecordSearch({ configured, riotId = "", bare = false }: {
+  configured: boolean;
+  riotId?: string;
+  /** 전적 첫 화면용. 상자·제목 없이 입력창과 버튼만 배경 위에 둔다. */
+  bare?: boolean;
+}) {
+  if (bare) {
+    return (
+      <form action="/records" method="get" className={styles.bareSearch} role="search" aria-label="전적 검색">
+        <label htmlFor="riot-id" className="sr-only">Riot ID</label>
+        <div className={styles.inputRow}>
+          <input id="riot-id" name="riotId" type="text" placeholder="게임 이름#태그" autoComplete="off"
+            maxLength={80} required defaultValue={riotId} aria-describedby="riot-id-hint" disabled={!configured} />
+          <button type="submit" className="btn btn--acid" disabled={!configured}>전적 찾기</button>
+        </div>
+        <p id="riot-id-hint" className={styles.hint}>#태그까지 입력 · 한국 서버</p>
+        {!configured && <p className={styles.notice} role="status">전적 검색을 준비 중입니다. 잠시 후 다시 이용해 주세요.</p>}
+      </form>
+    );
+  }
+
   return (
     <section className={`on-paper ${styles.searchPanel}`} aria-labelledby="record-search-heading">
       <div className={styles.searchHeading}>

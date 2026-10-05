@@ -8,11 +8,12 @@
  * 그래서 이 목록은 코드에 있다 — `taxonomy.ts`가 운영 분류의 단일 원본인 것과 같은
  * 이유다. `wiki_portals` 표와 관리 화면은 4단계에서 붙이고, 그때 이 파일이 시드가 된다.
  *
- * 축은 **시간축**이다. 포지션축은 `상대법` 메뉴가 이미 통째로 갖고 있어 쓸 수 없다.
+ * 관문은 챔피언과 무관한 **일반 지식**만 나눈다. 챔피언 문서와 매치업은 사이트 첫
+ * 화면(챔피언)에서 들어가므로 관문에 두지 않는다 (2026-10-05 개편).
  *
- * **`정글`만 예외다** (2026-09-06, `docs/WIKI_EXPANSION.md` "관문은 한 축에서 고른다"의
- * 번복 메모). 정글은 라인전이 없어 시간축의 다른 어느 관문에도 깔끔히 안 들어가고,
- * 나머지 포지션(서폿·원딜 등)까지 따라 올릴 필요 없이 정글 하나만 얹었다.
+ * 순서는 게임 시간축이다: 라인전 → 운영 → 한타가 판 안의 흐름이다. `정글`은 라인전이
+ * 없어 시간축 어디에도 깔끔히 안 들어가므로 따로 서고, `기타`는 룬·아이템·용어처럼
+ * 시점과 무관한 문서가 모이는 자리다.
  */
 
 export type Portal = {
@@ -38,16 +39,17 @@ export type Portal = {
 };
 
 /**
- * 표지에 걸리는 관문 수.
+ * 관문을 평면 포스터로 나란히 거는 최대 수.
  *
- * 관문은 운영하면서 늘어나지만 **표지는 장수를 고정**한다 ("회전이 아니라 편성").
- * 캐러셀로 돌리지 않는 이유는 목차의 일이 전부 보여 주는 것이기 때문이고, 표지에서
- * 빠진 관문도 아래 분류 나무에 이름으로 그대로 있다.
+ * 이 수까지는 전부 한 줄에 펼쳐 보인다. 관문이 이보다 많아지면 한 줄에 다 걸면 커버가
+ * 너무 좁아지므로, 위키 첫 화면은 원통형 회전 진열(`PortalCylinder`)로 바꿔 건다
+ * (2026-10-05, "회전이 아니라 편성" 번복). 어느 쪽이든 관문은 아래 분류 나무에도
+ * 이름으로 모두 남는다.
  *
- * 이 값이 4인 것은 `WikiIndexScreen.tsx`의 `POSTER_WEIGHTS[4] = [5, 4, 3, 3]`
- * 조판과 짝을 이룬다 (2026-09-06, 정글 관문을 얹으며 3 → 4).
+ * 관문 다섯이 처음부터 원통으로 걸리도록 4로 둔다 (2026-10-05). 이 값은
+ * `WikiIndexScreen.tsx`의 `POSTER_WEIGHTS` 조판이 4장까지 있는 것과 짝을 이룬다.
  */
-export const COVER_SLOTS = 4;
+export const FLAT_PORTAL_LIMIT = 4;
 
 export const portals: Portal[] = [
   {
@@ -79,7 +81,7 @@ export const portals: Portal[] = [
     label: "정글",
     /*
      * 2026-09-06: 운영자가 직접 준비해 `public/images/portal/jungle-pathing.webp`에
-     * 넣기로 했다. 다른 넷과 같은 규격(1536×1024 webp, 챔피언 아트가 아니라 도해)이다.
+     * 넣기로 했다. 다른 관문과 같은 규격(1536×1024 webp, 챔피언 아트가 아니라 도해)이다.
      */
     coverImage: "/images/portal/jungle-pathing.webp",
     coverAlt: "동선과 갱 타이밍을 표시한 정글 도해",
@@ -87,33 +89,21 @@ export const portals: Portal[] = [
     order: 4,
   },
   {
-    key: "사전",
-    label: "사전",
+    key: "기타",
+    label: "기타",
+    /* 전용 커버가 나오기 전까지 룬·아이템 도표를 늘어놓은 사전 도해를 쓴다. */
     coverImage: "/images/portal/reference-guide.webp",
-    coverAlt: "룬과 아이템 도표를 늘어놓은 사전 도해",
-    blurb: "룬 · 아이템 · 용어 · 수치",
+    coverAlt: "룬과 아이템 도표를 늘어놓은 도해",
+    blurb: "룬 · 아이템 · 용어 · 그 밖의 문서",
     order: 5,
-  },
-  {
-    key: "밴픽",
-    label: "밴픽",
-    coverImage: "/images/portal/draft-board.webp",
-    coverAlt: "조합과 밴 우선순위를 표시한 밴픽 도해",
-    blurb: "조합 · 카운터픽 · 밴 우선순위",
-    order: 6,
   },
 ];
 
 const byOrder = [...portals].sort((a, b) => a.order - b.order);
 
-/** 이번 호 표지에 걸리는 관문. 커버 이미지가 실제로 로드되는 것은 이 셋뿐이다. */
-export function coverPortals(): Portal[] {
-  return byOrder.slice(0, COVER_SLOTS);
-}
-
-/** 표지에서 빠진 나머지. 커버 없이 이름으로 분류 나무에 선다. */
-export function shelfPortals(): Portal[] {
-  return byOrder.slice(COVER_SLOTS);
+/** 관문 전부를 `order` 순으로. 위키 첫 화면 표지와 분류 나무가 같은 순서를 쓴다. */
+export function orderedPortals(): Portal[] {
+  return byOrder;
 }
 
 export function getPortal(key: string): Portal | undefined {

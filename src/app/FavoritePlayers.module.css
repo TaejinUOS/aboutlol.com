@@ -1,3 +1,7 @@
+/* 다른 칸과 한 상자에 들어갈 때(`embedded`). 상자는 바깥이 그린다. */
+.embedded { min-width: 0; }
+/* 제목 밑줄 바로 아래라 위쪽 선은 겹친다. 아래 선만 남긴다. */
+.embedded .empty { margin-top: 8px; border-top: 0; }
 .aside { align-self: start; padding: 26px 20px; border: 2px solid var(--paper); color: var(--paper); }
 .aside > p:first-child { color: var(--acid); font-size: 12px; font-weight: 700; }
 .heading { margin-top: 16px; font-size: clamp(28px, 3vw, 42px); font-weight: 800; line-height: 1.1; }

@@ -50,7 +50,7 @@ npm run dev          # http://localhost:3000
 | `/champions?position=&category=&q=` | 포지션·카테고리 선택과 챔피언 Contact Sheet |
 | `/matchup/[champion]?tab=&me=&buildPosition=` | 챔피언 빌드(기본)·위키·상대법·영상. 옛 포지션 주소는 리다이렉트 |
 | `/records?riotId=게임이름%23태그` | 기존 전적 주소. 같은 검색어를 유지하며 `/`로 이동 |
-| `/tier-list?position=mid` | 포지션별 S~F 티어표와 작성 근거 위키 문서 |
+| `/tier-list?position=mid` | 포지션별 S·1~5 티어표와 작성 근거 위키 문서 |
 | `/stats` | 기존 통계 주소. 티어표로 이동 |
 | `/lessons` | `추후 개발` 안내 화면 |
 

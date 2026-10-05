@@ -42,7 +42,7 @@ export default async function AdminTierListPage({ searchParams }: {
       </nav>
 
       {done && <p className={styles.feedback} role="status">티어 배정을 저장했습니다.</p>}
-      {error && <p className={styles.feedback} role="alert">현재 포지션에 있는 활성 챔피언과 S~F 등급을 선택해 주세요.</p>}
+      {error && <p className={styles.feedback} role="alert">현재 포지션에 있는 활성 챔피언과 S·1~5 등급을 선택해 주세요.</p>}
 
       <div className={styles.listHeading}>
         <h2>{position.name} 챔피언</h2>

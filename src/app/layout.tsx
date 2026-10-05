@@ -67,7 +67,7 @@ export const metadata: Metadata = {
    */
   metadataBase: new URL("https://aboutlol.com"),
   title: {
-    default: "ABOUTLOL — 누굴 상대해?",
+    default: "ABOUTLOL — 어느 라인 가?",
     template: "%s | ABOUTLOL",
   },
   description:

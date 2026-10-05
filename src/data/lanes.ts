@@ -1,5 +1,5 @@
 /**
- * 라인 선택 화면(`/champions`)이 쓰는 직렬화 가능한 데이터 뷰.
+ * 라인 선택 화면(`/`)이 쓰는 직렬화 가능한 데이터 뷰.
  *
  * 라인 대표 표지 5장이 곧 라인 선택이고, 표지를 고르면 그 라인 챔피언이 티어
  * 내림차순 목록으로 펼쳐진다 (DESIGN_ARCANE.md 6.2). 라인을 바꿀 때마다 서버를
@@ -11,7 +11,7 @@ import type { TaxonomySnapshot } from "@/lib/taxonomyStore";
 import { positions } from "./champions";
 
 /** `tierStore.ts`의 TIERS와 같은 순서. 그 파일은 server-only라 여기서 가져올 수 없다. */
-export const LANE_TIERS = ["S", "A", "B", "C", "D", "E", "F"] as const;
+export const LANE_TIERS = ["S", "1", "2", "3", "4", "5"] as const;
 export type LaneTier = (typeof LANE_TIERS)[number];
 
 /** 운영자가 아직 등급을 매기지 않은 챔피언 묶음. 목록 맨 아래에 둔다. */
@@ -33,12 +33,21 @@ const LANE_COVERS: Record<string, LaneCover> = {
   support: { image: "/images/Renata.jpg", focus: "52% 18%", alt: "레나타 글라스크" },
 };
 
+/**
+ * 이 라인에서의 승률·픽률·밴율 (0~1). 아직 공급원이 연결되지 않아 모두 null이고,
+ * 화면은 null을 `—`로 그린다. 값을 임의로 채우지 않는다.
+ */
+export type LaneStats = {
+  winRate: number | null;
+  pickRate: number | null;
+  banRate: number | null;
+};
+
 export type LaneChampion = {
   slug: string;
   name: string;
   iconUrl: string;
-  /** 이 라인에서 속한 카테고리 이름. 줄의 보조 정보로 쓴다. */
-  category: string | null;
+  stats: LaneStats;
 };
 
 export type TierGroup = {
@@ -72,7 +81,7 @@ export function buildLaneData(
           slug: champion.slug,
           name: champion.name,
           iconUrl: champion.iconUrl,
-          category: taxonomy.categoryOf(position.slug, champion.slug)?.name ?? null,
+          stats: { winRate: null, pickRate: null, banRate: null },
         });
         byTier.set(tier, list);
       }

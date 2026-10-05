@@ -4,13 +4,15 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import type { TreeItem, WikiIndexData } from "@/data/wikiIndex";
+import { FLAT_PORTAL_LIMIT } from "@/data/portals";
+import type { PortalView, TreeItem, WikiIndexData } from "@/data/wikiIndex";
 import { prefersReducedMotion } from "@/lib/motion";
 import { buildQuery, matchesName, normalizeQuery } from "@/lib/url";
 import { UNCATEGORIZED_KEY } from "@/lib/wikiCategoryKey";
 import type { DocNode } from "@/lib/wikiStore";
 import { articleHref } from "@/lib/wikiTitle";
 
+import { PortalCylinder } from "./PortalCylinder";
 import styles from "./WikiIndexScreen.module.css";
 
 /** 최근 바뀐 문서 한 줄. 상대 시각은 서버에서 미리 지어 넘긴다 (수화 불일치 방지). */
@@ -44,12 +46,14 @@ type Props = {
   counters: WorkCounter[];
 };
 
+/** 라벨 스티커 색 순서: Acid → Gum → Cobalt를 되풀이한다. */
+const POSTER_TONES = ["acid", "gum", "cobalt"] as const;
+
 /**
- * 블루프린트 6.2와 같은 조판. 원안은 표지 세 장이라 12열을 5/4/3으로 나눴고, 정글
- * 관문을 얹으며 네 장(`COVER_SLOTS`)이 된 지금은 5/4/3/3으로 한 장을 더 나눈다.
+ * 블루프린트 6.2와 같은 조판. 원안은 표지 세 장이라 12열을 5/4/3으로 나눴다.
  *
- * 관문이 늘어도 이 표를 늘리지 않는다 — 표지는 `COVER_SLOTS`장으로 고정이고,
- * 남는 관문은 아래 분류 나무에 이름으로 선다 (`docs/WIKI_EXPANSION.md` "회전이 아니라 편성").
+ * 이 표는 `FLAT_PORTAL_LIMIT`장까지만 있다. 그보다 많으면 평면으로 나란히 걸지 않고
+ * 원통형 진열(`PortalCylinder`)로 바꿔 건다.
  */
 const POSTER_WEIGHTS: Record<number, number[]> = {
   1: [8],
@@ -77,9 +81,7 @@ export function WikiIndexScreen({ data, docCount, weekEditCount, recent, counter
 
   const portalKey = searchParams.get("분류");
   const activePortal =
-    data.cover.find((p) => p.key === portalKey) ??
-    data.shelf.find((p) => p.key === portalKey) ??
-    null;
+    data.portals.find((p) => p.key === portalKey) ?? null;
   const showUncategorized = portalKey === UNCATEGORIZED_KEY;
 
   const push = useCallback(
@@ -113,7 +115,57 @@ export function WikiIndexScreen({ data, docCount, weekEditCount, recent, counter
     return data.search.filter((entry) => matchesName(needle, entry.match)).slice(0, SEARCH_LIMIT);
   }, [data.search, needle]);
 
-  const weights = weightsFor(data.cover.length);
+  const weights = weightsFor(data.portals.length);
+  const cylinder = data.portals.length > FLAT_PORTAL_LIMIT;
+
+  const renderPoster = (portal: PortalView, index: number, eager: boolean) => {
+    const current = portal.key === portalKey;
+    return (
+      <button
+        key={portal.key}
+        type="button"
+        className={`${styles.poster} ${current ? styles.posterCurrent : ""}`}
+        style={cylinder ? undefined : { ["--w" as string]: weights[index] ?? 1 }}
+        data-tone={POSTER_TONES[index % POSTER_TONES.length]}
+        aria-pressed={current}
+        onClick={() => selectPortal(portal.key)}
+      >
+        <span className={styles.posterFrameWrap}>
+          <span className={styles.posterFrame}>
+            <span className={styles.posterFrameInner}>
+              {/*
+                커버는 챔피언 아트가 아니라 도해다. 대체 텍스트는 버튼
+                레이블이 담당하므로 이미지 자체는 배경으로 둔다.
+              */}
+              <img
+                className={styles.posterImage}
+                src={portal.coverImage}
+                alt=""
+                loading={eager ? "eager" : "lazy"}
+                decoding="async"
+                draggable={false}
+              />
+            </span>
+          </span>
+        </span>
+
+        {/* 관문명은 이미지 바깥으로 튀어나온다 (블루프린트 6.2). */}
+        <span className={`display ${styles.posterLabel}`}>{portal.label}</span>
+
+        <span className={styles.posterMeta}>
+          {/*
+            문서가 0인 관문에 `문서 0`을 붙이지 않는다. 큰 커버 아래 0이
+            놓이면 죽은 사이트로 보이는데, 이 관문은 죽은 것이 아니라
+            아직 아무도 안 쓴 것이다.
+          */}
+          <span className={`mono ${styles.posterCount}`}>
+            {portal.docCount > 0 ? `문서 ${portal.docCount}` : "아직 없음"}
+          </span>
+          <span className={styles.posterBlurb}>{portal.blurb}</span>
+        </span>
+      </button>
+    );
+  };
 
   return (
     <div className={styles.screen}>
@@ -148,54 +200,20 @@ export function WikiIndexScreen({ data, docCount, weekEditCount, recent, counter
           <div className={styles.printed}>
             <p className={`section-index ${styles.printedIndex}`}>01 — 이번 호 표지</p>
 
-            <div className={styles.posterGroup}>
-              {data.cover.map((portal, index) => {
-                const current = portal.key === portalKey;
-                return (
-                  <button
-                    key={portal.key}
-                    type="button"
-                    className={`${styles.poster} ${current ? styles.posterCurrent : ""}`}
-                    style={{ ["--w" as string]: weights[index] ?? 1 }}
-                    aria-pressed={current}
-                    onClick={() => selectPortal(portal.key)}
-                  >
-                    <span className={styles.posterFrameWrap}>
-                      <span className={styles.posterFrame}>
-                        <span className={styles.posterFrameInner}>
-                          {/*
-                            커버는 챔피언 아트가 아니라 도해다. 대체 텍스트는 버튼
-                            레이블이 담당하므로 이미지 자체는 배경으로 둔다.
-                          */}
-                          <img
-                            className={styles.posterImage}
-                            src={portal.coverImage}
-                            alt=""
-                            loading={index === 0 ? "eager" : "lazy"}
-                            decoding="async"
-                          />
-                        </span>
-                      </span>
-                    </span>
-
-                    {/* 관문명은 이미지 바깥으로 튀어나온다 (블루프린트 6.2). */}
-                    <span className={`display ${styles.posterLabel}`}>{portal.label}</span>
-
-                    <span className={styles.posterMeta}>
-                      {/*
-                        문서가 0인 관문에 `문서 0`을 붙이지 않는다. 큰 커버 아래 0이
-                        놓이면 죽은 사이트로 보이는데, 이 관문은 죽은 것이 아니라
-                        아직 아무도 안 쓴 것이다.
-                      */}
-                      <span className={`mono ${styles.posterCount}`}>
-                        {portal.docCount > 0 ? `문서 ${portal.docCount}` : "아직 없음"}
-                      </span>
-                      <span className={styles.posterBlurb}>{portal.blurb}</span>
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+            {cylinder ? (
+              <PortalCylinder
+                items={data.portals}
+                getKey={(portal) => portal.key}
+                getLabel={(portal) => portal.label}
+                activeKey={activePortal?.key ?? null}
+                label="위키 관문"
+                renderFace={(portal, index, front) => renderPoster(portal, index, front)}
+              />
+            ) : (
+              <div className={styles.posterGroup}>
+                {data.portals.map((portal, index) => renderPoster(portal, index, index === 0))}
+              </div>
+            )}
 
             <p className={`hand ${styles.posterHint}`} aria-hidden="true">
               ↓ 고르면 이 아래로 목록이 펼쳐진다

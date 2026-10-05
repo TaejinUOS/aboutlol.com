@@ -28,7 +28,7 @@ export function ComingSoon({
 
       <p className={styles.description}>{description}</p>
 
-      <Link className="btn btn--acid" href="/champions">
+      <Link className="btn btn--acid" href="/">
         챔피언으로 돌아가기
       </Link>
     </div>

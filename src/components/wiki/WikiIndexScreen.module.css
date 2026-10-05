@@ -229,29 +229,29 @@
   filter: url(#zine-torn-1);
 }
 
-.poster:nth-child(2) .posterLabel::before {
+.poster[data-tone="gum"] .posterLabel::before {
   filter: url(#zine-torn-2);
 }
 
-.poster:nth-child(3) .posterLabel::before {
+.poster[data-tone="cobalt"] .posterLabel::before {
   filter: url(#zine-torn-3);
 }
 
-/* 목업의 라벨 색 순서: Acid → Gum → Cobalt */
-.poster:nth-child(1) {
+/* 라벨 색은 Acid → Gum → Cobalt를 되풀이한다 (`POSTER_TONES`). */
+.poster[data-tone="acid"] {
   --label-bg: var(--acid);
 }
 
-.poster:nth-child(2) {
+.poster[data-tone="gum"] {
   --label-bg: var(--gum);
 }
 
-.poster:nth-child(3) {
+.poster[data-tone="cobalt"] {
   --label-bg: var(--cobalt);
 }
 
 /* Cobalt 위 Ink는 큰 라벨 글자(3:1)에만 허용된다. 작은 글자는 Paper로 뒤집는다. */
-.poster:nth-child(3) .posterLabel {
+.poster[data-tone="cobalt"] .posterLabel {
   color: var(--paper);
 }
 

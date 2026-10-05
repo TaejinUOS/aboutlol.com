@@ -73,22 +73,6 @@
   text-shadow: 4px 4px 0 var(--under);
 }
 
-.question {
-  position: relative;
-  display: inline-block;
-  margin-left: 0.04em;
-}
-
-.questionCircle {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 1.25em;
-  max-width: none;
-  transform: translate(-50%, -46%) rotate(-8deg);
-  pointer-events: none;
-}
-
 .meta {
   margin-left: 1.2em;
   font-size: 12px;
@@ -199,6 +183,38 @@
   transform: rotate(-8deg);
 }
 
+/*
+ * 원통형 진열 (`PortalCylinder`). 표지 폭과 높이를 이 화면 크기로 덮어쓰고, 왕관·폭발이
+ * 위로 튀어나오므로 위를 더 비운다. 자운 배경이 어두워 숫자·이름은 Chalk로 뒤집는다.
+ */
+.cylinder {
+  --face-w: clamp(220px, 23vw, 320px);
+  --poster-h: clamp(280px, 29vw, 420px);
+  --cylinder-top: 70px;
+  /* 물감 방울이 걸칠 만큼만 남긴다. 아래 티어 목록이 그 위로 겹쳐 올라온다. */
+  --cylinder-bottom: 40px;
+  --cylinder-ink: var(--chalk);
+  --cylinder-ink-soft: var(--chalk);
+  margin-top: calc(var(--cylinder-top) * -1 + 10px);
+}
+
+.cylinder .lane {
+  height: var(--poster-h);
+}
+
+/*
+ * 원통일 때는 표지가 작아진 만큼 연기 띠를 끌어올려 양옆 표지 아랫단을 감싸게 한다.
+ * 그림이 차지하는 높이가 줄어 티어 목록이 첫 화면 안으로 올라온다.
+ */
+.screenCylinder .backdrop::after {
+  top: calc(clamp(280px, 29vw, 420px) - 30px);
+}
+
+/* 원통일 때는 표지 바로 아래에서 목록을 시작한다. */
+.cylinder + .board {
+  margin-top: 8px;
+}
+
 /* 평평한 폭발 모양. 선택한 표지 뒤에서 한 번 튀어나온다. */
 .burst {
   position: absolute;
@@ -268,9 +284,13 @@
 
 /* -------------------------------------------------------------- 티어 목록 */
 
+/*
+ * 목록 상자는 가운데에 좁게 둔다. 양옆은 나중에 배너 광고가 설 자리다.
+ */
 .board {
   position: relative;
-  max-width: 1180px;
+  max-width: 880px;
+  margin-inline: auto;
   margin-top: clamp(36px, 4vw, 56px);
   padding: clamp(18px, 2.4vw, 28px) clamp(16px, 2.4vw, 32px) 20px;
   background: var(--sump);
@@ -306,8 +326,82 @@
   color: var(--smog);
 }
 
-.groups {
+/*
+ * 티어순 목록. 한 줄에 한 챔피언: 초상화 · 티어 배지 · 이름 ··· 승률 · 픽률 · 밴율.
+ * 목록 상자 폭에 따라 1~2열이고, 두 열이면 왼쪽 열을 다 채운 뒤 오른쪽 열로 넘어간다.
+ * 열 제목과 각 줄이 같은 격자를 써서 수치 열이 위아래로 맞는다. 목록만 따로 스크롤하고
+ * 열 제목은 그 위에 고정이다.
+ */
+.board {
+  container-type: inline-size;
+}
+
+.listHeads,
+.list {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 1), minmax(0, 1fr));
+  column-gap: 22px;
+}
+
+/* 보이는 열 수보다 많은 열 제목은 숨긴다. */
+.listHead:nth-child(n + 2) {
+  display: none;
+}
+
+@container (min-width: 640px) {
+  .listHeads,
+  .list {
+    --cols: 2;
+  }
+
+  .listHead:nth-child(2) {
+    display: grid;
+  }
+
+  /* 세로 우선: 줄 수를 정해 두고 열 방향으로 채운다. */
+  .list {
+    grid-auto-flow: column;
+    grid-template-rows: repeat(var(--rows), auto);
+  }
+}
+
+.listHead,
+.row {
+  display: grid;
+  grid-template-columns: 40px 24px minmax(0, 1fr) repeat(3, var(--stat-w));
+  align-items: center;
+  column-gap: 8px;
+  --stat-w: 46px;
+}
+
+.listHead {
+  padding: 12px 8px 8px;
+  border-bottom: 1px solid rgba(241, 238, 244, 0.16);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--smog);
+}
+
+.listHead > span:first-child {
+  grid-column: 1 / 4;
+}
+
+.listHead > span:not(:first-child) {
+  text-align: right;
+}
+
+.list {
+  /* 첫 화면 안에 상자 머리·열 제목·안내까지 들어오도록 높이를 잡고, 넘치면 안에서 스크롤한다. */
+  max-height: clamp(320px, calc(100dvh - 300px), 720px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(241, 238, 244, 0.3) transparent;
   animation: unfold var(--t-reveal) var(--ease) both;
+}
+
+.list:focus-visible {
+  outline-offset: 2px;
 }
 
 @keyframes unfold {
@@ -317,50 +411,13 @@
   }
 }
 
-.group {
-  display: grid;
-  grid-template-columns: clamp(64px, 8vw, 104px) 1fr;
-  border-bottom: 1px solid rgba(241, 238, 244, 0.16);
-}
-
-.tier {
-  /* 줄이 길어져도 등급 글자가 따라오도록 묶음 안에서 붙여 둔다. */
-  position: sticky;
-  top: calc(var(--header-h) + 8px);
-  align-self: start;
-  padding-top: 10px;
-  font-size: clamp(42px, 5vw, 68px);
-  color: var(--chalk);
-  text-shadow: 3px 3px 0 var(--under);
-}
-
-.tierTop {
-  color: var(--sky);
-}
-
-.tierUnranked {
-  font-size: clamp(18px, 1.8vw, 22px);
-  color: var(--smog);
-  text-shadow: none;
-  padding-top: 22px;
-}
-
-.rows {
-  display: grid;
-  /* 넓은 화면에서는 두 줄로 흘려 줄이 화면 끝까지 늘어나지 않게 한다 (DESIGN_ARCANE.md 6.2). */
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
-  border-left: 1px solid rgba(241, 238, 244, 0.16);
-}
-
-.rows li {
+.list li {
+  min-width: 0;
   border-bottom: 1px solid rgba(241, 238, 244, 0.1);
 }
 
 .row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 7px 14px;
+  padding: 6px 8px;
   transition: background-color var(--t-poster) var(--ease);
 }
 
@@ -377,22 +434,53 @@
 }
 
 .icon {
-  width: 48px;
-  height: 48px;
-  flex: none;
+  width: 40px;
+  height: 40px;
   border: 2px solid var(--under);
   filter: var(--art-punch);
 }
 
+/* 초상화 옆 등급. S는 Sky로 띄우고, 숫자 등급은 Chalk, 미배정은 흐린 줄표다. */
+.badge {
+  font-size: 24px;
+  line-height: 1;
+  text-align: center;
+  color: var(--chalk);
+  text-shadow: 2px 2px 0 var(--under);
+}
+
+.badgeTop {
+  color: var(--sky);
+}
+
+/* 디스플레이 서체의 줄표는 폭이 넓어 이름에 붙는다. 작은 고정폭 글자로 둔다. */
+.badgeUnranked {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--smog);
+  text-shadow: none;
+}
+
+/* 긴 이름(트위스티드 페이트)은 줄을 늘리지 않고 말줄임한다. 전체 이름은 위키 문서에 있다. */
 .name {
-  font-size: 17px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
   font-weight: 700;
   color: var(--chalk);
 }
 
-.category {
-  margin-left: auto;
+.stat {
   font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--chalk);
+}
+
+.statEmpty {
   color: var(--smog);
 }
 
@@ -438,8 +526,7 @@
   }
 
   /* 낙서는 모바일에서 화면당 하나까지 (DESIGN_ARCANE.md 8장). */
-  .monkey,
-  .questionCircle {
+  .monkey {
     display: none;
   }
 
@@ -448,15 +535,22 @@
     right: -4%;
   }
 
-  .category {
-    display: none;
+  .listHead,
+  .row {
+    --stat-w: 42px;
+  }
+
+  /* 휴대폰에서는 스크롤 안의 스크롤이 손가락을 가두므로 페이지와 함께 흐르게 한다. */
+  .list {
+    max-height: none;
+    overflow: visible;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .burst,
   .drips,
-  .groups {
+  .list {
     animation: none;
   }
 }

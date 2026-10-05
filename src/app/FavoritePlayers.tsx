@@ -26,7 +26,11 @@ function readFavorites(): Favorite[] {
   }
 }
 
-export function FavoritePlayers({ current }: { current: Favorite | null }) {
+export function FavoritePlayers({ current, embedded = false }: {
+  current: Favorite | null;
+  /** 다른 칸과 한 상자에 들어갈 때. 자기 상자·번호·설명을 빼고 목록만 둔다. */
+  embedded?: boolean;
+}) {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
 
   useEffect(() => {
@@ -41,10 +45,10 @@ export function FavoritePlayers({ current }: { current: Favorite | null }) {
   const alreadySaved = current && favorites.some((item) => item.riotId === current.riotId);
 
   return (
-    <aside className={styles.aside} aria-labelledby="favorites-heading">
-      <p className="mono">01 / MY PLAYERS</p>
-      <h2 id="favorites-heading" className={styles.heading}>즐겨찾는<br />소환사</h2>
-      <p className={styles.explain}>검색한 Riot ID를 저장하면 이 브라우저에서 바로 다시 열 수 있습니다.</p>
+    <aside className={embedded ? styles.embedded : styles.aside} aria-labelledby="favorites-heading">
+      {!embedded && <p className="mono">01 / MY PLAYERS</p>}
+      <h2 id="favorites-heading" className={styles.heading}>즐겨찾는{embedded ? " " : <br />}소환사</h2>
+      {!embedded && <p className={styles.explain}>검색한 Riot ID를 저장하면 이 브라우저에서 바로 다시 열 수 있습니다.</p>}
 
       {current && !alreadySaved && (
         <button

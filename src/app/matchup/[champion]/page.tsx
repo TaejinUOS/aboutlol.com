@@ -9,7 +9,6 @@ import { getBuildView } from "@/lib/buildStore";
 import { eulReul } from "@/lib/josa";
 import { type MatchupRouteParams, resolveMatchup } from "@/lib/matchupRoute";
 import { getTaxonomy } from "@/lib/taxonomyStore";
-import { listVideosFor } from "@/lib/videoStore";
 import { titleKey } from "@/lib/wikiTitle";
 import { getArticleView, getDocTree, getWikiView, resolveDocLinks } from "@/lib/wikiStore";
 
@@ -68,10 +67,9 @@ export default async function MatchupPage({ params, searchParams }: {
    * 걸러내기가 아니라 문서 안 이동이 되었고, 그래서 서버가 읽는 내용이 선택과
    * 무관해졌다 (PRD FR-12, FR-13, `docs/WIKI_MODEL.md` "문서 구조").
    */
-  const [wiki, viewer, videos, article, championChildDocs, builds] = await Promise.all([
+  const [wiki, viewer, article, championChildDocs, builds] = await Promise.all([
     getWikiView(championData.slug),
     getViewer(),
-    listVideosFor(championData.slug),
     getArticleView(titleKey(championData.name)),
     getDocTree(championData.name),
     getBuildView(Number(championData.key), buildPosition, placements[0]?.position.slug),
@@ -126,7 +124,6 @@ export default async function MatchupPage({ params, searchParams }: {
         championArticle={championArticle}
         championChildDocs={championChildDocs}
         wikiLinks={wikiLinks}
-        videos={videos}
         viewer={viewer}
         inactive={!taxonomy.isActive(championData.slug)}
         nearbyChampions={[...nearbyChampions.values()].sort((a, b) =>

@@ -8,7 +8,8 @@ import { getPosition } from "@/data/taxonomy";
 import type { Champion } from "@/data/types";
 import { getTaxonomy } from "@/lib/taxonomyStore";
 
-export const TIERS = ["S", "A", "B", "C", "D", "E", "F"] as const;
+/** 등급은 S 다음 숫자 1~5다. S가 가장 높고 5가 가장 낮다 (마이그레이션 0016). */
+export const TIERS = ["S", "1", "2", "3", "4", "5"] as const;
 export type Tier = (typeof TIERS)[number];
 
 type TierRow = { champion_slug: string; tier: Tier };

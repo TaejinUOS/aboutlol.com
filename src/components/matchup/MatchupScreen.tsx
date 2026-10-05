@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
-import type { VideoView } from "@/lib/videoStore";
 import type { WikiLinkMap } from "@/lib/wikiLink";
 import type { BuildView } from "@/lib/buildStats";
 import type { ArticleView, DocNode, WikiView } from "@/lib/wikiStore";
@@ -15,14 +14,16 @@ import { BuildPanel } from "./BuildPanel";
 import { ChampionWikiPanel } from "./ChampionWikiPanel";
 import styles from "./MatchupScreen.module.css";
 import type { ChampionOption, ChampionView, PlacementView } from "./types";
-import { VideoPanel } from "./VideoPanel";
 import { WikiPanel } from "./WikiPanel";
 
+/*
+ * 영상 탭은 뺐다 (2026-10-05). 영상은 위키 본문에 임베드되므로 따로 둘 필요가 없다.
+ * 예전 `?tab=video` 주소는 기본 탭(빌드)으로 열린다.
+ */
 const TABS = [
   { id: "build", label: "빌드" },
-  { id: "champion" },
+  { id: "champion", label: "운용법" },
   { id: "board", label: "상대법" },
-  { id: "video", label: "영상" },
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
@@ -47,8 +48,6 @@ type Props = {
   championArticle: ArticleView | null;
   championChildDocs: DocNode[];
   wikiLinks: WikiLinkMap;
-  /** 운영자가 등록한 영상 (PRD 5.3.2). 비어 있으면 영상 탭이 빈 상태를 그린다. */
-  videos: VideoView[];
   /** 이 챔피언이 놓인 포지션들의 챔피언을 합친 것. Me 콤보박스의 기본 검색 대상. */
   nearbyChampions: ChampionOption[];
   allChampions: ChampionOption[];
@@ -71,7 +70,6 @@ export function MatchupScreen({
   championArticle,
   championChildDocs,
   wikiLinks,
-  videos,
   nearbyChampions,
   allChampions,
   viewer,
@@ -189,7 +187,7 @@ export function MatchupScreen({
                     setParams({ tab: next.id === "build" && !searchParams.has("me") ? null : next.id });
                   }}
                 >
-                  {"label" in item ? item.label : champion.name}
+                  {item.label}
                 </button>
               );
             })}
@@ -211,7 +209,7 @@ export function MatchupScreen({
                 childDocs={championChildDocs}
                 viewer={viewer}
               />
-            ) : tab === "board" ? (
+            ) : (
               <WikiPanel
                 positionLabel={positionLabel}
                 champion={champion}
@@ -220,12 +218,6 @@ export function MatchupScreen({
                 nearbyChampions={nearbyChampions}
                 allChampions={allChampions}
                 viewer={viewer}
-              />
-            ) : (
-              <VideoPanel
-                champion={champion}
-                positionLabel={positionLabel}
-                videos={videos}
               />
             )}
           </div>
