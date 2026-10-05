@@ -31,7 +31,11 @@ function statusMessage(result: Exclude<RecordResult, { status: "ok" }>) {
     case "missing": return "해당 Riot ID를 찾지 못했습니다. 이름과 태그를 확인해 주세요.";
     case "rate-limited": return `Riot 조회 한도에 도달했습니다. 약 ${result.retrySeconds ?? 60}초 뒤 다시 검색해 주세요.`;
     case "not-configured": return "전적 검색을 준비 중입니다. 잠시 후 다시 이용해 주세요.";
-    case "unavailable": return "지금은 Riot 전적을 불러올 수 없습니다. 잠시 뒤 다시 시도해 주세요.";
+    case "unavailable": {
+      const message = "지금은 Riot 전적을 불러올 수 없습니다. 잠시 뒤 다시 시도해 주세요.";
+      // 개발 중에는 만료된 키(403)와 Riot 장애를 구분할 수 있게 응답 코드를 붙인다.
+      return process.env.NODE_ENV !== "production" && result.riotStatus ? `${message} (Riot 응답 ${result.riotStatus})` : message;
+    }
   }
 }
 

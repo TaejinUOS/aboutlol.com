@@ -59,7 +59,7 @@ export type RecordRow = {
 
 export type RecordResult =
   | { status: "ok"; riotId: string; rows: RecordRow[]; incomplete: boolean; profile: { iconUrl: string | null; level: number | null } }
-  | { status: "invalid" | "missing" | "unavailable" | "rate-limited" | "not-configured"; retrySeconds?: number };
+  | { status: "invalid" | "missing" | "unavailable" | "rate-limited" | "not-configured"; retrySeconds?: number; riotStatus?: number };
 
 class RiotError extends Error {
   constructor(
@@ -255,7 +255,11 @@ export async function getRecords(input: string): Promise<RecordResult> {
     if (error instanceof RiotError) {
       if (error.status === 404) return { status: "missing" };
       if (error.status === 429) return { status: "rate-limited", retrySeconds: error.retrySeconds };
+      // 401·403은 대개 만료되거나 잘못된 키다. 원인을 가리지 않도록 응답 코드를 남긴다.
+      console.warn(`[records] Riot API ${error.status}`);
+      return { status: "unavailable", riotStatus: error.status };
     }
+    console.warn("[records] lookup failed", error);
     return { status: "unavailable" };
   }
 }
