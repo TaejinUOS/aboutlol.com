@@ -30,7 +30,7 @@ export default async function AdminTierListPage({ searchParams }: {
     <div className={`shell ${styles.page}`}>
       <p className="section-index">관리자 / TIER EDITOR</p>
       <h1 className={styles.title}>티어 배정</h1>
-      <p className={styles.lead}>챔피언의 포지션별 등급을 선택하고 저장합니다. 공개 티어표에는 저장한 배정만 나타납니다.</p>
+      <p className={styles.lead}>챔피언의 포지션별 등급을 선택하고 저장합니다. 챔피언 화면의 티어순 목록에는 저장한 배정만 나타납니다.</p>
       <p className={styles.lead}>배정 기준과 변경 이유는 <Link href={articleHref("티어표 작성 근거")}>티어표 작성 근거 문서 ↗</Link>에 기록해 주세요.</p>
 
       <nav className={styles.positions} aria-label="관리할 포지션">
@@ -46,7 +46,7 @@ export default async function AdminTierListPage({ searchParams }: {
 
       <div className={styles.listHeading}>
         <h2>{position.name} 챔피언</h2>
-        <Link href={`/tier-list?position=${positionSlug}`}>공개 티어표 보기 ↗</Link>
+        <Link href={`/?position=${positionSlug}`}>공개 티어 목록 보기 ↗</Link>
       </div>
       {champions.length === 0 && <p>이 포지션에 배정된 챔피언이 없습니다.</p>}
       <ul className={styles.list}>

@@ -1,5 +1,6 @@
 /** Node 수동 수집과 Cloudflare Cron이 공유하는 지속 가능한 수집기. 서버에서만 import한다. */
 import { extractBuilds, patchLine, type BuildMatch, type BuildTimeline, type ItemCatalog } from "./buildStats";
+import { sampleTierMatches, type TierSampleOptions } from "./tierSampler";
 
 export const BUILD_COHORT = "diamond-plus";
 export const BUILD_SOURCE = "KR solo / verified Diamond+ ladder players / full patch";
@@ -10,7 +11,9 @@ type Cursor = { puuid: string; history_start: number; history_end: number;
   history_offset: number; watermark: number; backfilled: number };
 type State = { patch: string | null; version: string | null; blocked_kr: number; blocked_asia: number };
 export type CollectorOptions = { requests?: number; players?: number; matches?: number;
-  version?: string; durationMs?: number; fetcher?: typeof fetch; sleep?: (ms: number) => Promise<void> };
+  version?: string; durationMs?: number; fetcher?: typeof fetch; sleep?: (ms: number) => Promise<void>;
+  /** 티어 구간 표본 (`tierSampler.ts`). 기본 예산 0 — 켜지 않으면 호출하지 않는다. */
+  tierSample?: TierSampleOptions };
 class PauseCollection extends Error {}
 export function comparePatch(a: string, b: string) {
   const [ay, ap] = a.split(".").map(Number), [by, bp] = b.split(".").map(Number);
@@ -24,7 +27,9 @@ export async function collectBuilds(DB: D1Database, key: string, options: Collec
   // Cron의 최대 실행 시간(15분)보다 긴 임대. 강제 종료 시 다음 실행이 만료 후 이어받는다.
   const lease = await DB.prepare(`UPDATE build_collector_state SET lease_owner=?,lease_until=?
     WHERE id=1 AND lease_until<?`).bind(owner, Math.max(until + 60_000, started + 16 * 60_000), started).run();
-  const result = { status: "ok", patch: "", discovered: 0, players: 0, inspected: 0, matches: 0, requests: 0 };
+  const result: { status: string; patch: string; discovered: number; players: number; inspected: number;
+    matches: number; requests: number; tierSample?: Awaited<ReturnType<typeof sampleTierMatches>> } =
+    { status: "ok", patch: "", discovered: 0, players: 0, inspected: 0, matches: 0, requests: 0 };
   if (!lease.meta.changes) return { ...result, status: "locked" };
   const fetcher = options.fetcher ?? fetch;
   const sleep = options.sleep ?? ((ms) => new Promise<void>((resolve) => setTimeout(resolve, ms)));
@@ -95,6 +100,8 @@ export async function collectBuilds(DB: D1Database, key: string, options: Collec
       DB.prepare("DELETE FROM build_player_cursors WHERE patch<>?").bind(patch),
       DB.prepare("DELETE FROM build_match_queue WHERE patch<>?").bind(patch),
     ]);
+    // 티어 구간 표본을 먼저 진행한다. 자기 예산만 쓰고 남은 예산은 아래 빌드 수집이 쓴다.
+    if (options.tierSample?.requests) result.tierSample = await sampleTierMatches(DB, riot, patch, options.tierSample);
     // 일곱 구간을 공정하게 순환하며 다이아몬드 각 division의 마지막 페이지까지 탐색한다.
     const ladder = await DB.prepare("SELECT scope,page,entry_offset FROM build_ladder_cursors WHERE next_at<=? ORDER BY next_at,scope LIMIT 1")
       .bind(started).first<{ scope: string; page: number; entry_offset: number }>();

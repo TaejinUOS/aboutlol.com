@@ -491,6 +491,59 @@
   color: var(--smog);
 }
 
+/* 티어 기준: 운영 배정 + 티어 구간 다섯. 고른 것만 Sky로 채운다 — 색과 함께 aria-pressed로도 구분한다. */
+.brackets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.brackets .bracketButton {
+  padding: 5px 10px;
+  font-size: 12px;
+  color: var(--smog);
+  background: transparent;
+  border: 1px solid rgba(241, 238, 244, 0.24);
+  cursor: pointer;
+}
+
+.brackets .bracketButton:hover {
+  color: var(--chalk);
+  border-color: var(--chalk);
+}
+
+.brackets .bracketButton:focus-visible {
+  outline: 2px solid var(--sky);
+  outline-offset: 2px;
+}
+
+.brackets .bracketButton[aria-pressed="true"] {
+  color: var(--under);
+  background: var(--sky);
+  border-color: var(--sky);
+}
+
+.tierDocs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding-top: 8px;
+}
+
+.tierDocs .tierDoc {
+  font-size: 12px;
+  color: var(--smog);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.tierDocs .tierDoc:hover,
+.tierDocs .tierDoc:focus-visible {
+  color: var(--chalk);
+}
+
 /* -------------------------------------------------------------- 반응형 */
 
 @media (max-width: 1199px) {

@@ -8,6 +8,7 @@
 
 import type { TaxonomySnapshot } from "@/lib/taxonomyStore";
 
+import { BRACKET_SLUGS, type BracketSlug } from "./brackets";
 import { positions } from "./champions";
 
 /** `tierStore.ts`의 TIERS와 같은 순서. 그 파일은 server-only라 여기서 가져올 수 없다. */
@@ -64,25 +65,22 @@ export type LaneView = {
   championCount: number;
 };
 
-export function buildLaneData(
+type Placement = { tier: TierGroup["tier"]; stats: LaneStats; score: number | null };
+
+function buildLanes(
   taxonomy: TaxonomySnapshot,
-  tiers: ReadonlyMap<string, LaneTier>,
+  place: (position: string, champion: string) => Placement,
 ): LaneView[] {
   return positions
     .filter((position) => position.active && LANE_COVERS[position.slug])
     .map((position) => {
-      const byTier = new Map<TierGroup["tier"], LaneChampion[]>();
+      const byTier = new Map<TierGroup["tier"], { champion: LaneChampion; score: number | null }[]>();
       const roster = taxonomy.championsInPosition(position.slug);
 
       for (const champion of roster) {
-        const tier = tiers.get(`${position.slug}/${champion.slug}`) ?? UNRANKED;
+        const { tier, stats, score } = place(position.slug, champion.slug);
         const list = byTier.get(tier) ?? [];
-        list.push({
-          slug: champion.slug,
-          name: champion.name,
-          iconUrl: champion.iconUrl,
-          stats: { winRate: null, pickRate: null, banRate: null },
-        });
+        list.push({ champion: { slug: champion.slug, name: champion.name, iconUrl: champion.iconUrl, stats }, score });
         byTier.set(tier, list);
       }
 
@@ -91,7 +89,10 @@ export function buildLaneData(
         .filter((tier) => byTier.has(tier))
         .map((tier) => ({
           tier,
-          champions: byTier.get(tier)!.sort((a, b) => a.name.localeCompare(b.name, "ko")),
+          // 같은 등급 안에서는 점수 내림차순, 점수가 없거나 같으면 이름순 (PRD_TIER_LIST.md 3.1)
+          champions: byTier.get(tier)!
+            .sort((a, b) => (b.score ?? -Infinity) - (a.score ?? -Infinity) || a.champion.name.localeCompare(b.champion.name, "ko"))
+            .map((entry) => entry.champion),
         }));
 
       return {
@@ -103,4 +104,69 @@ export function buildLaneData(
         championCount: roster.length,
       };
     });
+}
+
+const NO_STATS: LaneStats = { winRate: null, pickRate: null, banRate: null };
+
+/** 운영자가 손으로 배정한 등급. 구간과 상관없는 하나의 보드다. */
+export function buildLaneData(
+  taxonomy: TaxonomySnapshot,
+  tiers: ReadonlyMap<string, LaneTier>,
+): LaneView[] {
+  return buildLanes(taxonomy, (position, champion) => ({
+    tier: tiers.get(`${position}/${champion}`) ?? UNRANKED,
+    stats: NO_STATS,
+    score: null,
+  }));
+}
+
+// ---------------------------------------------------------------- 티어 구간별 점수 보드
+
+/** `tier_scores` 한 행 (`tierScoreStore.ts`). */
+export type BracketScore = {
+  bracket: string;
+  position: string;
+  champion: string;
+  patch: string;
+  modelVersion: string;
+  score: number | null;
+  tier: string | null;
+  games: number;
+  wins: number;
+  pickRate: number | null;
+  banRate: number | null;
+};
+
+export type BracketBoard = {
+  slug: BracketSlug;
+  /** null이면 이 구간의 점수가 아직 공개되지 않았다 — 화면은 "준비 중"이다. */
+  lanes: LaneView[] | null;
+  patch: string | null;
+  modelVersion: string | null;
+};
+
+const isLaneTier = (tier: string | null): tier is LaneTier => (LANE_TIERS as readonly string[]).includes(tier ?? "");
+
+/**
+ * 구간마다 모델 점수로 등급을 매긴 보드. 점수가 없는 챔피언(표본 부족·아직 수집 안 됨)은
+ * 맨 아래 묶음이다 — 임의의 등급을 주지 않는다.
+ */
+export function buildBracketBoards(taxonomy: TaxonomySnapshot, scores: readonly BracketScore[]): BracketBoard[] {
+  return BRACKET_SLUGS.map((slug) => {
+    const rows = scores.filter((s) => s.bracket === slug);
+    if (!rows.length) return { slug, lanes: null, patch: null, modelVersion: null };
+    const byKey = new Map(rows.map((r) => [`${r.position}/${r.champion}`, r]));
+    const lanes = buildLanes(taxonomy, (position, champion) => {
+      const row = byKey.get(`${position}/${champion}`);
+      if (!row) return { tier: UNRANKED, stats: NO_STATS, score: null };
+      const ranked = isLaneTier(row.tier);
+      return {
+        tier: ranked ? row.tier as LaneTier : UNRANKED,
+        // 등급을 못 낸(표본 부족) 챔피언의 승률은 몇십 판의 우연이라 숨긴다. 픽률·밴율은 경기 단위라 둔다.
+        stats: { winRate: ranked && row.games ? row.wins / row.games : null, pickRate: row.pickRate, banRate: row.banRate },
+        score: row.score,
+      };
+    });
+    return { slug, lanes, patch: rows[0].patch, modelVersion: rows[0].modelVersion };
+  });
 }

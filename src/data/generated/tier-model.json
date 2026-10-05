@@ -1,0 +1,125 @@
+{
+ "version": "tier-2026-10-05-0r",
+ "trainedAt": "2026-10-05T16:18:39.109Z",
+ "status": "prior-only",
+ "features": {
+  "winRate": {
+   "weight": 1,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "pickRate": {
+   "weight": 0.3,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "banRate": {
+   "weight": 0.6,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "eliteWinGap": {
+   "weight": 0.2,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "winTrend": {
+   "weight": 0.2,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "pickTrend": {
+   "weight": 0.15,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "flex": {
+   "weight": 0.1,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "mastery": {
+   "weight": 0,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "masteryWinDiscount": {
+   "weight": -0.5,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "proPresence": {
+   "weight": 0.5,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "proLowWinCover": {
+   "weight": 0.4,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "difficulty": {
+   "weight": 0.1,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "blindPick": {
+   "weight": 0.15,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "recentNerfs": {
+   "weight": -0.3,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "recentBuffs": {
+   "weight": 0.1,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "patchesSinceChange": {
+   "weight": 0,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  },
+  "newChampion": {
+   "weight": 0,
+   "mean": 0,
+   "sd": 1,
+   "observed": 0
+  }
+ },
+ "thresholds": {
+  "buffNone": -2.9444389791664403,
+  "noneNerf": 2.9444389791664403
+ },
+ "bias": 0,
+ "training": {
+  "rows": 0,
+  "patches": [],
+  "labels": {
+   "버프": 0,
+   "유지": 0,
+   "너프": 0
+  },
+  "lambda": 2
+ },
+ "metrics": null
+}

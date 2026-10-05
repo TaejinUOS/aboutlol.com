@@ -5,13 +5,18 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
 import { PortalCylinder, useFlatLayout } from "@/components/wiki/PortalCylinder";
-import { UNRANKED, type LaneView } from "@/data/lanes";
+import { BRACKETS, getBracket } from "@/data/brackets";
+import { UNRANKED, type BracketBoard, type LaneView } from "@/data/lanes";
 import { buildQuery } from "@/lib/url";
+import { articleHref } from "@/lib/wikiTitle";
 
 import styles from "./LaneSelectionScreen.module.css";
 
 type Props = {
+  /** 운영자 수동 배정 보드. 표지·라인 이름도 여기서 읽는다. */
   lanes: LaneView[];
+  /** 티어 구간별 모델 점수 보드. 공개 전인 구간은 `lanes`가 null이다. */
+  boards: BracketBoard[];
   defaultLane: string;
   patch: string;
 };
@@ -22,6 +27,9 @@ type Props = {
  * 아래 티어 목록이 한참 밀려나기 때문이다.
  */
 const LANE_CYLINDER = true;
+
+/** 티어 목록 아래에 작게 거는 위키 문서. */
+const TIER_DOCS = ["티어표 작성 근거", "티어표 건의"];
 
 /** 비율 한 칸. 값이 없으면 지어내지 않고 `—`로 둔다. */
 function Stat({ label, value }: { label: string; value: number | null }) {
@@ -39,13 +47,29 @@ function Doodle({ name, className }: { name: string; className: string }) {
   return <img className={className} src={`/images/arcane/doodle-${name}.webp`} alt="" aria-hidden="true" />;
 }
 
-export function LaneSelectionScreen({ lanes, defaultLane, patch }: Props) {
+export function LaneSelectionScreen({ lanes, boards, defaultLane, patch }: Props) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const requested = searchParams.get("position");
   const laneSlug = lanes.some((lane) => lane.slug === requested) ? requested! : defaultLane;
   const lane = lanes.find((item) => item.slug === laneSlug) ?? lanes[0];
+
+  /*
+   * 티어 기준: 주소에 `bracket`이 없으면 운영자 배정 보드, 있으면 그 구간의 모델 점수 보드.
+   * 기본 구간은 아직 정하지 않았다 (PRD_TIER_LIST.md 4.1 — 출시 전 결정).
+   */
+  const bracket = getBracket(searchParams.get("bracket"));
+  const board = bracket ? boards.find((b) => b.slug === bracket.slug) : undefined;
+  /** 목록에 그릴 라인. 구간 보드가 공개 전이면 null — "준비 중"을 보여 준다. */
+  const listLane = bracket ? board?.lanes?.find((item) => item.slug === laneSlug) ?? null : lane;
+
+  const selectBracket = useCallback(
+    (slug: string | null) => {
+      window.history.replaceState(null, "", `${pathname}${buildQuery(searchParams.toString(), { bracket: slug })}`);
+    },
+    [pathname, searchParams],
+  );
   /* 원숭이 낙서는 선택한 표지(왕관·폭발 자리)와 겹치지 않게 맨 오른쪽 비선택 표지에 붙인다. */
   const monkeyLane = [...lanes].reverse().find((item) => item.slug !== laneSlug)?.slug;
 
@@ -163,10 +187,39 @@ export function LaneSelectionScreen({ lanes, defaultLane, patch }: Props) {
             <h2 id="lane-tier-heading" className={`display ${styles.boardTitle}`}>
               {lane.name} · 티어순
             </h2>
-            <p className={styles.boardNote}>높은 티어부터 · {lane.championCount}명</p>
+            <p className={styles.boardNote}>
+              {bracket ? `${bracket.name}${board?.patch ? ` · 패치 ${board.patch}` : ""}` : "운영 배정"} · 높은 티어부터 · {lane.championCount}명
+            </p>
+            {/* 티어 기준. 같은 챔피언도 구간마다 등급이 다르다. */}
+            <div className={styles.brackets} role="group" aria-label="티어 기준">
+              <button
+                type="button"
+                className={`mono ${styles.bracketButton}`}
+                aria-pressed={!bracket}
+                onClick={() => selectBracket(null)}
+              >
+                운영 배정
+              </button>
+              {BRACKETS.map((item) => (
+                <button
+                  key={item.slug}
+                  type="button"
+                  className={`mono ${styles.bracketButton}`}
+                  aria-pressed={bracket?.slug === item.slug}
+                  onClick={() => selectBracket(item.slug)}
+                  title={item.name}
+                >
+                  {item.short}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {lane.groups.length === 0 ? (
+          {!listLane ? (
+            <p className={styles.empty}>
+              {bracket!.name} 구간의 티어는 준비 중입니다. 이 구간의 경기 표본을 모으고 모델이 검증을 통과하면 공개합니다.
+            </p>
+          ) : listLane.groups.length === 0 ? (
             <p className={styles.empty}>이 라인에 배정된 챔피언이 아직 없습니다.</p>
           ) : (
             <>
@@ -190,12 +243,12 @@ export function LaneSelectionScreen({ lanes, defaultLane, patch }: Props) {
               */}
               <ol
                 className={styles.list}
-                key={lane.slug}
-                style={{ ["--rows" as string]: Math.ceil(lane.championCount / 2) }}
+                key={`${bracket?.slug ?? "operator"}/${listLane.slug}`}
+                style={{ ["--rows" as string]: Math.ceil(listLane.championCount / 2) }}
                 tabIndex={0}
-                aria-label={`${lane.name} 챔피언 목록`}
+                aria-label={`${listLane.name} 챔피언 목록${bracket ? ` — ${bracket.name}` : ""}`}
               >
-                {lane.groups.flatMap((group) =>
+                {listLane.groups.flatMap((group) =>
                   group.champions.map((champion) => {
                     const unranked = group.tier === UNRANKED;
                     return (
@@ -208,7 +261,7 @@ export function LaneSelectionScreen({ lanes, defaultLane, patch }: Props) {
                             }`}
                           >
                             {unranked ? "–" : group.tier}
-                            <span className="sr-only">{unranked ? " 미배정" : " 티어"}</span>
+                            <span className="sr-only">{unranked ? (bracket ? " 표본 부족" : " 미배정") : " 티어"}</span>
                           </span>
                           <span className={styles.name} title={champion.name}>{champion.name}</span>
                           <Stat label="승률" value={champion.stats.winRate} />
@@ -222,9 +275,19 @@ export function LaneSelectionScreen({ lanes, defaultLane, patch }: Props) {
               </ol>
             </>
           )}
-          <p className={styles.footnote}>
-            등급은 운영자가 배정합니다. 미배정 챔피언은 맨 아래에 이름순으로 둡니다. 승률·픽률·밴율은 준비 중입니다.
-          </p>
+          {listLane && <p className={styles.footnote}>
+            {bracket
+              ? `등급은 패치노트 역추적 모델이 ${bracket.name} 경기 표본으로 계산합니다. 표본이 부족한 챔피언은 맨 아래에 둡니다.`
+              : "등급은 운영자가 배정합니다. 미배정 챔피언은 맨 아래에 이름순으로 둡니다. 승률·픽률·밴율은 티어 구간별 표본으로 준비 중입니다."}
+          </p>}
+          {/* 티어표 메뉴를 없애며 작성 근거·건의 문서를 목록 맨 아래로 옮겼다. */}
+          <nav className={styles.tierDocs} aria-label="티어 위키 문서">
+            {TIER_DOCS.map((title) => (
+              <Link key={title} className={`mono ${styles.tierDoc}`} href={articleHref(title)}>
+                {title} ↗
+              </Link>
+            ))}
+          </nav>
         </section>
       </div>
     </div>

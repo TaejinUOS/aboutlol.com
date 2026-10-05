@@ -27,6 +27,8 @@ export type BuildMatch = {
     gameStartTimestamp: number; gameEndTimestamp?: number;
     participants: { participantId: number; championId: number; teamPosition: string; puuid?: string;
       win: boolean; gameEndedInEarlySurrender?: boolean }[];
+    /** 밴은 경기 단위다. 티어 모델의 밴율에 쓴다 (`championId` -1은 밴 없음). */
+    teams?: { bans?: { championId: number }[] }[];
   };
 };
 export type BuildTimeline = {

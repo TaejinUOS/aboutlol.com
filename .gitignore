@@ -51,3 +51,6 @@ d1-backup*.sql
 
 # Arcane 레퍼런스 (Riot 저작물 — 내부 검토용, 커밋 금지)
 docs/design/blueprints/Arcane_reference*.jpg
+
+# 외부 원문 캐시 (패치노트 등 — 라이엇 저작물이라 커밋하지 않는다)
+/.cache/

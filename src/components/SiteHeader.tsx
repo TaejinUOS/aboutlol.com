@@ -25,7 +25,6 @@ const NAV: NavItem[] = [
    * 앞선다 (`docs/WIKI_EXPANSION.md` "위키 메뉴").
    */
   { label: "위키", href: "/wiki" },
-  { label: "티어표", href: "/tier-list" },
   { label: "강의", href: "/lessons", soon: true },
 ];
 

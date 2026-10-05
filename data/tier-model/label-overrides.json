@@ -1,0 +1,850 @@
+{
+ "25.S1.1/champions/ashe": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.S1.1/champions/kalista": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.S1.1/champions/twitch": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.S1.1/champions/varus": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.S1.2/champions/cassiopeia": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.S1.3/champions/jayce": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.S1.3/champions/nasus": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.S1.3/champions/viego": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.S1.3/champions/monkeyking": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.4/champions/elise": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.4/champions/jayce": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.4/champions/nautilus": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.4/champions/teemo": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.4/champions/warwick": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.4/champions/yasuo": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.5/champions/elise": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.6/champions/gwen": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.6/champions/masteryi": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.7/champions/brand": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.7/champions/lillia": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.7/champions/naafiri": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.7/champions/olaf": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.7/champions/shen": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.7/champions/volibear": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.7/champions/xerath": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.7/champions/yone": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.7/champions/yorick": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.8/champions/annie": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.8/champions/mel": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.8/champions/yone": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.8/champions/yorick": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.8/champions/zoe": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.10/champions/chogath": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.10/champions/fiddlesticks": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.10/champions/vi": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.10/champions/yuumi": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.11/champions/ashe": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.11/champions/elise": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.11/champions/garen": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.11/champions/kassadin": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.11/champions/twitch": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.12/champions/azir": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.12/champions/belveth": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.12/champions/rammus": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.12/champions/senna": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.12/champions/varus": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.12/champions/vi": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.13/champions/irelia": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.13/champions/nidalee": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.13/champions/twistedfate": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.14/champions/leesin": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.14/champions/sett": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.14/champions/yasuo": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.14/champions/yuumi": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.15/champions/illaoi": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.15/champions/irelia": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.15/champions/masteryi": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.15/champions/quinn": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.15/champions/reksai": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.16/champions/brand": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.16/champions/rumble": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.16/champions/singed": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.16/champions/sion": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.16/champions/viego": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.17/champions/kogmaw": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.17/champions/nilah": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.17/champions/rumble": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.17/champions/sett": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.17/champions/singed": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.17/champions/teemo": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.17/champions/vayne": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.18/champions/ashe": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.18/champions/briar": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.18/champions/qiyana": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.18/champions/sylas": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.18/champions/taliyah": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.19/champions/caitlyn": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.19/champions/jax": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.19/champions/leesin": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.19/champions/syndra": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.20/champions/briar": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.20/champions/katarina": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.20/champions/orianna": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.20/champions/pantheon": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.20/champions/monkeyking": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.21/champions/diana": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.21/champions/gwen": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.22/champions/talon": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.23/champions/ashe": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.23/champions/drmundo": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.23/champions/fizz": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.23/champions/hwei": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.23/champions/malphite": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.23/champions/mel": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.23/champions/missfortune": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.23/champions/zeri": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.24/champions/drmundo": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.24/champions/viktor": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.24/champions/zed": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/samira": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/caitlyn": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/tristana": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/sivir": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/zeri": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/xayah": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/draven": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/yunara": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/gangplank": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/yone": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/yasuo": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/tryndamere": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/ashe": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/smolder": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/kindred": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/shaco": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/graves": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/quinn": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/senna": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.1/champions/garen": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.2/champions/ashe": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.2/champions/gwen": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.2/champions/zed": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.3/champions/ahri": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.3/champions/draven": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.3/champions/ezreal": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.3/champions/mel": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.3/champions/naafiri": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.3/champions/nunu": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.3/champions/riven": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.3/champions/tryndamere": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.3/champions/varus": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.3/champions/volibear": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.4/champions/annie": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.4/champions/darius": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.4/champions/illaoi": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.4/champions/jinx": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.4/champions/kayle": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.4/champions/kennen": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.4/champions/lux": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.4/champions/ryze": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.4/champions/senna": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.4/champions/syndra": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.4/champions/udyr": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.4/champions/zac": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.5/champions/akali": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.5/champions/khazix": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.5/champions/lillia": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.5/champions/neeko": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.5/champions/taliyah": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.5/champions/varus": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.5/champions/volibear": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.6/champions/ahri": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.6/champions/azir": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.7/champions/graves": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.7/champions/karma": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.7/champions/ornn": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.7/champions/singed": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.8/champions/lillia": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.8/champions/yuumi": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.9/champions/ambessa": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.9/champions/ezreal": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.9/champions/shyvana": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.9/champions/tahmkench": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.9/champions/udyr": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.9/champions/xinzhao": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.9/champions/zeri": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.10/champions/ambessa": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.10/champions/leesin": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.11/champions/xinzhao": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.12/champions/nocturne": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.12/champions/varus": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.13/champions/aphelios": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.13/champions/bard": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.13/champions/ksante": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.13/champions/rumble": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.13/champions/sion": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.14/champions/nami": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.14/champions/seraphine": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.15/champions/alistar": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.15/champions/belveth": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.15/champions/sylas": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.16/champions/belveth": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.16/champions/nasus": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.16/champions/poppy": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.17/champions/chogath": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.17/champions/graves": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.17/champions/nasus": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.17/champions/trundle": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.17/champions/vayne": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.17/champions/yasuo": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.17/champions/yone": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.18/champions/bard": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.18/champions/kassadin": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.18/champions/zaahen": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.18/champions/zeri": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.19/champions/aurora": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.19/champions/masteryi": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.19/champions/nasus": {
+  "direction": "buff",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.19/champions/nocturne": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.19/champions/poppy": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.19/champions/rumble": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "26.19/champions/ryze": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준"
+ },
+ "25.7/mid-patch/yorick": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 패치 중간 업데이트 수치 기준 (4/4 몬스터·미니언 피해 증가, E·R 약화)"
+ },
+ "25.7/mid-patch/naafiri": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 패치 중간 업데이트 수치 기준 (Q·E 피해 감소, E 재사용 대기시간 증가)"
+ },
+ "25.20/mid-patch/azir": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 패치 중간 업데이트 수치 기준 (W 계수 상위 레벨 감소)"
+ },
+ "26.3/mid-patch/mel": {
+  "direction": "buff",
+  "reason": "수동 검토 — 패치 중간 업데이트 수치 기준 (체력 성장·패시브·W·E 상향)"
+ },
+ "26.6/mid-patch/shyvana": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 패치 중간 업데이트 수치 기준 (방어·피해·회복 전반 하향)"
+ },
+ "25.11/champions/aatrox": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준 (빌드 방향 조정)"
+ },
+ "25.13/champions/briar": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준 (버그 수정·조작감)"
+ },
+ "25.14/champions/riven": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준 (숙련자 손에서 폭딜 과다)"
+ },
+ "26.1/champions/cassiopeia": {
+  "direction": "adjust",
+  "reason": "수동 검토 — 개발자 의도 문장 기준 (패시브 개편)"
+ },
+ "26.1/champions/nilah": {
+  "direction": "nerf",
+  "reason": "수동 검토 — 개발자 의도 문장 기준 (치명타 체계 변경 보정)"
+ }
+}

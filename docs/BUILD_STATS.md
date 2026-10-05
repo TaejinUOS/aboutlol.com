@@ -4,6 +4,11 @@ KR 솔로 랭크 다이아몬드 이상 계정에서 **현재 패치 전체**를
 `src/lib/buildCollector.ts`를 CLI와 독립 Cloudflare Cron Worker가 공유한다.
 스키마는 `0014_champion_builds.sql` + `0015_build_collector.sql`이다.
 
+같은 수집기가 **티어 구간 표본**(`src/lib/tierSampler.ts`, 마이그레이션 0017)도 진행할 수 있다.
+빌드와 달리 아이언~챌린저 다섯 구간에서 계정을 뽑고, 타임라인 없이 경기 정보만 받아 열 명을 모두
+기록한다. 기본 예산은 0이라 켜기 전에는 호출하지 않는다 — `--tier-requests N`(CLI) 또는
+`TIER_SAMPLE_REQUESTS`(Worker 변수)로 켠다. 설계는 [TIER_MODEL.md](./TIER_MODEL.md) 8장.
+
 ## 범위와 표본
 
 - 다이아몬드 I–IV는 마지막 래더 페이지까지, 마스터·그랜드마스터·챌린저는 전체 래더를

@@ -17,7 +17,7 @@ export async function setTierAction(formData: FormData): Promise<void> {
     redirect(`/admin/tier-list?position=${encodeURIComponent(positionSlug)}&error=invalid`);
   }
   const result = await setTier(positionSlug, championSlug, rawTier ? rawTier as Tier : null, auth.viewer.id);
-  revalidatePath("/tier-list");
+  revalidatePath("/");
   revalidatePath("/admin/tier-list");
   const back = `/admin/tier-list?position=${encodeURIComponent(positionSlug)}`;
   redirect(result.ok ? `${back}&done=saved` : `${back}&error=invalid`);

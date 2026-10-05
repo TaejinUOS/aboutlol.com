@@ -3,6 +3,7 @@ import { mkdir, rmdir, stat, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { getPlatformProxy } from "wrangler";
 import { collectBuilds, getCollectorStatus } from "../src/lib/buildCollector";
+import { getTierSampleStatus } from "../src/lib/tierSampler";
 
 async function main() {
   const args = process.argv.slice(2);
@@ -13,6 +14,7 @@ npm run builds:sync -- --players 12 --matches 20 --requests 80
 npm run builds:sync -- --patch 16.19.1        Data Dragon 버전 고정
 npm run builds:sync -- --remote              Production 키 → 운영 D1
 npm run builds:sync -- --status [--remote]   계정·대기열·backfill·오류 확인 (키 불필요)
+npm run builds:sync -- --tier-requests 40     티어 구간 표본에 묶음당 Riot 호출 40회를 더 쓴다 (기본 0)
 
 기본 묶음: Riot 최대 36회, 계정별 history 6페이지, 경기 검사 12개. --cycles 기본 1.
 다이아몬드 I–IV / 마스터 / 그랜드마스터 / 챌린저의 래더를 끝까지 순환합니다.
@@ -21,19 +23,20 @@ npm run builds:sync -- --status [--remote]   계정·대기열·backfill·오류
 실행 전 migrations/0015_build_collector.sql까지 적용하세요. 키/PUUID를 출력하지 않습니다.`);
     return;
   }
-  let remote = false, status = false, cycles = 1, players = 6, matches = 12, requests = 36;
+  let remote = false, status = false, cycles = 1, players = 6, matches = 12, requests = 36, tierRequests = 0;
   let version: string | undefined;
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--remote") remote = true;
     else if (args[i] === "--status") status = true;
-    else if (["--cycles", "--players", "--matches", "--requests"].includes(args[i])) {
+    else if (["--cycles", "--players", "--matches", "--requests", "--tier-requests"].includes(args[i])) {
       const option = args[i], value = Number(args[++i]);
-      const min = option === "--players" || option === "--matches" ? 0 : 1;
+      const min = ["--players", "--matches", "--tier-requests"].includes(option) ? 0 : 1;
       if (!Number.isInteger(value) || value < min || value > 1000) throw new Error(`${option}: ${min}~1000 정수 필요`);
       if (option === "--cycles") cycles = value;
       if (option === "--players") players = value;
       if (option === "--matches") matches = value;
       if (option === "--requests") requests = value;
+      if (option === "--tier-requests") tierRequests = value;
     } else if (args[i] === "--patch") {
       version = args[++i];
       if (!version || !/^\d+\.\d+\.\d+$/.test(version)) throw new Error("Data Dragon 버전 필요 (예: 16.19.1)");
@@ -56,15 +59,23 @@ npm run builds:sync -- --status [--remote]   계정·대기열·backfill·오류
       operational = await getPlatformProxy<CloudflareEnv>({ configPath, remoteBindings: true });
       DB = operational.env.DB;
     }
-    if (status) { console.log(JSON.stringify(await getCollectorStatus(DB), null, 2)); return; }
+    const report = async () => {
+      const collector = await getCollectorStatus(DB);
+      const tierSample = await getTierSampleStatus(DB, collector.state?.patch ?? "").catch(() => "0017 미적용");
+      console.log(JSON.stringify({ ...collector, tierSample }, null, 2));
+    };
+    if (status) { await report(); return; }
     const key = (process.env.RIOT_API_KEY ?? local.env.RIOT_API_KEY)?.trim();
     if (!key) throw new Error(".dev.vars 또는 RIOT_API_KEY 환경 변수에 키를 설정하세요.");
     for (let i = 0; i < cycles; i++) {
-      const result = await collectBuilds(DB, key, { players, matches, requests, version, durationMs: Math.min(600_000, requests * 1600 + 30_000) });
+      // 티어 표본 호출은 빌드 몫과 별도로 더한다.
+      const total = requests + tierRequests;
+      const result = await collectBuilds(DB, key, { players, matches, requests: total, version,
+        durationMs: Math.min(600_000, total * 1600 + 30_000), tierSample: { requests: tierRequests } });
       console.log(JSON.stringify({ cycle: i + 1, target: remote ? "remote" : "local", ...result }));
       if (["rate-limit", "locked"].includes(result.status)) break;
     }
-    console.log(JSON.stringify(await getCollectorStatus(DB), null, 2));
+    await report();
   } finally {
     await operational?.dispose(); await local?.dispose(); await rmdir(lock);
   }
