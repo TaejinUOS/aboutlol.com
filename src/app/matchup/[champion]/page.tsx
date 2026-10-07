@@ -26,6 +26,8 @@ export async function generateMetadata({
   return {
     title: championData.name,
     description: `${championData.name} 아이템·스킬 빌드 통계, 위키와 ${championData.name}${eulReul(championData.name)} 상대하는 방법, 운영자 선별 영상을 한 페이지에서 확인하세요.`,
+    // `?me=`·`?buildPosition=`이 붙은 주소는 같은 문서의 다른 보기다. 대표 주소는 챔피언 하나.
+    alternates: { canonical: `/matchup/${championData.slug}` },
   };
 }
 

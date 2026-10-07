@@ -14,6 +14,7 @@ import { getDocTrees, listUncategorizedArticles } from "@/lib/wikiStore";
 export const metadata: Metadata = {
   title: "위키",
   description: "ABOUTLOL 위키의 목차. 관문별 문서, 최근 바뀐 문서, 아직 없는 문서를 한자리에서 본다.",
+  alternates: { canonical: "/wiki" },
 };
 
 /** 첫 화면 오른쪽 열에 싣는 최근 변경 줄 수. 나머지는 `/wiki/recent`가 맡는다. */

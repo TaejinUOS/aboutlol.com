@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { LegalPage } from "@/components/legal/LegalPage";
 
-export const metadata: Metadata = { title: "소개" };
+export const metadata: Metadata = { title: "소개", alternates: { canonical: "/about" } };
 
 export default function AboutPage() {
   return (

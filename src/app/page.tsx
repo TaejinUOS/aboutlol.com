@@ -16,6 +16,8 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: { absolute: "AboutLol" },
   description: "라인과 챔피언을 고르고, 상대 챔피언별 ABOUTLOL 위키 상대법을 찾아보세요.",
+  // `?position=`·`?category=` 같은 화면 상태 주소가 각각 다른 페이지로 색인되지 않게 한다.
+  alternates: { canonical: "/" },
 };
 
 /** 사이트의 첫 화면은 챔피언(라인 선택) 화면이다. 전적은 `/records`로 옮겼다. */

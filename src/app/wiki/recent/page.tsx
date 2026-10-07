@@ -10,6 +10,7 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "최근 바뀐 문서",
   description: "ABOUTLOL 위키에서 최근에 바뀐 문서를 시간순으로 본다.",
+  alternates: { canonical: "/wiki/recent" },
 };
 
 const FEED_LIMIT = 50;

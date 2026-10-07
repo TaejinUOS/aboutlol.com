@@ -9,7 +9,7 @@ import { NextMatchups, RememberMatchups } from "../NextMatchups";
 import { RecordSearch } from "../RecordSearch";
 import styles from "../page.module.css";
 
-export const metadata: Metadata = { title: "전적", description: "한국 서버 Riot ID로 최근 20경기의 전적을 확인하세요." };
+export const metadata: Metadata = { title: "전적", description: "한국 서버 Riot ID로 최근 20경기의 전적을 확인하세요.", alternates: { canonical: "/records" } };
 export const dynamic = "force-dynamic";
 
 function dateLabel(timestamp: number | null) {

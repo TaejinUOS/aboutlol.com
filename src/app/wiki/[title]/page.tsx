@@ -38,7 +38,11 @@ export async function generateMetadata({
   if (!article || article.status !== "published") {
     return { title: `${title} (아직 없는 문서)`, robots: { index: false, follow: false } };
   }
-  return { title: article.title };
+  /*
+   * 제목은 `titleKey()`로 정규화해 찾으므로 띄어쓰기·대소문자가 다른 주소도 같은 문서를 연다.
+   * 대표 주소는 문서에 저장된 제목 하나로 고정한다.
+   */
+  return { title: article.title, alternates: { canonical: articleHref(article.title) } };
 }
 
 /**

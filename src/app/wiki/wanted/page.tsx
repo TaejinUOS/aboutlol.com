@@ -11,6 +11,7 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "아직 없는 문서",
   description: "분류에는 있으나 아직 아무도 쓰지 않은 문서, 링크로 걸렸지만 없는 문서 목록.",
+  alternates: { canonical: "/wiki/wanted" },
 };
 
 /**

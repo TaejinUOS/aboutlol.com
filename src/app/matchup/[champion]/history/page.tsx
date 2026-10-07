@@ -14,7 +14,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const resolved = resolveMatchup(await params, await getTaxonomy());
   if (!resolved) return { title: "찾을 수 없는 문서 역사" };
-  return { title: `${resolved.championData.name} 상대법 문서 역사` };
+  return {
+    title: `${resolved.championData.name} 상대법 문서 역사`,
+    alternates: { canonical: `/matchup/${resolved.championData.slug}/history` },
+  };
 }
 
 /** 문서 역사 열람 (FR-29). 공개 화면 — 로그인 불필요. 되돌리기만 관리자 전용 (FR-30). */

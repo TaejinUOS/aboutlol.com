@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { ComingSoon } from "@/components/ComingSoon";
 
-export const metadata: Metadata = { title: "강의" };
+export const metadata: Metadata = { title: "강의", alternates: { canonical: "/lessons" } };
 
 export default function LessonsPage() {
   return (
